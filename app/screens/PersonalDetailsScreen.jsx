@@ -14,12 +14,20 @@ import { useWorkout } from "../contexts/WorkoutContext";
 import SafeScreen from "../components/SafeScreen";
 import { useNavigation } from "@react-navigation/native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import * as Haptics from "expo-haptics";
 const PersonalDetailsScreen = () => {
   const fields = ["Height", "Weight", "Age"];
-  const { updateHeight, updateWeight, updateAge, UserProfile } = useWorkout();
+  const {
+    updateHeight,
+    updateWeight,
+    updateAge,
+    UserProfile,
+    completeOnboarding,
+  } = useWorkout();
   const { age, height, weight } = UserProfile;
   const allFieldsFilled = age && height && weight;
-  const navigate = useNavigation().navigate;
+  const navigation = useNavigation();
+  // In your PersonalDetailsScreen (temporarily)
   const handleOnPress = (field, value) => {
     switch (field) {
       case "Height":
@@ -72,9 +80,10 @@ const PersonalDetailsScreen = () => {
                 placeholderTextColor="#999"
                 keyboardType="numeric"
                 returnKeyType="go"
-                onSubmitEditing={(e) =>
-                  handleOnPress(field, e.nativeEvent.text)
-                }
+                // onSubmitEditing={(e) =>
+                //   handleOnPress(field, e.nativeEvent.text)
+                // }
+                onChangeText={(value) => handleOnPress(field, value)}
               />
             </View>
           );
@@ -83,7 +92,8 @@ const PersonalDetailsScreen = () => {
           <Pressable
             style={styles.workoutGoalButton}
             onPress={() => {
-              navigate("ScreenOne");
+              completeOnboarding();
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
             }}>
             <Text style={styles.defaultText}>Submit</Text>
           </Pressable>

@@ -6,19 +6,21 @@ export const WorkoutProvider = ({ children }) => {
     age: null,
     height: null,
     weight: null,
-    fitnessLevel: null,
+    // fitnessLevel: null,
     DailyWorkoutTime: null,
     PlanDuration: null,
     equipment: [],
   });
+  const [isOnboardingCompleted, setIsOnboardingCompleted] = useState(false);
+  const completeOnboarding = () => setIsOnboardingCompleted(true);
   const value = {
     UserProfile,
     setUserProfile,
     updateGoal: (goal) =>
       setUserProfile((prev) => ({ ...prev, workoutGoal: goal })),
     updateAge: (age) => setUserProfile((prev) => ({ ...prev, age })),
-    updateFitnessLevel: (level) =>
-      setUserProfile((prev) => ({ ...prev, fitnessLevel: level })),
+    // updateFitnessLevel: (level) =>
+    //   setUserProfile((prev) => ({ ...prev, fitnessLevel: level })),
     updateEquipment: (equipment) =>
       setUserProfile((prev) => ({ ...prev, equipment })),
     updateDailyWorkoutTime: (time) =>
@@ -27,6 +29,8 @@ export const WorkoutProvider = ({ children }) => {
       setUserProfile((prev) => ({ ...prev, PlanDuration: duration })),
     updateHeight: (height) => setUserProfile((prev) => ({ ...prev, height })),
     updateWeight: (weight) => setUserProfile((prev) => ({ ...prev, weight })),
+    isOnboardingCompleted,
+    completeOnboarding,
   };
   return (
     <WorkoutContext.Provider value={value}>{children}</WorkoutContext.Provider>
