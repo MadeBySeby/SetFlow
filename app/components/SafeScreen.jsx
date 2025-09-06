@@ -9,7 +9,7 @@ const SafeScreen = ({ children, style, excludeBottomSafeArea = false }) => {
     <View
       style={[
         {
-          paddingTop: 0,
+          paddingTop: insets.top,
           paddingBottom: excludeBottomSafeArea ? 0 : insets.bottom,
           paddingLeft: insets.left,
           paddingRight: insets.right,

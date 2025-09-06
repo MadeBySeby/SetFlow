@@ -8,7 +8,6 @@ import { Ionicons, MaterialIcons, Feather } from "@expo/vector-icons";
 // import ProfileScreen from "../screens/tabs/ProfileScreen";
 
 const Tab = createBottomTabNavigator();
-
 export default function TabsNavigator() {
   return (
     <>
@@ -53,7 +52,6 @@ export default function TabsNavigator() {
             ),
           }}
         />
-        {/* <Tab.Screen name="Workouts" component={WorkoutsScreen} /> */}
         {/* <Tab.Screen name="Profile" component={ProfileScreen} /> */}
       </Tab.Navigator>
     </>

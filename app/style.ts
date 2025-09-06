@@ -1,4 +1,5 @@
-const styles = {
+import { StyleSheet } from "react-native";
+const styles = StyleSheet.create({
   Background: {
     flex: 1,
     backgroundColor: "black",
@@ -35,10 +36,10 @@ const styles = {
     backgroundColor: "#4a5568",
     fontSize: 16,
     outline: "none",
-    padding: "10px",
+    padding: 10,
     fontFamily: "system-ui, -apple-system, sans-serif",
   },
   TitleText: { color: "white", fontSize: 25, textAlign: "center" },
-};
+});
 
 export default styles;

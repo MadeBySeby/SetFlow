@@ -5,6 +5,7 @@ import TabsNavigator from "./TabsNavigator";
 import { WorkoutProvider } from "../contexts/WorkoutContext";
 import styles from "../style";
 import { NavigationContainer } from "@react-navigation/native";
+import ExerciseDetail from "../screens/ExerciseDetail";
 const Stack = createNativeStackNavigator();
 
 function AppStack() {
@@ -18,11 +19,27 @@ function AppStack() {
       screenOptions={{
         headerShown: false,
       }}>
-      {isComplete ? (
+      {!isComplete ? (
         <Stack.Screen name="Tabs" component={TabsNavigator} />
       ) : (
         <Stack.Screen name="Onboarding" component={OnboardingNavigator} />
       )}
+      <Stack.Screen
+        name="ExerciseDetail"
+        component={ExerciseDetail}
+        options={{
+          // headerShown: false,
+          headerShown: true,
+          headerBackTitleVisible: false,
+          headerTitle: "Exercise Detail",
+          headerStyle: {
+            backgroundColor: "#47b977",
+            elevation: 0,
+            shadowOpacity: 0,
+          },
+          headerTintColor: "white",
+        }}
+      />
     </Stack.Navigator>
   );
 }
