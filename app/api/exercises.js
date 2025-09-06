@@ -20,3 +20,13 @@ export const getExerciseById = async (id) => {
     return null;
   }
 };
+
+export const getAllExercises = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}/exercises`);
+    return response.json();
+  } catch (error) {
+    console.error("Error fetching all exercises:", error);
+    return [];
+  }
+};

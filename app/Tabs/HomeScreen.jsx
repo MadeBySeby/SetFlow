@@ -2,13 +2,12 @@ import {
   StyleSheet,
   Text,
   View,
-  StatusBar,
   Pressable,
   TextInput,
   FlatList,
   TouchableOpacity,
 } from "react-native";
-import React, { use, useEffect } from "react";
+import React, { use, useEffect, useState } from "react";
 import SafeScreen from "../components/SafeScreen";
 import styles from "../style";
 import { useNavigation } from "expo-router";
@@ -16,68 +15,66 @@ import { useRouter } from "expo-router";
 import { useWorkout } from "../contexts/WorkoutContext";
 import AiWorkoutAssistant from "../components/AiWorkoutAssistant";
 import { searchExercises } from "../api/exercises";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import CalendarStrip from "react-native-calendar-strip";
+import WorkoutPreview from "../components/WorkoutPreview";
+import dayjs from "dayjs";
+
 const HomeScreen = () => {
   const navigation = useNavigation();
-  const [query, setQuery] = React.useState("");
-  const [results, setResults] = React.useState([]);
-  useEffect(() => {
-    const fetchResults = async () => {
-      if (query.length < 1) {
-        setResults([]);
-        return;
-      } else {
-        const timeout = setTimeout(() => {
-          searchExercises(query).then((data) => setResults(data));
-        }, 300);
-        return () => clearTimeout(timeout);
-      }
-    };
-    fetchResults();
-    console.log("resulysss", results.data);
-  }, [query]);
+  const insets = useSafeAreaInsets();
+  const today = dayjs();
+  const [selectedDate, setSelectedDate] = useState(today);
+  const date = new Date(selectedDate);
+  const month = date.getMonth() + 1; // +1 because getMonth() returns 0-11
+  const day = date.getDate();
+
   return (
     <SafeScreen
       excludeBottomSafeArea={true}
       style={{ ...styles.Background, flex: 1 }}>
-      {/* <AiWorkoutAssistant /> */}
-      <TextInput
-        style={{ ...styles.input, margin: 20, width: "90%" }}
-        placeholder="Search Exercises..."
-        placeholderTextColor="#999"
-        value={query}
-        onChangeText={setQuery}
-      />
-      <Pressable
-        onPress={() => {
-          navigation.navigate("ExerciseDetail");
-        }}
-        style={{ marginLeft: 20 }}>
-        <Text style={{ ...styles.defaultText, alignSelf: "center" }}>
-          {results.data?.length ? `${results.data.length} results found` : ""}
-        </Text>
-      </Pressable>
-      <FlatList
-        data={results.data || []}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("ExerciseDetail", {
-                exerciseId: item.exerciseId,
-              });
-              console.log("clicked", item.exerciseId);
+      <View style={{ ...styles.Background, flex: 1, height: "100%" }}>
+        <CalendarStrip
+          scrollable
+          style={{ height: 100, paddingTop: 30, paddingBottom: 0 }}
+          calendarColor="#2d3748"
+          highlightDateNameStyle={{ color: "white" }}
+          highlightDateNumberStyle={{ color: "white" }}
+          dateNumberStyle={{ color: "white" }}
+          dateNameStyle={{ color: "white" }}
+          iconContainer={{ flex: 0.1 }}
+          minDate={today}
+          // maxDate={today.add(30, "day")}
+          onDateSelected={(date) => {
+            setSelectedDate(date);
+          }}
+          selectedDate={selectedDate}
+          daySelectionAnimation={{
+            type: "background",
+            duration: 100,
+            highlightColor: "#38d9a9",
+          }}
+          showMonth={false}
+          scrollToOnSelect={false}
+          scrollerPaging={true}
+          startingDate={today}
+        />
+        <WorkoutPreview month={month} day={day} />
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "flex-end",
+          }}>
+          <View
+            style={{
+              padding: 50,
+              paddingBottom: insets.bottom,
+              alignItems: "center",
             }}>
-            <View
-              key={item.id}
-              style={{
-                ...styles.workoutGoalButton,
-                margin: 10,
-                alignSelf: "center",
-              }}>
-              <Text style={styles.defaultText}>{item.name}</Text>
-            </View>
-          </TouchableOpacity>
-        )}
-      />
+            <AiWorkoutAssistant />
+          </View>
+        </View>
+      </View>
     </SafeScreen>
   );
 };

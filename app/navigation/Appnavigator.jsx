@@ -19,7 +19,7 @@ function AppStack() {
       screenOptions={{
         headerShown: false,
       }}>
-      {!isComplete ? (
+      {isComplete ? (
         <Stack.Screen name="Tabs" component={TabsNavigator} />
       ) : (
         <Stack.Screen name="Onboarding" component={OnboardingNavigator} />
