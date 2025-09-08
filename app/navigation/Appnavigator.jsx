@@ -19,7 +19,7 @@ function AppStack() {
       screenOptions={{
         headerShown: false,
       }}>
-      {isComplete ? (
+      {!isComplete ? (
         <Stack.Screen name="Tabs" component={TabsNavigator} />
       ) : (
         <Stack.Screen name="Onboarding" component={OnboardingNavigator} />
@@ -33,11 +33,13 @@ function AppStack() {
           headerBackTitleVisible: false,
           headerTitle: "Exercise Detail",
           headerStyle: {
-            backgroundColor: "#47b977",
+            backgroundColor: "#334155",
             elevation: 0,
             shadowOpacity: 0,
           },
           headerTintColor: "white",
+          headerBackTitleStyle: { color: "white" },
+          headerBackTitle: "Back",
         }}
       />
     </Stack.Navigator>

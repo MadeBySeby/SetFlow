@@ -61,7 +61,6 @@ const Workouts = () => {
               navigation.navigate("ExerciseDetail", {
                 exerciseId: item.exerciseId,
               });
-              console.log("clicked", item.exerciseId);
             }}>
             <View
               key={item.id}

@@ -33,7 +33,14 @@ const HomeScreen = () => {
     <SafeScreen
       excludeBottomSafeArea={true}
       style={{ ...styles.Background, flex: 1 }}>
-      <View style={{ ...styles.Background, flex: 1, height: "100%" }}>
+      <View
+        style={{
+          ...styles.Background,
+          flex: 1,
+          height: "100%",
+          width: "100%",
+          maxWidth: "100%",
+        }}>
         <CalendarStrip
           scrollable
           style={{ height: 100, paddingTop: 30, paddingBottom: 0 }}
@@ -60,20 +67,6 @@ const HomeScreen = () => {
           startingDate={today}
         />
         <WorkoutPreview month={month} day={day} />
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "flex-end",
-          }}>
-          <View
-            style={{
-              padding: 50,
-              paddingBottom: insets.bottom,
-              alignItems: "center",
-            }}>
-            <AiWorkoutAssistant />
-          </View>
-        </View>
       </View>
     </SafeScreen>
   );

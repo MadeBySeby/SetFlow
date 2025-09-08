@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   Background: {
     flex: 1,
-    backgroundColor: "black",
+    backgroundColor: "#1e293b",
     height: "100%",
     width: "100%",
   },
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontSize: 20,
     color: "white",
-    borderColor: "#47b977",
+    borderColor: "#38d9a9",
     borderRadius: 10,
     borderWidth: 1,
     padding: 20,

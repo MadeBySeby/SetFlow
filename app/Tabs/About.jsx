@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import SafeScreen from "../components/SafeScreen";
 import styles from "../style";
@@ -28,13 +28,28 @@ const About = () => {
             justifyContent: "space-evenly",
             height: "100%",
           }}>
-          {info.map((item) => (
-            <View key={item.label} style={{ ...styles.workoutGoalButton }}>
-              <Text style={styles.defaultText}>
-                {item.label}: {item.value}
-              </Text>
-            </View>
-          ))}
+          <FlatList
+            data={info || []}
+            style={{ width: "100%", paddingBottom: 0 }}
+            keyExtractor={(item) => item.label}
+            showsVerticalScrollIndicator={false}
+            renderItem={({ item }) => (
+              <View
+                key={item.label}
+                style={{
+                  ...styles.workoutGoalButton,
+                  margin: 10,
+                  alignSelf: "center",
+                  // width: "90%",
+                  // justifyContent: "center",
+                  // alignItems: "center",
+                }}>
+                <Text style={styles.defaultText}>
+                  {item.label}: {item.value}
+                </Text>
+              </View>
+            )}
+          />
         </View>
       </ScrollView>
     </SafeScreen>

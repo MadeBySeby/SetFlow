@@ -40,10 +40,10 @@ const PlanDurationScreen = () => {
         }}>
         <Picker.Item label="" value="" />
 
-        <Picker.Item label="1 Month" value="1" />
-        <Picker.Item label="3 Months" value="3" />
-        <Picker.Item label="6 Months" value="6" />
-        <Picker.Item label="12 Months" value="12" />
+        <Picker.Item label="1 Month" value="1" color="white" />
+        <Picker.Item label="3 Months" value="3" color="white" />
+        <Picker.Item label="6 Months" value="6" color="white" />
+        <Picker.Item label="12 Months" value="12" color="white" />
       </Picker>
 
       <Text
