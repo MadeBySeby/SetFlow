@@ -40,10 +40,10 @@ const PlanDurationScreen = () => {
         }}>
         <Picker.Item label="" value="" />
 
-        <Picker.Item label="1 Month" value="1" color="white" />
-        <Picker.Item label="3 Months" value="3" color="white" />
-        <Picker.Item label="6 Months" value="6" color="white" />
-        <Picker.Item label="12 Months" value="12" color="white" />
+        <Picker.Item label="1 Month" value="60" color="white" />
+        <Picker.Item label="3 Months" value="180" color="white" />
+        <Picker.Item label="6 Months" value="360" color="white" />
+        <Picker.Item label="12 Months" value="720" color="white" />
       </Picker>
 
       <Text
@@ -62,10 +62,13 @@ const PlanDurationScreen = () => {
           updatePlanDuration(itemValue);
         }}>
         <Picker.Item label="" value="" />
-        <Picker.Item label="1" value="10" />
-        <Picker.Item label="3" value="30" />
-        <Picker.Item label="6" value="60" />
-        <Picker.Item label="12" value="120" />
+        <Picker.Item label="1" value="1" />
+        <Picker.Item label="2" value="2" />
+        <Picker.Item label="3" value="3" />
+        <Picker.Item label="4" value="4" />
+        <Picker.Item label="5" value="5" />
+        <Picker.Item label="6" value="6" />
+        <Picker.Item label="7" value="7" />
       </Picker>
       {PlanDuration && DailyWorkoutTime && (
         <Pressable style={style.workoutGoalButton} onPress={handleSubmit}>

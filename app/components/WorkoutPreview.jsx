@@ -7,7 +7,7 @@ import {
   Modal,
   TouchableOpacity,
 } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import styles from "../style";
 import { getAllExercises } from "../api/exercises";
 import { Image } from "expo-image";
@@ -15,6 +15,7 @@ import SafeScreen from "./SafeScreen";
 import { useNavigation } from "expo-router";
 import ExerciseDetail from "../screens/ExerciseDetail";
 import ScreenOne from "../screens/ScreenOne";
+import { useWorkout } from "../contexts/WorkoutContext";
 import WorkoutScreen from "../screens/WorkoutScreen";
 import * as Haptics from "expo-haptics";
 const WorkoutPreview = ({ month, day }) => {
@@ -24,36 +25,52 @@ const WorkoutPreview = ({ month, day }) => {
   const [currentExercise, setCurrentExercise] = useState(null);
   const [timerForStart, setTimerForStart] = useState(3);
   const [isWorkoutStarting, setIsWorkoutStarting] = useState(false);
+  console.log("plan in preview", plan);
+  const { plan, UserProfile, hydrated } = useWorkout();
+
+  if (!hydrated || !plan || !UserProfile.level) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Text style={{ color: "white" }}>Loading...</Text>
+      </View>
+    );
+  }
+
   useEffect(() => {
     getAllExercises().then((data) => setExercises(data.data));
   }, [month, day]);
   useEffect(() => {
-    setCurrentExercise(exercises.slice(day - 2, day + 4));
+    let newDay = day > 7 ? day - 7 : day;
+    let dayKey = `day${newDay}`;
+    setCurrentExercise(plan[day > 7 ? "week2" : "week1"][dayKey] || []);
   }, [exercises, day]);
+  console.log("current exercise", currentExercise);
   console.log("exercises in preview", exercises.length);
-  const renderExercise = ({ item, index }) => (
-    <View style={workoutStyles.exerciseItem}>
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate("ExerciseDetail", {
-            exerciseId: item.exerciseId,
-          });
-        }}
-        style={{ flexDirection: "row" }}>
-        <Image
-          source={{ uri: item.gifUrl }}
-          style={workoutStyles.exerciseGif}
-          contentFit="cover"
-          transition={1000}
-        />
-        <View style={workoutStyles.textContainer}>
-          <Text style={[styles.defaultText, workoutStyles.exerciseName]}>
-            {item.name}
-          </Text>
-        </View>
-      </TouchableOpacity>
-    </View>
-  );
+  const renderExercise = ({ item, index }) => {
+    return (
+      <View style={workoutStyles.exerciseItem}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("ExerciseDetail", {
+              exerciseId: item?.exerciseId,
+            });
+          }}
+          style={{ flexDirection: "row" }}>
+          <Image
+            source={{ uri: item?.gif }}
+            style={workoutStyles.exerciseGif}
+            contentFit="cover"
+            transition={1000}
+          />
+          <View style={workoutStyles.textContainer}>
+            <Text style={[styles.defaultText, workoutStyles.exerciseName]}>
+              {item?.name}
+            </Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+    );
+  };
   useEffect(() => {
     if (!isWorkoutStarting) return;
 
@@ -96,6 +113,7 @@ const WorkoutPreview = ({ month, day }) => {
     return (
       <Text style={{ ...styles.TitleText, marginTop: 20 }}>Loading...</Text>
     );
+
   return (
     <View
       style={{
@@ -127,7 +145,8 @@ const WorkoutPreview = ({ month, day }) => {
           }}
         />
       </Modal>
-      {exercises[day] ? (
+      {console.log("currentExercise", currentExercise.length)}
+      {currentExercise[0]?.name !== "Rest Day" ? (
         <>
           <FlatList
             data={currentExercise || []}

@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styles from "../style";
 import SafeScreen from "../components/SafeScreen";
 import { Ionicons } from "@expo/vector-icons";
@@ -15,13 +15,15 @@ import { BlurView } from "expo-blur";
 import AiWorkoutAssistant from "../components/AiWorkoutAssistant";
 import TimerComponent from "../components/TimerComponent";
 import ExerciseDetail from "./ExerciseDetail";
+import * as Haptics from "expo-haptics";
+import { WorkoutContext } from "../contexts/WorkoutContext";
 const WorkoutScreen = ({ setWorkoutModalVisible, currentExercise }) => {
   const [nextWorkoutNumber, setNextWorkoutNumber] = useState(0);
   const [workoutStarted, setWorkoutStarted] = useState(false);
   const [exerciseDetailModalVisible, showExerciseDetailModal] = useState(false);
   const [completedSets, setCompletedSets] = useState(0);
   const [timeLeft, setTimeLeft] = useState(0);
-
+  const { addWorkout } = useContext(WorkoutContext);
   const handleSetComplete = (setNumber) => {
     setWorkoutStarted((prev) => !prev);
 
@@ -58,7 +60,7 @@ const WorkoutScreen = ({ setWorkoutModalVisible, currentExercise }) => {
               showExerciseDetailModal(true);
             }}>
             <Image
-              source={{ uri: currentExercise[nextWorkoutNumber].gifUrl }}
+              source={{ uri: currentExercise[nextWorkoutNumber].gif }}
               style={{
                 width: 200,
                 height: 200,
@@ -163,7 +165,7 @@ const WorkoutScreen = ({ setWorkoutModalVisible, currentExercise }) => {
             marginTop: -50,
           }}>
           <Image
-            source={{ uri: currentExercise[nextWorkoutNumber + 1]?.gifUrl }}
+            source={{ uri: currentExercise[nextWorkoutNumber + 1]?.gif }}
             style={{
               width: 150,
               height: 100,
@@ -179,6 +181,7 @@ const WorkoutScreen = ({ setWorkoutModalVisible, currentExercise }) => {
             onPress={() => {
               setNextWorkoutNumber((prev) => prev + 1);
               setCompletedSets(0);
+              addWorkout(currentExercise[nextWorkoutNumber]);
             }}>
             <Text
               style={{

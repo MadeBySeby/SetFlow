@@ -5,6 +5,7 @@ import styles from "../style";
 import { StatusBar, Platform } from "react-native";
 import { Ionicons, MaterialIcons, Feather } from "@expo/vector-icons";
 import Workouts from "../Tabs/Workouts";
+import WorkoutsHistory from "../Tabs/WorkoutsHistory";
 // import WorkoutsScreen from "../screens/tabs/WorkoutsScreen";
 // import ProfileScreen from "../screens/tabs/ProfileScreen";
 
@@ -52,6 +53,16 @@ export default function TabsNavigator() {
         options={{
           tabBarIcon: ({ color, size }) => (
             <MaterialIcons name="fitness-center" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="WorkoutsHistory"
+        component={WorkoutsHistory}
+        options={{
+          title: "History",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialIcons name="history" size={size} color={color} />
           ),
         }}
       />

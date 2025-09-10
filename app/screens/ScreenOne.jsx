@@ -16,6 +16,10 @@ const ScreenOne = () => {
   const { updateGoal } = useWorkout();
   const goals = ["Muscle Gain", "Weight Loss", "Endurance"];
   const handleSelectGoal = (goal) => {
+    if (goal === "Muscle Gain") goal = "muscleGain";
+    if (goal === "Weight Loss") goal = "weightLoss";
+    if (goal === "Endurance") goal = "endurance";
+    console.log("Selected Goal:", goal);
     updateGoal(goal);
     navigation.navigate("ScreenTwo");
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);

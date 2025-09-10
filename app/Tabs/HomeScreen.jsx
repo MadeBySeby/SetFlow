@@ -21,14 +21,11 @@ import WorkoutPreview from "../components/WorkoutPreview";
 import dayjs from "dayjs";
 
 const HomeScreen = () => {
-  const navigation = useNavigation();
-  const insets = useSafeAreaInsets();
   const today = dayjs();
   const [selectedDate, setSelectedDate] = useState(today);
   const date = new Date(selectedDate);
   const month = date.getMonth() + 1; // +1 because getMonth() returns 0-11
   const day = date.getDate();
-
   return (
     <SafeScreen
       excludeBottomSafeArea={true}
@@ -50,7 +47,7 @@ const HomeScreen = () => {
           dateNumberStyle={{ color: "white" }}
           dateNameStyle={{ color: "white" }}
           iconContainer={{ flex: 0.1 }}
-          minDate={today}
+          // minDate={today}
           // maxDate={today.add(30, "day")}
           onDateSelected={(date) => {
             setSelectedDate(date);

@@ -4,6 +4,7 @@ import ScreenTwo from "../screens/ScreenTwo";
 import PlanDurationScreen from "../screens/PlanDurationScreen";
 import PersonalDetailsScreen from "../screens/PersonalDetailsScreen";
 import styles from "../style";
+import LevelScreen from "../screens/LevelScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -34,6 +35,7 @@ export default function OnboardingNavigator() {
         name="PersonalDetailsScreen"
         component={PersonalDetailsScreen}
       />
+      <Stack.Screen name="LevelScreen" component={LevelScreen} />
     </Stack.Navigator>
   );
 }

@@ -17,13 +17,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import * as Haptics from "expo-haptics";
 const PersonalDetailsScreen = () => {
   const fields = ["Height", "Weight", "Age"];
-  const {
-    updateHeight,
-    updateWeight,
-    updateAge,
-    UserProfile,
-    completeOnboarding,
-  } = useWorkout();
+  const { updateHeight, updateWeight, updateAge, UserProfile } = useWorkout();
   const { age, height, weight } = UserProfile;
   const allFieldsFilled = age && height && weight;
   const navigation = useNavigation();
@@ -92,7 +86,7 @@ const PersonalDetailsScreen = () => {
           <Pressable
             style={styles.workoutGoalButton}
             onPress={() => {
-              completeOnboarding();
+              navigation.navigate("LevelScreen");
               Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
             }}>
             <Text style={styles.defaultText}>Submit</Text>
