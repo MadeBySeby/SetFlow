@@ -8,20 +8,20 @@ import {
 } from "react-native";
 import React from "react";
 import SafeScreen from "../components/SafeScreen";
-import styles from "../style";
+import styles from "../components/style";
 import { useWorkout } from "../contexts/WorkoutContext";
 
-const About = () => {
+const about = () => {
   const { UserProfile, clearAllData } = useWorkout();
   const info = [
-    { label: "Workout Goal", value: UserProfile.workoutGoal },
-    { label: "Age", value: UserProfile.age },
-    { label: "Height", value: UserProfile.height },
-    { label: "Weight", value: UserProfile.weight },
-    { label: "Fitness Level", value: UserProfile.fitnessLevel },
-    { label: "Daily Workout Time", value: UserProfile.DailyWorkoutTime },
-    { label: "Plan Duration", value: UserProfile.PlanDuration },
-    { label: "Equipment", value: UserProfile.equipment },
+    { label: "Workout Goal", value: UserProfile?.workoutGoal },
+    { label: "Age", value: UserProfile?.age },
+    { label: "Height", value: UserProfile?.height },
+    { label: "Weight", value: UserProfile?.weight },
+    { label: "Fitness Level", value: UserProfile?.fitnessLevel },
+    // { label: "Daily Workout Time", value: UserProfile?.DailyWorkoutTime },
+    { label: "Plan Duration", value: UserProfile?.PlanDuration },
+    { label: "Equipment", value: UserProfile?.equipment },
   ];
 
   const footerComponent = () => {
@@ -78,4 +78,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default about;

@@ -10,7 +10,7 @@ export const WorkoutProvider = ({ children }) => {
     age: null,
     height: null,
     weight: null,
-    DailyWorkoutTime: null,
+    DailyWorkoutTime: [],
     PlanDuration: null,
     equipment: [],
     level: null,
@@ -73,10 +73,10 @@ export const WorkoutProvider = ({ children }) => {
       return;
     let planFromPreset =
       PresetPlans[0]?.[UserProfile.level]?.[UserProfile.workoutGoal] || [];
-    // planFromPreset = filterPlanByDays(
-    //   planFromPreset,
-    //   parseInt(UserProfile.PlanDuration) || 0
-    // );
+    planFromPreset = filterPlanByDays(
+      planFromPreset,
+      parseInt(UserProfile.PlanDuration) || 0
+    );
     console.log("Filtered Plan:", planFromPreset);
     if (planFromPreset) {
       setPlan(planFromPreset);
@@ -108,7 +108,7 @@ export const WorkoutProvider = ({ children }) => {
         age: null,
         height: null,
         weight: null,
-        DailyWorkoutTime: null,
+        DailyWorkoutTime: [],
         PlanDuration: null,
         equipment: [],
         level: null,
@@ -133,8 +133,18 @@ export const WorkoutProvider = ({ children }) => {
     //   setUserProfile((prev) => ({ ...prev, fitnessLevel: level })),
     updateEquipment: (equipment) =>
       setUserProfile((prev) => ({ ...prev, equipment })),
-    updateDailyWorkoutTime: (time) =>
-      setUserProfile((prev) => ({ ...prev, DailyWorkoutTime: time })),
+    updateDailyWorkoutTime: (day) =>
+      setUserProfile((prev) => {
+        const days = prev.DailyWorkoutTime || [];
+        const exists = days.includes(day);
+
+        return {
+          ...prev,
+          DailyWorkoutTime: exists
+            ? days.filter((d) => d !== day)
+            : [...days, day],
+        };
+      }),
     updatePlanDuration: (duration) =>
       setUserProfile((prev) => ({ ...prev, PlanDuration: duration })),
     updateHeight: (height) => setUserProfile((prev) => ({ ...prev, height })),

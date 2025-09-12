@@ -10,14 +10,11 @@ import {
 } from "react-native";
 import React, { use, useEffect, useState } from "react";
 import SafeScreen from "../components/SafeScreen";
-import styles from "../style";
-import { useNavigation } from "expo-router";
-import { useRouter } from "expo-router";
-import { useWorkout } from "../contexts/WorkoutContext";
-import AiWorkoutAssistant from "../components/AiWorkoutAssistant";
+import styles from "../components/style";
+import { router } from "expo-router";
+
 import { getAllExercises, searchExercises } from "../api/exercises";
 const Workouts = () => {
-  const navigation = useNavigation();
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   useEffect(() => {
@@ -58,8 +55,11 @@ const Workouts = () => {
         renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate("ExerciseDetail", {
-                exerciseId: item.exerciseId,
+              router.push({
+                pathname: "/ExerciseDetail",
+                params: {
+                  exerciseId: item.exerciseId,
+                },
               });
             }}>
             <View

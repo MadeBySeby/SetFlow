@@ -1,17 +1,18 @@
 import { View, Text, Pressable } from "react-native";
 import React from "react";
-import styles from "../style";
+import styles from "../components/style";
 import { useContext } from "react";
-import { WorkoutContext } from "../contexts/WorkoutContext";
+import { useWorkout } from "../contexts/WorkoutContext";
 import * as Haptics from "expo-haptics";
+import { router } from "expo-router";
 const LevelScreen = () => {
-  const { completeOnboarding, updateLevel, userProfile } =
-    useContext(WorkoutContext);
-  const handleSelectLevel = (level) => {
+  const { completeOnboarding, updateLevel, userProfile } = useWorkout();
+  const handleSelectLevel = async (level) => {
     console.log("Selected level:", level, userProfile);
     updateLevel(level);
-    completeOnboarding();
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    await completeOnboarding();
+    router.replace("/(tabs)");
   };
 
   return (

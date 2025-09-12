@@ -1,12 +1,13 @@
 import { View, Text, ScrollView, FlatList } from "react-native";
 import React, { useEffect, useState } from "react";
-import styles from "../style";
-import { Link, useRoute } from "@react-navigation/native";
+import styles from "../components/style";
+import { useLocalSearchParams } from "expo-router";
 import { getExerciseById } from "../api/exercises";
 import { Image } from "expo-image";
 
 const ExerciseDetail = ({ id }) => {
-  const route = useRoute();
+  const route = useLocalSearchParams();
+  console.log("route in ExerciseDetail", route);
   const exerciseId = route.params?.exerciseId || id;
   console.log("exerciseId in ExerciseDetail", exerciseId);
   const [exercise, setExercise] = useState(null);

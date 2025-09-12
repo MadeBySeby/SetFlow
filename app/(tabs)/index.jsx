@@ -1,31 +1,24 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Pressable,
-  TextInput,
-  FlatList,
-  TouchableOpacity,
-} from "react-native";
-import React, { use, useEffect, useState } from "react";
+import { View } from "react-native";
+import React, { useState } from "react";
 import SafeScreen from "../components/SafeScreen";
-import styles from "../style";
-import { useNavigation } from "expo-router";
-import { useRouter } from "expo-router";
-import { useWorkout } from "../contexts/WorkoutContext";
-import AiWorkoutAssistant from "../components/AiWorkoutAssistant";
-import { searchExercises } from "../api/exercises";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import styles from "../components/style";
+
 import CalendarStrip from "react-native-calendar-strip";
 import WorkoutPreview from "../components/WorkoutPreview";
 import dayjs from "dayjs";
+import { useWorkout } from "../contexts/WorkoutContext";
+import { Redirect } from "expo-router";
 
 const HomeScreen = () => {
   const today = dayjs();
   const [selectedDate, setSelectedDate] = useState(today);
+  const { isOnboardingCompleted } = useWorkout();
   const date = new Date(selectedDate);
-  const month = date.getMonth() + 1; // +1 because getMonth() returns 0-11
+  const month = date.getMonth() + 1;
   const day = date.getDate();
+  const dayOfTheWeek = date.getDay();
+  console.log(isOnboardingCompleted);
+
   return (
     <SafeScreen
       excludeBottomSafeArea={true}
@@ -47,7 +40,7 @@ const HomeScreen = () => {
           dateNumberStyle={{ color: "white" }}
           dateNameStyle={{ color: "white" }}
           iconContainer={{ flex: 0.1 }}
-          // minDate={today}
+          minDate={today}
           // maxDate={today.add(30, "day")}
           onDateSelected={(date) => {
             setSelectedDate(date);
@@ -63,7 +56,7 @@ const HomeScreen = () => {
           scrollerPaging={true}
           startingDate={today}
         />
-        <WorkoutPreview month={month} day={day} />
+        <WorkoutPreview month={month} day={day} dayOfTheWeek={dayOfTheWeek} />
       </View>
     </SafeScreen>
   );

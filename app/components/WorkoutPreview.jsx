@@ -8,26 +8,28 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React, { useEffect, useState, useContext } from "react";
-import styles from "../style";
+import styles from "./style";
 import { getAllExercises } from "../api/exercises";
 import { Image } from "expo-image";
-import SafeScreen from "./SafeScreen";
-import { useNavigation } from "expo-router";
-import ExerciseDetail from "../screens/ExerciseDetail";
-import ScreenOne from "../screens/ScreenOne";
+import { router } from "expo-router";
 import { useWorkout } from "../contexts/WorkoutContext";
-import WorkoutScreen from "../screens/WorkoutScreen";
+import WorkoutScreen from "../(onboarding)/WorkoutScreen";
 import * as Haptics from "expo-haptics";
-const WorkoutPreview = ({ month, day }) => {
+const WorkoutPreview = ({ month, day, dayOfTheWeek }) => {
   const [exercises, setExercises] = useState([]);
-  const navigation = useNavigation();
   const [workoutModalVisible, setWorkoutModalVisible] = useState(false);
   const [currentExercise, setCurrentExercise] = useState(null);
   const [timerForStart, setTimerForStart] = useState(3);
   const [isWorkoutStarting, setIsWorkoutStarting] = useState(false);
-  console.log("plan in preview", plan);
   const { plan, UserProfile, hydrated } = useWorkout();
+  const { PlanDuration } = UserProfile;
+  console.log("plan in preview", plan);
+  const weekDays = [0, 1, 2, 3, 4, 5, 6];
 
+  console.log("UserProfile in preview", UserProfile.DailyWorkoutTime);
+  let daysForWorkout = UserProfile?.DailyWorkoutTime.map((date) => {
+    return new Date(date).getDay();
+  });
   if (!hydrated || !plan || !UserProfile.level) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
@@ -37,13 +39,23 @@ const WorkoutPreview = ({ month, day }) => {
   }
 
   useEffect(() => {
+    console.log("daysforworkout", daysForWorkout);
+    console.log("dayOfTheWeek", dayOfTheWeek, daysForWorkout);
     getAllExercises().then((data) => setExercises(data.data));
   }, [month, day]);
   useEffect(() => {
-    let newDay = day > 7 ? day - 7 : day;
-    let dayKey = `day${newDay}`;
-    setCurrentExercise(plan[day > 7 ? "week2" : "week1"][dayKey] || []);
-  }, [exercises, day]);
+    const dayIndex = daysForWorkout.indexOf(dayOfTheWeek);
+    console.log("dayIndex", dayIndex);
+    if (dayIndex !== -1 && dayIndex < PlanDuration) {
+      const currentDayKey = `day${dayIndex + 1}`;
+      const currentWeekKey = day / 7 > 1 ? "week2" : "week1";
+      setCurrentExercise(plan[currentWeekKey][currentDayKey] || []);
+    } else {
+      setCurrentExercise([{ name: "Rest Day" }]);
+    }
+    console.log(plan, "ramerume");
+    console.log(currentExercise, "currentExercise");
+  }, [exercises, day, plan]);
   console.log("current exercise", currentExercise);
   console.log("exercises in preview", exercises.length);
   const renderExercise = ({ item, index }) => {
@@ -51,8 +63,11 @@ const WorkoutPreview = ({ month, day }) => {
       <View style={workoutStyles.exerciseItem}>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("ExerciseDetail", {
-              exerciseId: item?.exerciseId,
+            router.push({
+              pathname: "/ExerciseDetail",
+              params: {
+                exerciseId: item?.exerciseId,
+              },
             });
           }}
           style={{ flexDirection: "row" }}>

@@ -8,11 +8,12 @@ import {
   Platform,
 } from "react-native";
 import React from "react";
-import styles from "../style";
+import styles from "../components/style";
 import { Label } from "@react-navigation/elements";
 import { useWorkout } from "../contexts/WorkoutContext";
 import SafeScreen from "../components/SafeScreen";
-import { useNavigation } from "@react-navigation/native";
+import { router } from "expo-router";
+
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as Haptics from "expo-haptics";
 const PersonalDetailsScreen = () => {
@@ -20,7 +21,6 @@ const PersonalDetailsScreen = () => {
   const { updateHeight, updateWeight, updateAge, UserProfile } = useWorkout();
   const { age, height, weight } = UserProfile;
   const allFieldsFilled = age && height && weight;
-  const navigation = useNavigation();
   // In your PersonalDetailsScreen (temporarily)
   const handleOnPress = (field, value) => {
     switch (field) {
@@ -86,7 +86,7 @@ const PersonalDetailsScreen = () => {
           <Pressable
             style={styles.workoutGoalButton}
             onPress={() => {
-              navigation.navigate("LevelScreen");
+              router.push("LevelScreen");
               Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
             }}>
             <Text style={styles.defaultText}>Submit</Text>

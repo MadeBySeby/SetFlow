@@ -7,12 +7,11 @@ import {
   View,
 } from "react-native";
 import React, { useState, useContext } from "react";
-import styles from "../style";
+import styles from "../components/style";
 import SafeScreen from "../components/SafeScreen";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { BlurView } from "expo-blur";
-import AiWorkoutAssistant from "../components/AiWorkoutAssistant";
 import TimerComponent from "../components/TimerComponent";
 import ExerciseDetail from "./ExerciseDetail";
 import * as Haptics from "expo-haptics";

@@ -6,12 +6,12 @@ import {
   View,
 } from "react-native";
 import React, { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
+import { router } from "expo-router";
 import SafeScreen from "../components/SafeScreen";
 import { useWorkout } from "../contexts/WorkoutContext";
 import * as Haptics from "expo-haptics";
 
-import style from "../style";
+import style from "../components/style";
 const ScreenOne = () => {
   const { updateGoal } = useWorkout();
   const goals = ["Muscle Gain", "Weight Loss", "Endurance"];
@@ -21,10 +21,10 @@ const ScreenOne = () => {
     if (goal === "Endurance") goal = "endurance";
     console.log("Selected Goal:", goal);
     updateGoal(goal);
-    navigation.navigate("ScreenTwo");
+    router.push("ScreenTwo");
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
   };
-  const navigation = useNavigation();
+
   return (
     <SafeScreen style={style.Background}>
       <View style={{ alignItems: "center" }}>

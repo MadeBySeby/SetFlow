@@ -1,6 +1,6 @@
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import React, { useState } from "react";
-import styles from "../style";
+import styles from "./style";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { Label } from "@react-navigation/elements";
 const AiWorkoutAssistant = () => {

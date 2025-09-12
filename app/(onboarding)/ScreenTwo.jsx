@@ -15,8 +15,9 @@ import * as Haptics from "expo-haptics";
 import React, { useState } from "react";
 import SafeScreen from "../components/SafeScreen";
 import { useWorkout } from "../contexts/WorkoutContext";
-import { useNavigation } from "@react-navigation/native";
-import style from "../style";
+import { router } from "expo-router";
+
+import style from "../components/style";
 
 const ScreenTwo = () => {
   if (
@@ -40,14 +41,13 @@ const ScreenTwo = () => {
     "At Home Equipment",
     "No Equipment",
   ];
-  const navigation = useNavigation();
-  const { navigate } = navigation;
+  const { push } = router;
   const handleOnPress = (option) => {
     updateEquipment(option);
     if (option === "At Home Equipment") {
       setAddedEquipment((prev) => !prev);
     } else {
-      navigate("PlanDurationScreen");
+      push("PlanDurationScreen");
     }
     toggleHomeEquipment();
     // Vibration.vibrate(50);

@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
-import style from "../style";
+import style from "./style";
 import { Ionicons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 const TimerComponent = ({

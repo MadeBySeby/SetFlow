@@ -1,10 +1,12 @@
 import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
-import style from "../style";
-import React, { useState } from "react";
+import style from "../components/style";
+import React, { use, useState } from "react";
 import { Picker } from "@react-native-picker/picker";
 import { useWorkout } from "../contexts/WorkoutContext";
 import * as Haptics from "expo-haptics";
-import { useNavigation } from "@react-navigation/native";
+import { router } from "expo-router";
+
+import { Calendar } from "react-native-calendars";
 import SafeScreen from "../components/SafeScreen";
 const PlanDurationScreen = () => {
   const {
@@ -15,15 +17,37 @@ const PlanDurationScreen = () => {
   } = useWorkout();
   const { DailyWorkoutTime, PlanDuration } = UserProfile;
   console.log(UserProfile);
-  const navigation = useNavigation();
+  const [selected, setSelected] = useState({});
+  const onDayPress = (day) => {
+    console.log(day, "kaka");
+    const date = day.dateString;
+    let updated = { ...selected };
+    if (updated[date]) {
+      delete updated[date];
+    } else if (Object.keys(updated).length > PlanDuration - 1) {
+      alert(`You can only select up to ${PlanDuration} days`);
+      return;
+    } else {
+      updated[date] = {
+        selected: true,
+        marked: true,
+        selectedColor: "#47b977",
+      };
+      updateDailyWorkoutTime(day.dateString);
+      console.log(DailyWorkoutTime, "after add");
+    }
+    setSelected(updated);
+  };
+  console.log(UserProfile);
+
   const handleSubmit = () => {
-    navigation.navigate("PersonalDetailsScreen");
+    router.push("PersonalDetailsScreen");
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
   };
   return (
     <SafeScreen style={{ ...style.Background, flex: 1, alignItems: "center" }}>
       <Text style={style.TitleText}>How much free time do you have?</Text>
-      <Text
+      {/* <Text
         style={{
           ...style.defaultText,
           marginTop: 20,
@@ -44,7 +68,40 @@ const PlanDurationScreen = () => {
         <Picker.Item label="3 Months" value="180" color="white" />
         <Picker.Item label="6 Months" value="360" color="white" />
         <Picker.Item label="12 Months" value="720" color="white" />
-      </Picker>
+      </Picker> */}
+      <Calendar
+        onDayPress={onDayPress}
+        markedDates={DailyWorkoutTime.reduce((acc, day) => {
+          acc[day] = { selected: true, marked: true, selectedColor: "#47b977" };
+          return acc;
+        }, {})}
+        theme={{
+          backgroundColor: "#1e293b",
+          calendarBackground: "#1e293b",
+          textSectionTitleColor: "white",
+          monthTextColor: "white", // top month label
+          arrowColor: "white", // navigation arrows
+          todayTextColor: "#3b82f6", // today's date
+          dayTextColor: "white", // default day numbers
+          textDisabledColor: "#64748b", // disabled days
+          selectedDayBackgroundColor: "#f97316",
+          selectedDayTextColor: "white",
+          textDayFontSize: 16,
+          textMonthFontSize: 18,
+          textDayHeaderFontSize: 14,
+        }}
+        style={{
+          borderRadius: 15,
+          margin: 10,
+          elevation: 3,
+          shadowColor: "#000",
+          borderWidth: 1,
+          borderColor: "#47b977",
+          shadowOpacity: 0.2,
+          shadowRadius: 4,
+          shadowOffset: { width: 0, height: 2 },
+        }}
+      />
 
       <Text
         style={{
@@ -70,7 +127,7 @@ const PlanDurationScreen = () => {
         <Picker.Item label="6" value="6" />
         <Picker.Item label="7" value="7" />
       </Picker>
-      {PlanDuration && DailyWorkoutTime && (
+      {PlanDuration && (
         <Pressable style={style.workoutGoalButton} onPress={handleSubmit}>
           <Text style={style.defaultText}>Submit</Text>
         </Pressable>

@@ -1,8 +1,8 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import React, { use } from "react";
+import React from "react";
 import { useContext } from "react";
 import { WorkoutContext } from "../contexts/WorkoutContext";
-import styles from "../style";
+import styles from "../components/style";
 import SafeScreen from "../components/SafeScreen";
 import { Image } from "expo-image";
 const WorkoutsHistory = () => {
