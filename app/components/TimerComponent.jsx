@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import style from "./style";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 const TimerComponent = ({
   timeLeft,
@@ -58,15 +58,22 @@ const TimerComponent = ({
         handleOnPress();
       }}>
       <Text style={{ color: "white", fontSize: 18, textAlign: "center" }}>
-        {timeLeft < 10 ? `0${timeLeft}` : timeLeft} sec
+        {timeLeft} sec
       </Text>
-      <Pressable onPress={() => setIsPaused(!isPaused)}>
-        <Ionicons
-          name={isPaused ? "play" : "pause"}
-          size={24}
-          color="white"
-          style={{}}
-        />
+      <Pressable
+        onPress={() => setTimeLeft(timeLeft + 10)}
+        style={{ position: "absolute", right: 0 }}>
+        <MaterialIcons name="forward-10" size={24} color="white" />
+      </Pressable>
+      <Pressable
+        onPress={() => setTimeLeft(timeLeft - 10 >= 0 ? timeLeft - 10 : 0)}
+        style={{ position: "absolute", left: 0 }}>
+        <MaterialIcons name="replay-10" size={24} color="white" />
+      </Pressable>
+      <Pressable
+        onPress={() => setIsPaused(!isPaused)}
+        style={{ position: "absolute", top: 0 }}>
+        <Ionicons name={isPaused ? "play" : "pause"} size={24} color="white" />
       </Pressable>
     </Pressable>
   );

@@ -27,6 +27,8 @@ const styles = StyleSheet.create({
   input: {
     height: 40,
     width: "100%",
+    // minWidth: "100%",
+    maxWidth: 400,
     borderColor: "#4a5568",
     borderWidth: 1,
     color: "white",

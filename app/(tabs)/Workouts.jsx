@@ -12,6 +12,7 @@ import React, { use, useEffect, useState } from "react";
 import SafeScreen from "../components/SafeScreen";
 import styles from "../components/style";
 import { router } from "expo-router";
+import AnimatedItem from "../animations/AnimatedItem";
 
 import { getAllExercises, searchExercises } from "../api/exercises";
 const Workouts = () => {
@@ -24,7 +25,10 @@ const Workouts = () => {
         return;
       } else {
         const timeout = setTimeout(() => {
-          searchExercises(query).then((data) => setResults(data.data));
+          searchExercises(query).then((data) => {
+            setResults(data); // just data, not data.data
+            console.log("results from API:", data); // log fetched data
+          });
         }, 300);
         return () => clearTimeout(timeout);
       }
@@ -34,9 +38,7 @@ const Workouts = () => {
   }, [query]);
 
   return (
-    <SafeScreen
-      excludeBottomSafeArea={true}
-      style={{ ...styles.Background, flex: 1 }}>
+    <SafeScreen excludeBottomSafeArea={true} style={{ ...styles.Background }}>
       {/* <AiWorkoutAssistant /> */}
       <TextInput
         style={{ ...styles.input, margin: 20, width: "90%", marginTop: 50 }}
@@ -52,7 +54,7 @@ const Workouts = () => {
 
       <FlatList
         data={results || []}
-        renderItem={({ item }) => (
+        renderItem={({ item, index }) => (
           <TouchableOpacity
             onPress={() => {
               router.push({

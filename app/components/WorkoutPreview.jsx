@@ -15,56 +15,82 @@ import { router } from "expo-router";
 import { useWorkout } from "../contexts/WorkoutContext";
 import WorkoutScreen from "../(onboarding)/WorkoutScreen";
 import * as Haptics from "expo-haptics";
+import AnimatedItem from "../animations/AnimatedItem";
 const WorkoutPreview = ({ month, day, dayOfTheWeek }) => {
   const [exercises, setExercises] = useState([]);
   const [workoutModalVisible, setWorkoutModalVisible] = useState(false);
-  const [currentExercise, setCurrentExercise] = useState(null);
+  const [currentExercise, setCurrentExercise] = useState([]);
   const [timerForStart, setTimerForStart] = useState(3);
   const [isWorkoutStarting, setIsWorkoutStarting] = useState(false);
-  const { plan, UserProfile, hydrated } = useWorkout();
-  const { PlanDuration } = UserProfile;
-  console.log("plan in preview", plan);
-  const weekDays = [0, 1, 2, 3, 4, 5, 6];
+  const { plan, UserProfile, hydrated } = useWorkout() || {};
+  const PlanDuration = UserProfile?.PlanDuration || 0;
 
-  console.log("UserProfile in preview", UserProfile.DailyWorkoutTime);
-  let daysForWorkout = UserProfile?.DailyWorkoutTime.map((date) => {
-    return new Date(date).getDay();
-  });
-  if (!hydrated || !plan || !UserProfile.level) {
+  console.log("UserProfile in preview", UserProfile?.DailyWorkoutTime);
+
+  const weekdayMap = {
+    sunday: 0,
+    monday: 1,
+    tuesday: 2,
+    wednesday: 3,
+    thursday: 4,
+    friday: 5,
+    saturday: 6,
+  };
+
+  let daysForWorkout = (UserProfile?.DailyWorkoutTime).map(
+    (day) => weekdayMap[day]
+  );
+  console.log("daysForWorkout", plan, UserProfile, hydrated);
+
+  if (!hydrated || !plan) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Text style={{ color: "white" }}>Loading...</Text>
       </View>
     );
   }
-
+  console.log("plan in preview", plan);
   useEffect(() => {
     console.log("daysforworkout", daysForWorkout);
     console.log("dayOfTheWeek", dayOfTheWeek, daysForWorkout);
     getAllExercises().then((data) => setExercises(data.data));
   }, [month, day]);
+
   useEffect(() => {
-    const dayIndex = daysForWorkout.indexOf(dayOfTheWeek);
-    console.log("dayIndex", dayIndex);
-    if (dayIndex !== -1 && dayIndex < PlanDuration) {
-      const currentDayKey = `day${dayIndex + 1}`;
-      const currentWeekKey = day / 7 > 1 ? "week2" : "week1";
-      setCurrentExercise(plan[currentWeekKey][currentDayKey] || []);
-    } else {
+    if (!plan || plan.length === 0) {
       setCurrentExercise([{ name: "Rest Day" }]);
+      return;
     }
-    console.log(plan, "ramerume");
-    console.log(currentExercise, "currentExercise");
+
+    const currentWeekKey = day / 7 > 1 ? "week2" : "week1";
+
+    const dayIndex = daysForWorkout.indexOf(dayOfTheWeek);
+
+    if (dayIndex === -1 || dayIndex >= PlanDuration) {
+      setCurrentExercise([{ name: "Rest Day" }]);
+      console.log("Today is a Rest Day");
+      return;
+    }
+
+    const currentDayKey = `day${dayIndex + 1}`;
+    const exercisesForDay = plan[currentWeekKey]?.[currentDayKey] || [
+      { name: "Rest Day" },
+    ];
+    setCurrentExercise(exercisesForDay);
+
+    console.log("Workout Day:", currentDayKey, exercisesForDay);
   }, [exercises, day, plan]);
   console.log("current exercise", currentExercise);
   console.log("exercises in preview", exercises.length);
   const renderExercise = ({ item, index }) => {
     return (
+      //   <AnimatedItem index={index}>
       <View style={workoutStyles.exerciseItem}>
         <TouchableOpacity
           onPress={() => {
+            console.log("item pressed", item);
             router.push({
-              pathname: "/ExerciseDetail",
+              pathname: "/LevelScreen",
               params: {
                 exerciseId: item?.exerciseId,
               },
@@ -84,6 +110,7 @@ const WorkoutPreview = ({ month, day, dayOfTheWeek }) => {
           </View>
         </TouchableOpacity>
       </View>
+      //   </AnimatedItem>
     );
   };
   useEffect(() => {
@@ -106,6 +133,7 @@ const WorkoutPreview = ({ month, day, dayOfTheWeek }) => {
   }, [isWorkoutStarting]);
   const footerComponent = () => (
     // <View style={{ height: 100, width: "100%" }}>
+    // <AnimatedItem>
     <TouchableOpacity
       onPress={() => {
         setTimerForStart(3);
@@ -122,6 +150,7 @@ const WorkoutPreview = ({ month, day, dayOfTheWeek }) => {
         Start Workout
       </Text>
     </TouchableOpacity>
+    // </AnimatedItem>
     // </View>
   );
   if (exercises.length < 1)

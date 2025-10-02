@@ -18,6 +18,12 @@ import { useWorkout } from "../contexts/WorkoutContext";
 import { router } from "expo-router";
 
 import style from "../components/style";
+import AnimatedItem from "../animations/AnimatedItem";
+import iconSet from "@expo/vector-icons/build/Fontisto";
+import { Ionicons } from "@expo/vector-icons";
+import GymMembershipIcon from "../../icons/GymMembershipIcon";
+import AtHomeEquipmentIcon from "../../icons/AtHomeEquipmentIcon";
+import NoEquipmentIcon from "../../icons/NoEquipmentIcon";
 
 const ScreenTwo = () => {
   if (
@@ -35,6 +41,7 @@ const ScreenTwo = () => {
 
   const { updateEquipment } = useWorkout();
   const [inputValue, setInputValue] = useState("");
+  const [selectedOption, setSelectedOption] = useState(null);
   const [addedEquipment, setAddedEquipment] = useState(false);
   const equipmentOptions = [
     "Gym Membership",
@@ -43,6 +50,7 @@ const ScreenTwo = () => {
   ];
   const { push } = router;
   const handleOnPress = (option) => {
+    setSelectedOption(option);
     updateEquipment(option);
     if (option === "At Home Equipment") {
       setAddedEquipment((prev) => !prev);
@@ -53,7 +61,25 @@ const ScreenTwo = () => {
     // Vibration.vibrate(50);
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
   };
-
+  console.log("inputValue:", inputValue);
+  function getIcon(option) {
+    switch (option) {
+      case "Gym Membership":
+        return (
+          <GymMembershipIcon isActive={selectedOption === option} size={40} />
+        );
+      case "At Home Equipment":
+        return (
+          <AtHomeEquipmentIcon isActive={selectedOption === option} size={50} />
+        );
+      case "No Equipment":
+        return (
+          <NoEquipmentIcon isActive={selectedOption === option} size={40} />
+        );
+      default:
+        return null;
+    }
+  }
   return (
     <SafeScreen style={style.Background}>
       <KeyboardAvoidingView
@@ -61,68 +87,54 @@ const ScreenTwo = () => {
         behavior={Platform.OS === "ios" ? "padding" : "height"}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={{ alignItems: "center" }}>
-            <Text style={style.TitleText}>
-              Select Your {"\n"} Available Equipment
-            </Text>
-            {equipmentOptions.map((option) => {
-              return (
-                <Pressable
-                  style={style.workoutGoalButton}
-                  key={option}
-                  onPress={() => handleOnPress(option)}>
-                  <Text style={style.defaultText}>{option}</Text>
-                  {addedEquipment && option === "At Home Equipment" && (
-                    <View>
-                      <Text
-                        style={{
-                          color: "white",
-                          textAlign: "center",
-                          marginTop: 10,
-                        }}>
-                        Add Your Equipment
-                      </Text>
-                      <TextInput
-                        style={style.input}
-                        placeholder="Enter equipment name"
-                        placeholderTextColor="#999"
-                        value={inputValue}
-                        onChangeText={setInputValue}
-                      />
+            <AnimatedItem Screen={"ScreenTwo"}>
+              <Text style={style.TitleText}>
+                Select Your {"\n"} Available Equipment
+              </Text>
+              {equipmentOptions.map((option) => {
+                return (
+                  <Pressable
+                    style={{ ...style.workoutGoalButton, marginTop: 40 }}
+                    key={option}
+                    onPress={() => handleOnPress(option)}>
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        alignItems: "center",
+                        gap: 8,
+                      }}>
+                      <Text style={style.defaultText}>{option}</Text>
+                      {getIcon(option)}
                     </View>
-                  )}
-                </Pressable>
-              );
-            })}
+
+                    {addedEquipment && option === "At Home Equipment" && (
+                      <View>
+                        <Text
+                          style={{
+                            color: "white",
+                            textAlign: "center",
+                            marginTop: 20,
+                          }}>
+                          Add Your Equipment
+                        </Text>
+                        <TextInput
+                          style={style.input}
+                          placeholder="Enter equipment name"
+                          placeholderTextColor="#999"
+                          value={inputValue}
+                          onChangeText={setInputValue}
+                        />
+                      </View>
+                    )}
+                  </Pressable>
+                );
+              })}
+            </AnimatedItem>
           </View>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
     </SafeScreen>
   );
 };
-// const styles = StyleSheet.create({
-//   workoutGoalButton: {
-//     width: 200,
-//     display: "flex",
-//     justifyContent: "center",
-//     alignItems: "center",
-//     marginTop: 20,
-//     fontSize: 20,
-//     color: "white",
-//     borderColor: "white",
-//     borderRadius: 10,
-//     borderWidth: 1,
-//     padding: 20,
-//     boxShadow: "0 4px 6px rgba(222, 222, 222, 0.1)",
-//   },
-//   input: {
-//     height: 40,
-//     borderColor: "gray",
-//     borderWidth: 1,
-//     color: "white",
-//     marginTop: 10,
-//     paddingHorizontal: 10,
-//     width: 200,
-//     borderRadius: 10,
-//   },
-// });
+
 export default ScreenTwo;

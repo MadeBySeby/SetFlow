@@ -1,7 +1,11 @@
 import { Redirect, Stack } from "expo-router";
 import styles from "../components/style";
+import { useWorkout } from "../contexts/WorkoutContext";
 
 export default function OnboardingLayout() {
+  const { isOnboardingCompleted } = useWorkout();
+  console.log("Onboarding status in layout2:", isOnboardingCompleted);
+  if (isOnboardingCompleted) return <Redirect href="/(tabs)" />;
   return (
     <Stack
       screenOptions={{

@@ -1,14 +1,23 @@
-import { View, Text, ScrollView, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  FlatList,
+  ActivityIndicator,
+  Pressable,
+} from "react-native";
 import React, { useEffect, useState } from "react";
-import styles from "../components/style";
-import { useLocalSearchParams } from "expo-router";
-import { getExerciseById } from "../api/exercises";
+import styles from "./components/style";
+import { router, useLocalSearchParams } from "expo-router";
+import { getExerciseById } from "./api/exercises";
 import { Image } from "expo-image";
+import { Video } from "expo-av";
 
 const ExerciseDetail = ({ id }) => {
+  const videoRef = React.useRef(null);
   const route = useLocalSearchParams();
   console.log("route in ExerciseDetail", route);
-  const exerciseId = route.params?.exerciseId || id;
+  const exerciseId = route?.exerciseId || id;
   console.log("exerciseId in ExerciseDetail", exerciseId);
   const [exercise, setExercise] = useState(null);
   useEffect(() => {
@@ -22,28 +31,34 @@ const ExerciseDetail = ({ id }) => {
         flex: 1,
         // justifyContent: "center",
         alignItems: "center",
+        padding: 20,
       }}>
       {!exercise ? (
-        <Text style={{ ...styles.defaultText }}>Loading...</Text>
+        <ActivityIndicator size="large" color="#00ff00" />
       ) : (
         <>
-          <Text style={{ ...styles.defaultText, marginTop: 10 }}>
+          <Text
+            style={{ ...styles.defaultText, marginTop: 15, fontWeight: "500" }}>
             {exercise.name}
           </Text>
-          <Image
-            source={{ uri: exercise.gifUrl }}
+          <Pressable onPress={() => router.back()} style={{ marginTop: 10 }}>
+            <Text>Go back</Text>
+          </Pressable>
+          <Video
+            ref={videoRef}
+            source={{ uri: exercise.videoUrl }} // Your video URL
             style={{
-              width: 250,
-              height: 250,
-              borderRadius: 15,
-              borderWidth: 2,
-              borderColor: "#1e293b",
-              marginTop: 10,
+              width: 300,
+              height: 300,
+              borderRadius: 10,
+              marginTop: 20,
+              // backgroundColor: "#000",
             }}
-            contentFit="cover"
-            transition={1000}
+            useNativeControls // shows play/pause, seek bar, etc.
+            resizeMode="contain"
+            shouldPlay={false} // auto play if true
           />
-          <Text style={{ ...styles.defaultText }}>
+          <Text style={{ ...styles.defaultText, marginTop: 10 }}>
             Target Muscle: {exercise.targetMuscles[0]}
           </Text>
           <Text style={{ ...styles.defaultText }}>
@@ -56,20 +71,30 @@ const ExerciseDetail = ({ id }) => {
                 fontSize: 18,
                 fontWeight: "600",
                 marginBottom: 10,
+                fontWeight: "700",
               }}>
               Instructions:
             </Text>
             <FlatList
               data={exercise.instructions}
               keyExtractor={(item, index) => index.toString()}
+              contentContainerStyle={{ paddingBottom: "100%" }}
+              showsVerticalScrollIndicator={false}
+              style={{ height: 300, width: "100%" }}
+              ListFooterComponent={<View style={{ height: 60 }} />}
               renderItem={({ item, index }) => (
                 <Text
                   key={index}
                   style={{
                     ...styles.defaultText,
-                    fontSize: 16,
-                    marginTop: 2,
+                    marginTop: 5,
                     lineHeight: 22,
+                    borderBottomWidth: 1,
+                    borderBottomColor: "#475569",
+                    paddingBottom: 5,
+                    paddingRight: 10,
+                    color: "#47b977",
+                    fontWeight: "500",
                   }}>
                   {index + 1}. {item.replace(/^Step:\d+\s*/, "")}
                 </Text>

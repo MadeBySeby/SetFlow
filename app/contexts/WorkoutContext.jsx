@@ -145,6 +145,8 @@ export const WorkoutProvider = ({ children }) => {
             : [...days, day],
         };
       }),
+    clearDailyWorkoutTime: () =>
+      setUserProfile((prev) => ({ ...prev, DailyWorkoutTime: [] })),
     updatePlanDuration: (duration) =>
       setUserProfile((prev) => ({ ...prev, PlanDuration: duration })),
     updateHeight: (height) => setUserProfile((prev) => ({ ...prev, height })),
