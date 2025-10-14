@@ -77,6 +77,14 @@ const ScreenOne = () => {
             style={{
               ...style.workoutGoalButton,
               width: 200,
+              position: "fixed",
+              top: "30%",
+              bottom: 0,
+              // allign button to end of  the screen
+              alignSelf: "center",
+              justifyContent: "center",
+
+              alignSelf: "center",
             }}
             onPress={() => {
               router.push("ScreenTwo");

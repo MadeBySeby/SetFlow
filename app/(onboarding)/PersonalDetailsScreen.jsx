@@ -17,10 +17,11 @@ import { router } from "expo-router";
 
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as Haptics from "expo-haptics";
-import DuolingoLikeMascotOnScale from "../components/Mascot";
+import { WeightScale } from "../components/Mascot";
 import HorizontalNumberPicker from "../components/Roller";
 import RadioSlider from "../components/Roller";
 import Slider from "@react-native-community/slider";
+import MascotSvg from "../components/MascotSvg";
 const PersonalDetailsScreen = () => {
   const fields = ["Height", "Weight", "Age"];
   const { updateHeight, updateWeight, updateAge, UserProfile } = useWorkout();
@@ -64,7 +65,7 @@ const PersonalDetailsScreen = () => {
         extraScrollHeight={80}
         enableOnAndroid={true}
         keyboardShouldPersistTaps="handled">
-        <Text style={{ ...styles.TitleText }}>Tell Us About Yourself</Text>
+        {/* <Text style={{ ...styles.TitleText }}>Tell Us About Yourself</Text> */}
         <View
           style={{
             position: "absolute",
@@ -76,12 +77,18 @@ const PersonalDetailsScreen = () => {
             justifyContent: "center", // Center vertically
             zIndex: -1, // Ensure it's behind content
           }}>
-          <DuolingoLikeMascotOnScale
+          {/* <DuolingoLikeMascotOnScale
             weight={weight || 20} // Use user input or default
             height={height || 200} // Use user input or default
             size={Dimensions.get("window").height} // 90% of screen height
             mascotScale={1.0}
+          /> */}
+          <MascotSvg
+            age={age || 0}
+            weight={weight || 0}
+            userHeight={height || 200}
           />
+          {/* <WeightScale weight={weight || 10} /> */}
         </View>
         {fields.map((field) => {
           return (

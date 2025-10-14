@@ -16,6 +16,7 @@ import { useWorkout } from "../contexts/WorkoutContext";
 import WorkoutScreen from "../(onboarding)/WorkoutScreen";
 import * as Haptics from "expo-haptics";
 import AnimatedItem from "../animations/AnimatedItem";
+import RestingDefaultMascot from "../assets/restingDefaultMascot.svg";
 const WorkoutPreview = ({ month, day, dayOfTheWeek }) => {
   const [exercises, setExercises] = useState([]);
   const [workoutModalVisible, setWorkoutModalVisible] = useState(false);
@@ -166,9 +167,12 @@ const WorkoutPreview = ({ month, day, dayOfTheWeek }) => {
         width: "100%",
         backgroundColor: "#1e293b",
       }}>
-      <Text style={{ ...styles.defaultText, marginTop: 10 }}>
-        Workout for {month}/{day}
-      </Text>
+      {currentExercise[0]?.name !== "Rest Day" ? (
+        <Text style={{ ...styles.defaultText, marginTop: 10 }}>
+          Workout for {month}/{day}
+        </Text>
+      ) : null}
+
       {isWorkoutStarting ? (
         <Text style={{ ...styles.defaultText, marginTop: 10 }}>
           Starting in {timerForStart}
@@ -208,7 +212,12 @@ const WorkoutPreview = ({ month, day, dayOfTheWeek }) => {
           />
         </>
       ) : (
-        <Text style={styles.defaultText}>Rest Day</Text>
+        <>
+          <RestingDefaultMascot width={300} height={400} />
+          <Text style={{ ...styles.defaultText, marginTop: 10 }}>
+            Today you can chill ...
+          </Text>
+        </>
       )}
     </View>
   );

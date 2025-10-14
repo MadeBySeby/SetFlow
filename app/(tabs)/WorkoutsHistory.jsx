@@ -6,6 +6,7 @@ import styles from "../components/style";
 import SafeScreen from "../components/SafeScreen";
 import { Image } from "expo-image";
 import DuolingoLikeMascotOnScale from "../components/Mascot";
+import NoWorkoutsLoggedYetDefaultMascot from "../assets/noWorkoutsLoggedYetDefault.svg";
 const WorkoutsHistory = () => {
   const { workoutHistory, clearWorkoutData } = useWorkout();
   console.log("workoutHistory", workoutHistory);
@@ -25,7 +26,21 @@ const WorkoutsHistory = () => {
             gap: 10,
           }}>
           {workoutHistory.length === 0 ? (
-            <Text style={styles.defaultText}>No workouts logged yet.</Text>
+            <View
+              style={{
+                marginTop: 50,
+                alignItems: "center",
+                alignContent: "center",
+                display: "flex",
+                gap: 10,
+                justifyContent: "center",
+                flex: 1,
+              }}>
+              <Text style={{ ...styles.defaultText, color: "#47b977" }}>
+                No workouts logged yet.
+              </Text>
+              <NoWorkoutsLoggedYetDefaultMascot width={300} height={400} />
+            </View>
           ) : (
             workoutHistory.map((workout, index) => (
               <View key={index} style={{ marginTop: 10, alignItems: "center" }}>
@@ -42,22 +57,23 @@ const WorkoutsHistory = () => {
                   contentFit="cover"
                   transition={1000}
                 />
+                <Pressable
+                  style={{
+                    ...styles.workoutGoalButton,
+                  }}
+                  onPress={() => {
+                    clearWorkoutData();
+                    console.log("Cleared workout history");
+                    console.log("workoutHistory after clear", workoutHistory);
+                  }}>
+                  <Text style={{ ...styles.defaultText }}>
+                    Clear Workout History
+                  </Text>
+                </Pressable>
               </View>
             ))
           )}
         </View>
-
-        <Pressable
-          style={{
-            ...styles.workoutGoalButton,
-          }}
-          onPress={() => {
-            clearWorkoutData();
-            console.log("Cleared workout history");
-            console.log("workoutHistory after clear", workoutHistory);
-          }}>
-          <Text style={{ ...styles.defaultText }}>Clear Workout History</Text>
-        </Pressable>
       </View>
     </SafeScreen>
   );

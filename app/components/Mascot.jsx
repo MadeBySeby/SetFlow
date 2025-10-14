@@ -1,107 +1,153 @@
-import React from "react";
-import { View, Dimensions, StyleSheet } from "react-native";
-import Svg, { Path, Rect, Text, G } from "react-native-svg";
+import React, { useMemo } from "react";
+import { View, StyleSheet } from "react-native";
+import Svg, {
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Text as SvgText,
+  G,
+} from "react-native-svg";
 
-export default function DuolingoLikeMascotOnScale({
-  size = Dimensions.get("window").height * 0.9, // 90% screen height
-  color = "#47b977",
-  weight = 75, // Default weight in kg
-  height = 170, // Default height in cm
-  mascotScale = 1, // Base mascot scale
-}) {
-  const viewBoxWidth = 250;
-  const viewBoxHeight = 250;
-  const scale = size / viewBoxWidth;
+// Import your mascot SVG component
+// import MascotSVG from './MascotSVG'; // Your mascot component
 
-  // Normalize height relative to 170cm
-  const heightScale = height / 170;
+// Placeholder Mascot component (replace with your actual mascot)
+const MascotSVG = ({ width, height }) => (
+  <View
+    style={{ width, height, justifyContent: "center", alignItems: "center" }}>
+    <Svg width={width} height={height} viewBox="0 0 100 100">
+      <Circle cx="50" cy="50" r="40" fill="#3498db" />
+      <SvgText x="50" y="60" fontSize="40" fill="white" textAnchor="middle">
+        🐻
+      </SvgText>
+    </Svg>
+  </View>
+);
+
+const WeightScale = ({ weight = 0 }) => {
+  // Format weight to show decimal (e.g., 65.5 kg)
+  const displayWeight = weight > 0 ? weight.toFixed(1) : "-- . --";
 
   return (
-    <View style={styles.background}>
-      <Svg
-        width={size}
-        height={size}
-        viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}>
-        {/* Scale base */}
-        <Rect
-          x={90}
-          y={200}
-          width={70}
-          height={25}
-          rx={8}
-          fill={color}
-          opacity="0.9"
-        />
-        {/* Scale platform */}
-        <Rect x={95} y={195} width={60} height={8} rx={3} fill={color} />
-        {/* Weight display */}
-        <Text
-          x={125}
-          y={215}
-          fontSize={12}
-          fontWeight="bold"
-          fill="white"
-          textAnchor="middle"
-          fontFamily="System">
-          {weight} kg
-        </Text>
+    <Svg width={200} height={80} viewBox="0 0 200 80">
+      {/* Shadow */}
+      <Ellipse cx={100} cy={75} rx={85} ry={8} fill="rgba(0,0,0,0.1)" />
 
-        {/* Mascot group */}
-        <G
-          transform={`translate(125, 150) scale(${mascotScale * scale} ${
-            mascotScale * scale * heightScale
-          })`}>
-          {/* Body */}
-          <Path
-            d="M0 -10 Q5 -15, 10 -10 Q15 -5, 10 0 Q5 5, 0 5 Q-5 5, -10 0 Q-15 -5, -10 -10 Q-5 -15, 0 -10 Z"
-            fill={color}
-          />
-          {/* Head */}
-          <Path
-            d="M0 -20 Q4 -24, 8 -20 Q12 -16, 8 -12 Q4 -8, 0 -12 Q-4 -8, -8 -12 Q-12 -16, -8 -20 Q-4 -24, 0 -20 Z"
-            fill={color}
-          />
-          {/* Eyes */}
-          <Rect x="-3" y="-18" width="2" height="2" rx="1" fill="white" />
-          <Rect x="1" y="-18" width="2" height="2" rx="1" fill="white" />
-          <Rect x="-3" y="-18" width="1" height="1" fill="black" />
-          <Rect x="1" y="-18" width="1" height="1" fill="black" />
-          {/* Beak */}
-          <Path d="M0 -12 L2 -10 L0 -8 L-2 -10 Z" fill="#FFD700" />
-          {/* Wings */}
-          <Path
-            d="M-10 0 Q-15 5, -12 10 Q-10 12, -8 10"
-            stroke={color}
-            strokeWidth="2"
-            fill="none"
-          />
-          <Path
-            d="M10 0 Q15 5, 12 10 Q10 12, 8 10"
-            stroke={color}
-            strokeWidth="2"
-            fill="none"
-          />
-          {/* Legs */}
-          <Path d="M-3 5 L-3 15" stroke={color} strokeWidth="2" />
-          <Path d="M3 5 L3 15" stroke={color} strokeWidth="2" />
-          {/* Feet */}
-          <Path d="M-3 15 Q-4 16, -3 17" stroke={color} strokeWidth="2" />
-          <Path d="M3 15 Q4 16, 3 17" stroke={color} strokeWidth="2" />
-        </G>
-      </Svg>
+      {/* Scale base (bottom part) */}
+      <Rect x={20} y={50} width={160} height={25} fill="#34495e" rx={8} />
+
+      {/* Scale platform (top part) */}
+      <Rect
+        x={15}
+        y={35}
+        width={170}
+        height={20}
+        fill="#ecf0f1"
+        rx={6}
+        stroke="#bdc3c7"
+        strokeWidth={2}
+      />
+
+      {/* Non-slip texture pattern */}
+      <G opacity={0.3}>
+        <Circle cx={50} cy={45} r={2} fill="#95a5a6" />
+        <Circle cx={70} cy={45} r={2} fill="#95a5a6" />
+        <Circle cx={90} cy={45} r={2} fill="#95a5a6" />
+        <Circle cx={110} cy={45} r={2} fill="#95a5a6" />
+        <Circle cx={130} cy={45} r={2} fill="#95a5a6" />
+        <Circle cx={150} cy={45} r={2} fill="#95a5a6" />
+      </G>
+
+      {/* Digital display screen */}
+      <Rect x={70} y={55} width={60} height={15} fill="#2c3e50" rx={3} />
+      <Rect x={72} y={57} width={56} height={11} fill="#1a252f" rx={2} />
+
+      {/* Display numbers - NOW SHOWS ACTUAL WEIGHT */}
+      <SvgText
+        x={100}
+        y={66}
+        fontFamily="'Courier New', monospace"
+        fontSize={10}
+        fontWeight="bold"
+        fill="#00ff88"
+        textAnchor="middle">
+        {displayWeight}
+      </SvgText>
+
+      {/* Brand label */}
+      <SvgText
+        x={100}
+        y={72}
+        fontFamily="Arial, sans-serif"
+        fontSize={6}
+        fill="#95a5a6"
+        textAnchor="middle">
+        DIGITAL
+      </SvgText>
+
+      {/* Feet (rubber pads) */}
+      <Rect x={25} y={73} width={12} height={4} fill="#2c3e50" rx={2} />
+      <Rect x={163} y={73} width={12} height={4} fill="#2c3e50" rx={2} />
+
+      {/* Decorative details */}
+      <Line
+        x1={30}
+        y1={45}
+        x2={170}
+        y2={45}
+        stroke="#bdc3c7"
+        strokeWidth={1}
+        opacity={0.5}
+      />
+
+      {/* Corner screws */}
+      <Circle cx={25} cy={40} r={1.5} fill="#95a5a6" />
+      <Circle cx={175} cy={40} r={1.5} fill="#95a5a6" />
+      <Circle cx={25} cy={50} r={1.5} fill="#95a5a6" />
+      <Circle cx={175} cy={50} r={1.5} fill="#95a5a6" />
+    </Svg>
+  );
+};
+
+export default function MascotOnScale({ userHeight = 170, userWeight = 65 }) {
+  const { width, height } = useMemo(() => {
+    const scaleFactor = 1.1;
+    const baseHeight = 150;
+    const size = baseHeight * (userHeight / 170) * scaleFactor;
+    return { width: size, height: size };
+  }, [userHeight]);
+
+  return (
+    <View style={styles.container}>
+      {/* Mascot positioned above the scale */}
+      <View style={styles.mascotContainer}>
+        <MascotSVG width={width} height={height} />
+      </View>
+
+      {/* Weight Scale - NOW RECEIVES WEIGHT PROP */}
+      <View style={styles.scaleContainer}>
+        <WeightScale weight={userWeight} />
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  background: {
-    position: "absolute", // stays behind inputs
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
+  container: {
     alignItems: "center",
     justifyContent: "center",
-    zIndex: -1, // behind everything else
+    paddingVertical: 20,
+  },
+  mascotContainer: {
+    marginBottom: -20, // Overlap mascot slightly with scale for "standing on" effect
+    zIndex: 2,
+  },
+  scaleContainer: {
+    zIndex: 1,
   },
 });
+
+// EXPORT both components for use in other files
+
+export { WeightScale };
