@@ -83,11 +83,11 @@ const PersonalDetailsScreen = () => {
             size={Dimensions.get("window").height} // 90% of screen height
             mascotScale={1.0}
           /> */}
-          <MascotSvg
+          {/* <MascotSvg
             age={age || 0}
             weight={weight || 0}
             userHeight={height || 200}
-          />
+          /> */}
           {/* <WeightScale weight={weight || 10} /> */}
         </View>
         {fields.map((field) => {

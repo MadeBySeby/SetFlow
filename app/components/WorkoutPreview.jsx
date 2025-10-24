@@ -16,8 +16,11 @@ import { useWorkout } from "../contexts/WorkoutContext";
 import WorkoutScreen from "../(onboarding)/WorkoutScreen";
 import * as Haptics from "expo-haptics";
 import AnimatedItem from "../animations/AnimatedItem";
-import RestingDefaultMascot from "../assets/restingDefaultMascot.svg";
-const WorkoutPreview = ({ month, day, dayOfTheWeek }) => {
+import BackgroundView from "./BackgroundView";
+import LottieView from "lottie-react-native";
+const WorkoutPreview = ({ selectedDate, month, day, dayOfTheWeek }) => {
+  // const RestingDefaultMascot =
+  //   require("../assets/restingDefaultMascot.svg").default;
   const [exercises, setExercises] = useState([]);
   const [workoutModalVisible, setWorkoutModalVisible] = useState(false);
   const [currentExercise, setCurrentExercise] = useState([]);
@@ -42,11 +45,16 @@ const WorkoutPreview = ({ month, day, dayOfTheWeek }) => {
     (day) => weekdayMap[day]
   );
   console.log("daysForWorkout", plan, UserProfile, hydrated);
-
   if (!hydrated || !plan) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text style={{ color: "white" }}>Loading...</Text>
+        <Image
+          source={require("../assets/writingg.gif")}
+          style={{ width: 300, height: 300, marginTop: -200 }}
+          contentFit="contain"
+          transition={300}
+        />
+        <Text style={styles.defaultText}>Writing your plan...</Text>
       </View>
     );
   }
@@ -102,12 +110,10 @@ const WorkoutPreview = ({ month, day, dayOfTheWeek }) => {
             source={{ uri: item?.gif }}
             style={workoutStyles.exerciseGif}
             contentFit="cover"
-            transition={1000}
+            transition={300}
           />
           <View style={workoutStyles.textContainer}>
-            <Text style={[styles.defaultText, workoutStyles.exerciseName]}>
-              {item?.name}
-            </Text>
+            <Text style={styles.defaultText}>{item?.name}</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -145,6 +151,9 @@ const WorkoutPreview = ({ month, day, dayOfTheWeek }) => {
       }}
       style={{
         ...styles.workoutGoalButton,
+        backgroundColor: "#47b977",
+        borderWidth: 2,
+        borderColor: "black",
       }}>
       <Text
         style={{ ...styles.defaultText, color: "white", fontWeight: "600" }}>
@@ -156,7 +165,15 @@ const WorkoutPreview = ({ month, day, dayOfTheWeek }) => {
   );
   if (exercises.length < 1)
     return (
-      <Text style={{ ...styles.TitleText, marginTop: 20 }}>Loading...</Text>
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Image
+          source={require("../assets/writingg.gif")}
+          style={{ width: 300, height: 300, marginTop: -200 }}
+          contentFit="contain"
+          transition={300}
+        />
+        <Text style={styles.defaultText}>Writing your plan...</Text>
+      </View>
     );
 
   return (
@@ -165,11 +182,11 @@ const WorkoutPreview = ({ month, day, dayOfTheWeek }) => {
         alignItems: "center",
         flex: 1,
         width: "100%",
-        backgroundColor: "#1e293b",
+        // backgroundColor: "#1e293b",
       }}>
       {currentExercise[0]?.name !== "Rest Day" ? (
         <Text style={{ ...styles.defaultText, marginTop: 10 }}>
-          Workout for {month}/{day}
+          Today we have {currentExercise.length} exercises
         </Text>
       ) : null}
 
@@ -180,11 +197,14 @@ const WorkoutPreview = ({ month, day, dayOfTheWeek }) => {
       ) : null}
       <Modal
         animationType="slide"
+        transparent={false}
         presentationStyle="fullScreen"
         visible={workoutModalVisible}
         onRequestClose={() => setWorkoutModalVisible(false)}>
         <WorkoutScreen
           currentExercise={currentExercise}
+          // 2025-10-24
+          selectedDate={`2025-${month}-${day}`}
           setWorkoutModalVisible={setWorkoutModalVisible}
           onClose={() => {
             setWorkoutModalVisible(false);
@@ -213,8 +233,22 @@ const WorkoutPreview = ({ month, day, dayOfTheWeek }) => {
         </>
       ) : (
         <>
-          <RestingDefaultMascot width={300} height={400} />
-          <Text style={{ ...styles.defaultText, marginTop: 10 }}>
+          {/* <RestingDefaultMascot width={300} height={400} /> */}
+          <LottieView
+            source={require("../assets/o.json")}
+            autoPlay
+            loop
+            style={{ width: 500, height: 350, marginTop: 50 }}
+          />
+          <Text
+            style={{
+              ...styles.defaultText,
+              marginTop: 10,
+              fontFamily: "Nunito-SemiBold",
+              fontSize: 16,
+              textAlign: "center",
+              paddingHorizontal: 20,
+            }}>
             Today you can chill ...
           </Text>
         </>
@@ -236,46 +270,57 @@ const workoutStyles = StyleSheet.create({
     width: "100%",
   },
   exerciseItem: {
-    display: "flex",
     flexDirection: "row",
-    backgroundColor: "#334155",
+    // backgroundColor: "rgba(30, 41, 57, 0.6)",
+    //  #161c43ff
+    backgroundColor: "#161c43ff",
     padding: 10,
     borderRadius: 15,
-    marginTop: 15,
-    // marginBottom: 15,
-    alignItems: "center",
-    justifyContent: "center",
+    marginTop: 18,
     marginBottom: 25,
     width: "100%",
-    paddingHorizontal: 10,
+    shadowColor: "#0e1330ff",
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 6 },
+    alignItems: "center",
+    overflow: "hidden",
   },
   gifContainer: {
-    display: "flex",
-    flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-
-    width: 100,
-    height: 100,
+    width: 110,
+    height: 110,
+    borderRadius: 16,
+    backgroundColor: "#334155",
+    marginRight: 18,
+    borderWidth: 1,
+    borderColor: "#64748b",
+    overflow: "hidden",
   },
   exerciseGif: {
     width: 100,
     height: 100,
-    borderRadius: 15,
+    borderRadius: 14,
     borderWidth: 2,
     borderColor: "#1e293b",
+    resizeMode: "contain",
+    backgroundColor: "transparent",
   },
   textContainer: {
-    alignItems: "center",
+    flex: 1,
     justifyContent: "center",
-    width: 200,
-    marginTop: 12,
-    marginLeft: 20,
+    paddingLeft: 10,
   },
   exerciseName: {
-    textAlign: "center",
-    fontSize: 16,
-    fontWeight: "500",
+    textAlign: "left",
+    fontSize: 18,
+    fontWeight: "700",
+    color: "#f1f5f9",
+    letterSpacing: 0.5,
+    textShadowColor: "#0ea5e9",
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 2,
   },
 });
 

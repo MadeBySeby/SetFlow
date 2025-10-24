@@ -14,9 +14,7 @@ import Svg, {
   Ellipse,
   Rect,
 } from "react-native-svg";
-import NormalShapeThinOlderMascot from "../assets/normalShapeThinOlderMascot.svg";
-import WellBuiledOlderMascot from "../assets/wellBuiledOlderMascot.svg";
-import NormalShapeOlderMascot from "../assets/normalShapeOlderMascot.svg";
+
 // import inWeightOlderMascot from "../assets/inWeightOlderMascot.svg";
 // import normalShapeYoungerMascot from "../assets/normalShapeYoungerMascot.svg";
 // import wellBuiledYoungerMascot from "../assets/wellBuiledYoungerMascot.svg";
@@ -24,6 +22,11 @@ import NormalShapeOlderMascot from "../assets/normalShapeOlderMascot.svg";
 import { WeightScale } from "./Mascot";
 
 export default function MascotExact({ age, weight, userHeight = 170 }) {
+  const NormalShapeThinOlderMascot =
+    require("../assets/normalShapeThinOlderMascot.svg").default;
+  const WellBuiledOlderMascot =
+    require("../assets/wellBuiledOlderMascot.svg").default;
+
   const { width, height } = useMemo(() => {
     const scaleFactor = 3; // tweak this number to your liking
     const baseHeight = 150; // the visual base size for 170cm
@@ -49,7 +52,7 @@ export default function MascotExact({ age, weight, userHeight = 170 }) {
   if (bmi < 18.5) {
     MascotComponent = NormalShapeThinOlderMascot;
   } else if (bmi < 25) {
-    MascotComponent = NormalShapeOlderMascot;
+    MascotComponent = NormalShapeThinOlderMascot;
   } else {
     MascotComponent = WellBuiledOlderMascot;
   }

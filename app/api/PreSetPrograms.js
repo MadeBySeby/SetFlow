@@ -1,6 +1,112 @@
 export const presetPrograms = {
   workouts: [
     {
+      name: "10-Minute Bodyweight Burn",
+      duration_minutes: 10,
+      focus: "Full Body / Cardio",
+      intensity: "High",
+      sets_per_round: 2,
+      rest_between_exercises_seconds: 15,
+      notes:
+        "Fast-paced, full-body circuit designed for max calorie burn. Perform 2 rounds of all exercises.",
+      mustHaveEquipment: ["body weight"],
+      exercises: [
+        {
+          name: "Star Jump (Male)",
+          duration_seconds: 45,
+          target_muscles: [
+            "cardiovascular system",
+            "quadriceps",
+            "hamstrings",
+            "calves",
+          ],
+          equipment: ["body weight"],
+          gifUrl: "https://static.exercisedb.dev/media/HtfCpfi.gif",
+        },
+        {
+          name: "Jump Squat",
+          duration_seconds: 45,
+          target_muscles: ["glutes", "quadriceps", "hamstrings", "calves"],
+          equipment: ["body weight"],
+          gifUrl: "https://static.exercisedb.dev/media/LIlE5Tn.gif",
+        },
+        {
+          name: "Mountain Climber",
+          duration_seconds: 45,
+          target_muscles: [
+            "cardiovascular system",
+            "core",
+            "shoulders",
+            "triceps",
+          ],
+          equipment: ["body weight"],
+          gifUrl: "https://static.exercisedb.dev/media/RJgzwny.gif",
+        },
+        {
+          name: "Forward Jump",
+          duration_seconds: 45,
+          target_muscles: ["quadriceps", "calves", "hamstrings", "glutes"],
+          equipment: ["body weight"],
+          gifUrl: "https://static.exercisedb.dev/media/uZKq7lo.gif",
+        },
+        {
+          name: "Lunge with Jump",
+          duration_seconds: 45,
+          target_muscles: ["glutes", "quadriceps", "hamstrings", "calves"],
+          equipment: ["body weight"],
+          gifUrl: "https://static.exercisedb.dev/media/PM1PZjg.gif",
+        },
+      ],
+    },
+    {
+      name: "10-Minute Bodyweight Abs",
+      duration_minutes: 10,
+      focus: "Core Isolation",
+      intensity: "High",
+      sets_per_round: 2,
+      rest_between_exercises_seconds: 15,
+      notes:
+        "No equipment needed. Focus on slow, controlled contractions for maximum core engagement. Perform 2 rounds.",
+      mustHaveEquipment: ["body weight"],
+      exercises: [
+        {
+          name: "Flutter Kicks",
+          duration_seconds: 45,
+          target_muscles: ["glutes", "hip flexors", "lower abs"],
+          equipment: ["body weight"],
+          gifUrl: "https://static.exercisedb.dev/media/UVo2Qs2.gif",
+        },
+        {
+          name: "Diamond Push-up",
+          duration_seconds: 45,
+          target_muscles: ["triceps", "chest", "shoulders"],
+          equipment: ["body weight"],
+          gifUrl: "https://static.exercisedb.dev/media/soIB2rj.gif",
+        },
+        {
+          name: "Scapula Push-up",
+          duration_seconds: 45,
+          target_muscles: ["serratus anterior", "triceps", "shoulders"],
+          equipment: ["body weight"],
+          gifUrl: "https://static.exercisedb.dev/media/jV65tKx.gif",
+        },
+        {
+          name: "Bent Knee Lying Twist (Male)",
+          duration_seconds: 45,
+          target_muscles: ["glutes", "obliques", "hip flexors"],
+          equipment: ["body weight"],
+          gifUrl: "https://static.exercisedb.dev/media/6sYyrRX.gif",
+        },
+        {
+          name: "Push-up Plus",
+          duration_seconds: 45,
+          target_muscles: ["pectorals", "triceps", "shoulders"],
+          equipment: ["body weight"],
+          gifUrl: "https://static.exercisedb.dev/media/pvBMLHA.gif",
+        },
+      ],
+    },
+    {
       name: "10-Minute Abs & Core Blast",
       duration_minutes: 10,
       focus: "Abs / Cardio",
@@ -9,6 +115,7 @@ export const presetPrograms = {
       rest_between_exercises_seconds: 15,
       notes:
         "Perform 2 sets of the circuit. Minimize rest to keep intensity high.",
+      mustHaveEquipment: ["Dumbbell", "Cable"],
       exercises: [
         {
           name: "Mountain Climber",
@@ -56,6 +163,7 @@ export const presetPrograms = {
       rest_between_exercises_seconds: 15,
       notes:
         "Perform 2 sets of the circuit, focusing on a strong squeeze in the back muscles.",
+      mustHaveEquipment: ["Dumbbell"],
       exercises: [
         {
           name: "Inverted Row",
@@ -103,6 +211,7 @@ export const presetPrograms = {
       rest_between_exercises_seconds: 15,
       notes:
         "Perform 3 sets of the circuit. Drive through your heels on all lifting movements.",
+      mustHaveEquipment: ["Kettlebell", "Barbell", "Dumbbell"],
       exercises: [
         {
           name: "Kettlebell Goblet Squat",
@@ -150,6 +259,7 @@ export const presetPrograms = {
       rest_between_exercises_seconds: 15,
       notes:
         "Perform 3 sets of the circuit. Control the weight and avoid swinging.",
+      mustHaveEquipment: ["Dumbbell", "Cable"],
       exercises: [
         {
           name: "Dumbbell Standing Overhead Press",
@@ -197,6 +307,7 @@ export const presetPrograms = {
       rest_between_supersets_seconds: 60,
       notes:
         "This routine uses supersets. Rest only 60 seconds after completing a round of both Superset A & B.",
+      mustHaveEquipment: ["Dumbbell", "Kettlebell", "Cable", "Barbell"],
       supersets: [
         {
           name: "Superset 1: Core Strength",

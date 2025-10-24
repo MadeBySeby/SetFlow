@@ -11,6 +11,7 @@
     "ios": {
       "supportsTablet": true
     },
+
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
@@ -19,6 +20,7 @@
       "edgeToEdgeEnabled": true,
       "package": "com.anonymous.SetFlow"
     },
+    "assetBundlePatterns": ["**/*"],
     "web": {
       "bundler": "metro",
       "output": "static",

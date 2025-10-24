@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { router } from "expo-router";
 import SafeScreen from "../components/SafeScreen";
 import { useWorkout } from "../contexts/WorkoutContext";
@@ -17,11 +17,13 @@ import BoardingButtons from "../components/BoardingButtons";
 import AnimatedItem from "../animations/AnimatedItem";
 import { Audio } from "expo-av";
 import DuolingoLikeMascotOnScale from "../components/Mascot";
+import ButtonAnimation from "../animations/ButtonAnimation";
 const ScreenOne = () => {
-  const { updateGoal } = useWorkout();
+  const { updateGoal, UserProfile } = useWorkout();
+  const [selectedGoal, setSelectedGoal] = useState(null);
   const goals = ["Muscle Gain", "Weight Loss", "Endurance"];
   const [clicked, setClicked] = useState(false);
-
+  console.log("UserProfile in ScreenOne", UserProfile);
   // const playClick = async () => {
   //   const { sound } = await Audio.Sound.createAsync(
   //     require("../assets/buttonclicksound.mp3")
@@ -36,12 +38,17 @@ const ScreenOne = () => {
     console.log("Selected Goal:", goal);
     updateGoal(goal);
     setClicked(true);
+    setSelectedGoal(goal);
+    console.log("Selected Goal from state:", selectedGoal, "and goal:", goal);
     // setTimeout(() => {
 
     // }, 500);
     // playClick();
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
   };
+  useEffect(() => {
+    console.log("Selected Goal changed to:", selectedGoal);
+  }, [selectedGoal]);
   // ბორდერის ლაინებით რო გავაკეთო ანიმაცია
 
   return (
@@ -58,18 +65,29 @@ const ScreenOne = () => {
             justifyContent: "space-around",
             gap: 20,
           }}>
-          {goals.map((goal) => (
-            <Pressable
-              key={goal}
-              onPress={() => handleSelectGoal(goal)}
-              text={goal}
-              style={{
-                ...style.workoutGoalButton,
-                width: "80%",
-              }}>
-              <Text style={style.defaultText}>{goal}</Text>
-            </Pressable>
-          ))}
+          {goals.map((goal) => {
+            const isSelected =
+              selectedGoal?.toLowerCase().replace(/\s/g, "") ===
+              goal.toLowerCase().replace(/\s/g, "");
+            return (
+              <ButtonAnimation
+                key={goal}
+                clicked={isSelected}
+                screen={"ScreenOne"}>
+                s
+                <Pressable
+                  onPress={() => handleSelectGoal(goal)}
+                  style={{
+                    ...style.workoutGoalButton,
+                    color: `${isSelected ? "white" : "red"}`,
+                    backgroundColor: isSelected ? "#47b977" : "",
+                    width: "80%",
+                  }}>
+                  <Text style={style.defaultText}>{goal}</Text>
+                </Pressable>
+              </ButtonAnimation>
+            );
+          })}
         </View>
 
         {clicked && (
@@ -80,7 +98,6 @@ const ScreenOne = () => {
               position: "fixed",
               top: "30%",
               bottom: 0,
-              // allign button to end of  the screen
               alignSelf: "center",
               justifyContent: "center",
 

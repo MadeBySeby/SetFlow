@@ -2,7 +2,8 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   Background: {
     flex: 1,
-    backgroundColor: "#1e293b",
+    backgroundColor: "#0B1026",
+
     height: "100%",
     width: "100%",
   },
@@ -14,7 +15,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontSize: 20,
     color: "white",
-    borderColor: "#38d9a9",
+    borderColor: "#47b977",
     borderRadius: 10,
     borderWidth: 1,
     padding: 20,
@@ -22,6 +23,8 @@ const styles = StyleSheet.create({
   defaultText: {
     color: "white",
     fontSize: 18,
+    fontFamily: "Nunito-Regular",
+
     textAlign: "center",
   },
   input: {
@@ -41,7 +44,12 @@ const styles = StyleSheet.create({
     padding: 10,
     fontFamily: "system-ui, -apple-system, sans-serif",
   },
-  TitleText: { color: "white", fontSize: 25, textAlign: "center" },
+  TitleText: {
+    color: "white",
+    fontSize: 25,
+    textAlign: "center",
+    fontFamily: "Nunito-Bold",
+  },
 });
 
 export default styles;

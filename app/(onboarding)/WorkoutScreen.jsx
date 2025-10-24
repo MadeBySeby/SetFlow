@@ -15,18 +15,25 @@ import { Image } from "expo-image";
 import { BlurView } from "expo-blur";
 import TimerComponent from "../components/TimerComponent";
 import ExerciseDetail from "../ExerciseDetail";
+import LottieView from "lottie-react-native";
 import * as Haptics from "expo-haptics";
 import { useWorkout } from "../contexts/WorkoutContext";
 import * as Progress from "react-native-progress";
-const WorkoutScreen = ({ setWorkoutModalVisible, currentExercise }) => {
+const WorkoutScreen = ({
+  selectedDate,
+  setWorkoutModalVisible,
+  currentExercise,
+}) => {
   const [nextWorkoutNumber, setNextWorkoutNumber] = useState(0);
   const [workoutStarted, setWorkoutStarted] = useState(false);
   const [exerciseDetailModalVisible, showExerciseDetailModal] = useState(false);
   const [completedSets, setCompletedSets] = useState(0);
+  const [animationShow, setAnimationShow] = useState(false);
   const [timeLeft, setTimeLeft] = useState(0);
-  const { addWorkout } = useWorkout();
-
-  console.log("currentExercise in workout screen", currentExercise);
+  const { addWorkout, setRestartWorkoutValue, restartWorkoutValue } =
+    useWorkout();
+  const [exerciseForHistory, setExerciseForHistory] = useState([]);
+  console.log("ესაა", restartWorkoutValue);
   const handleSetComplete = (setNumber) => {
     console.log("Set completed:", setNumber, completedSets);
     setWorkoutStarted((prev) => !prev);
@@ -36,6 +43,7 @@ const WorkoutScreen = ({ setWorkoutModalVisible, currentExercise }) => {
     }
     console.log(completedSets, setNumber, "sik");
   };
+  console.log(selectedDate, "selectedDate in workout screen");
   return (
     <SafeScreen style={styles.Background}>
       <View
@@ -48,6 +56,22 @@ const WorkoutScreen = ({ setWorkoutModalVisible, currentExercise }) => {
           Workout {nextWorkoutNumber + 1} of {currentExercise.length}
         </Text>
         <View>
+          {animationShow && (
+            <LottieView
+              source={require("../assets/Done.json")}
+              autoPlay
+              loop={false}
+              style={{
+                width: 300,
+                height: 300,
+                position: "absolute",
+                top: "30%",
+                left: "15%",
+                zIndex: 10,
+              }}
+              onAnimationFinish={() => setAnimationShow(false)}
+            />
+          )}
           <Pressable
             style={{ position: "absolute", top: 0, right: 20, zIndex: 10 }}
             onPress={() => {
@@ -61,7 +85,7 @@ const WorkoutScreen = ({ setWorkoutModalVisible, currentExercise }) => {
               completedSets / currentExercise[nextWorkoutNumber].sets || 0
             }
             width={200}
-            color="#38d9a9"
+            color="#47b977"
           />
         </View>
         <View
@@ -90,7 +114,7 @@ const WorkoutScreen = ({ setWorkoutModalVisible, currentExercise }) => {
                 marginTop: 10,
               }}
               contentFit="cover"
-              transition={1000}
+              transition={100}
             />
             <Text style={{ ...styles.defaultText, marginTop: 10 }}>
               Reps: {currentExercise[nextWorkoutNumber].reps}
@@ -120,6 +144,7 @@ const WorkoutScreen = ({ setWorkoutModalVisible, currentExercise }) => {
                     onPress={() => {
                       handleSetComplete(setNumber);
                       setTimeLeft(30);
+                      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
                     }}
                     disabled={!isActive}
                     style={{
@@ -132,7 +157,7 @@ const WorkoutScreen = ({ setWorkoutModalVisible, currentExercise }) => {
                       style={{
                         ...styles.workoutGoalButton,
                         width: "100%",
-                        backgroundColor: !isActive ? "gray" : "#38d9a9",
+                        backgroundColor: !isActive ? "gray" : "#47b977",
                         borderWidth: !isActive ? 0 : 2,
                         marginTop: 20,
                         display: "flex",
@@ -214,13 +239,14 @@ const WorkoutScreen = ({ setWorkoutModalVisible, currentExercise }) => {
                 console.log("nextWorkoutNumber", nextWorkoutNumber);
                 setNextWorkoutNumber((prev) => prev + 1);
                 setCompletedSets(0);
-                addWorkout(currentExercise[nextWorkoutNumber]);
+                // addWorkout(currentExercise[nextWorkoutNumber]);
+                setExerciseForHistory((prev) => [
+                  ...prev,
+                  currentExercise[nextWorkoutNumber],
+                ]);
+                console.log("exerciseForHistory", exerciseForHistory);
               }}>
-              {console.log(
-                completedSets,
-                currentExercise[nextWorkoutNumber]?.sets,
-                "btn"
-              )}
+              {console.log("restartWorkoutValue", restartWorkoutValue)}
               <Text
                 style={{
                   color: "white",
@@ -253,11 +279,23 @@ const WorkoutScreen = ({ setWorkoutModalVisible, currentExercise }) => {
               Haptics.notificationAsync(
                 Haptics.NotificationFeedbackType.Success
               );
+              // add all exercises that were in the workout
+              setExerciseForHistory((prev) => [
+                ...prev,
+                currentExercise[nextWorkoutNumber],
+              ]);
+              console.log("Final exerciseForHistory", exerciseForHistory);
 
-              addWorkout(currentExercise);
+              !restartWorkoutValue
+                ? addWorkout(exerciseForHistory, selectedDate)
+                : null;
+
               setWorkoutModalVisible(false);
+
               setNextWorkoutNumber(0);
               setCompletedSets(0);
+              setRestartWorkoutValue(false);
+              setAnimationShow(true);
             }}>
             <Text
               style={{

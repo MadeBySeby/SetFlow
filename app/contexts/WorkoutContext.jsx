@@ -20,6 +20,7 @@ export const WorkoutProvider = ({ children }) => {
   const [hydrated, setHydrated] = useState(false);
   const [plan, setPlan] = useState([]);
   const completeOnboarding = () => setIsOnboardingCompleted(true);
+  const [restartWorkoutValue, setRestartWorkoutValue] = useState(false);
 
   useEffect(() => {
     const loadData = async () => {
@@ -94,12 +95,23 @@ export const WorkoutProvider = ({ children }) => {
 
   const clearWorkoutData = async () => {
     try {
+      console.log("workoutHistory before clearing:", workoutHistory);
       await AsyncStorge.removeItem("WorkoutHistory");
       setWorkoutHistory([]);
     } catch (error) {
       console.error("Failed to clear workout data", error);
     }
   };
+  const clearExerciseData = async () => {
+    try {
+      console.log("exercise data before clearing:", workoutHistory);
+      await AsyncStorge.removeItem("WorkoutHistory");
+      setWorkoutHistory([]);
+    } catch (error) {
+      console.error("Failed to clear workout data", error);
+    }
+  };
+
   const clearAllData = async () => {
     try {
       await AsyncStorge.clear();
@@ -153,10 +165,19 @@ export const WorkoutProvider = ({ children }) => {
     updateWeight: (weight) => setUserProfile((prev) => ({ ...prev, weight })),
     isOnboardingCompleted,
     completeOnboarding,
-    addWorkout: (workout) => setWorkoutHistory((prev) => [...prev, workout]),
+    addWorkout: (workout, date) => {
+      const workoutDate =
+        date || workout?.date || new Date().toISOString().split("T")[0];
+      setWorkoutHistory((prev) => [
+        ...prev,
+        { date: workoutDate, data: workout },
+      ]);
+    },
     clearWorkoutData,
     updateLevel: (level) => setUserProfile((prev) => ({ ...prev, level })),
     clearAllData,
+    restartWorkoutValue,
+    setRestartWorkoutValue,
   };
   return (
     <WorkoutContext.Provider value={value}>{children}</WorkoutContext.Provider>

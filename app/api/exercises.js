@@ -20,7 +20,7 @@ export async function getExerciseById(exerciseId) {
   try {
     console.log("Fetching exercise with ID:", exerciseId);
     const response = await fetch(
-      `https://v2.exercisedb.dev/api/v1/exercises/${exerciseId}`
+      `https://exercisedb-api.vercel.app/api/v1/exercises/${exerciseId}`
     );
 
     if (!response.ok) {

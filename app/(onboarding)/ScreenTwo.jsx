@@ -11,6 +11,8 @@ import {
   LayoutAnimation,
   Vibration,
 } from "react-native";
+import { UIManager } from "react-native";
+
 import * as Haptics from "expo-haptics";
 import React, { useState } from "react";
 import SafeScreen from "../components/SafeScreen";
@@ -25,13 +27,13 @@ import GymMembershipIcon from "../../icons/GymMembershipIcon";
 import AtHomeEquipmentIcon from "../../icons/AtHomeEquipmentIcon";
 import NoEquipmentIcon from "../../icons/NoEquipmentIcon";
 
+if (
+  Platform.OS === "android" &&
+  UIManager.setLayoutAnimationEnabledExperimental
+) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+}
 const ScreenTwo = () => {
-  if (
-    Platform.OS === "android" &&
-    UIManager.setLayoutAnimationEnabledExperimental
-  ) {
-    UIManager.setLayoutAnimationEnabledExperimental(true);
-  }
   const [showHomeEquipment, setShowHomeEquipment] = useState(false);
 
   const toggleHomeEquipment = () => {

@@ -13,11 +13,12 @@ import SafeScreen from "../components/SafeScreen";
 import styles from "../components/style";
 import { router } from "expo-router";
 import AnimatedItem from "../animations/AnimatedItem";
-import JumpingMascot from "../assets/jumpingDefaultMascot.svg";
 import { getAllExercises, searchExercises } from "../api/exercises";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import PulseAnimations from "../animations/PulseAnimations";
+import { Image } from "expo-image";
 const Workouts = () => {
+  const JumpingMascot = require("../assets/jumpingDefaultMascot.svg").default;
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   useEffect(() => {
@@ -66,7 +67,7 @@ const Workouts = () => {
             flex: 1,
           }}>
           <PulseAnimations>
-            <JumpingMascot width={300} height={400} />
+            {/* <JumpingMascot width={300} height={400} /> */}
             {/* <MaterialCommunityIcons
               name="dumbbell"
               size={70}
@@ -81,6 +82,12 @@ const Workouts = () => {
               }}
             /> */}
           </PulseAnimations>
+          <Image
+            source={require("../assets/writingg.gif")}
+            style={{ width: 300, height: 300, marginTop: 0 }}
+            contentFit="contain"
+            transition={300}
+          />
           <Text
             style={{
               ...styles.defaultText,

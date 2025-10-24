@@ -1,5 +1,12 @@
-import { Modal, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import {
+  FlatList,
+  Modal,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+import React, { useState } from "react";
 import SafeScreen from "../components/SafeScreen";
 import styles from "../components/style";
 import { presetPrograms } from "../api/PreSetPrograms";
@@ -7,36 +14,43 @@ import ProgramWorkoutCard from "../components/ProgramWorkoutCard";
 import { ScrollView } from "moti";
 import WorkoutScreen from "../(onboarding)/WorkoutScreen";
 const Programs = () => {
+  console.log("papi", presetPrograms.workouts[0].exercises[0]);
+  const [workoutModalVisible, setWorkoutModalVisible] = useState(false);
   return (
     <SafeScreen
       excludeBottomSafeArea={false}
       style={{ ...styles.Background, flex: 1 }}>
-      <ScrollView style={{ padding: 10, width: "100%", height: "auto" }}>
-        {presetPrograms.workouts.map((workout, index) => (
+      {/* {presetPrograms.workouts.map((workout, index) => (
           <ProgramWorkoutCard key={index} workout={workout} />
-        ))}
-        <View
-          style={{
-            ...styles.Background,
-            flex: 1,
-            height: "100%",
-            width: "100%",
-            maxWidth: "100%",
-          }}>
-          <Text style={styles.defaultText}>Programs Screen - Coming Soon!</Text>
-        </View>
-        <Modal
-          visible={false}
-          animationType="slide"
-          presentationStyle="fullScreen"
-          onRequestClose={() => {}}>
-          <WorkoutScreen
-            currentExercise={[]}
-            setWorkoutModalVisible={() => {}}
-            onClose={() => {}}
-          />
-        </Modal>
-      </ScrollView>
+        ))} */}
+      <FlatList
+        data={presetPrograms.workouts}
+        // ListFooterComponent={}
+        renderItem={({ item, index }) => (
+          <Pressable
+            onPress={() => {
+              setWorkoutModalVisible(true);
+              alert("Starting Workout from Program");
+            }}>
+            <ProgramWorkoutCard key={index} workout={item} />
+          </Pressable>
+        )}
+        keyExtractor={(item, index) => `workout-${index}`}
+      />
+
+      <Modal
+        visible={workoutModalVisible}
+        animationType="slide"
+        presentationStyle="fullScreen"
+        onRequestClose={() => {}}>
+        <WorkoutScreen
+          currentExercise={presetPrograms.workouts[0].exercises[0]}
+          setWorkoutModalVisible={setWorkoutModalVisible}
+          onClose={() => {
+            setWorkoutModalVisible(false);
+          }}
+        />
+      </Modal>
     </SafeScreen>
   );
 };

@@ -34,7 +34,13 @@ const ExerciseDetail = ({ id }) => {
         padding: 20,
       }}>
       {!exercise ? (
-        <ActivityIndicator size="large" color="#00ff00" />
+        // <ActivityIndicator size="large" color="#00ff00" />
+        <Image
+          source={require("./assets/writingg.gif")}
+          style={{ width: 300, height: 300, marginTop: 20 }}
+          contentFit="contain"
+          transition={300}
+        />
       ) : (
         <>
           <Text
@@ -44,7 +50,7 @@ const ExerciseDetail = ({ id }) => {
           <Pressable onPress={() => router.back()} style={{ marginTop: 10 }}>
             <Text>Go back</Text>
           </Pressable>
-          <Video
+          {/* <Video
             ref={videoRef}
             source={{ uri: exercise.videoUrl }} // Your video URL
             style={{
@@ -57,6 +63,19 @@ const ExerciseDetail = ({ id }) => {
             useNativeControls // shows play/pause, seek bar, etc.
             resizeMode="contain"
             shouldPlay={false} // auto play if true
+          /> */}
+          <Image
+            source={{ uri: exercise.gifUrl }}
+            style={{
+              width: 300,
+              height: 300,
+              borderRadius: 10,
+
+              marginTop: 20,
+              // backgroundColor: "#000",
+            }}
+            contentFit="contain"
+            transition={300}
           />
           <Text style={{ ...styles.defaultText, marginTop: 10 }}>
             Target Muscle: {exercise.targetMuscles[0]}

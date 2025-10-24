@@ -92,7 +92,7 @@ const PlanDurationScreen = () => {
         <View
           style={{
             flexDirection: "row",
-            flexWrap: "wrap",
+            flexWrap: "wrap-reverse",
             marginTop: 10,
             padding: 10,
           }}>
@@ -105,6 +105,7 @@ const PlanDurationScreen = () => {
                   key={day.value}
                   onPress={() => {
                     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Rigid);
+
                     if (isSelected) {
                       updateDailyWorkoutTime(day.value);
                     } else if (DailyWorkoutTime.length < PlanDuration) {
@@ -146,5 +147,3 @@ const PlanDurationScreen = () => {
 };
 
 export default PlanDurationScreen;
-
-const styles = StyleSheet.create({});

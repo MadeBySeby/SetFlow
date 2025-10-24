@@ -5,11 +5,12 @@ import { useWorkout, WorkoutContext } from "../contexts/WorkoutContext";
 import styles from "../components/style";
 import SafeScreen from "../components/SafeScreen";
 import { Image } from "expo-image";
-import DuolingoLikeMascotOnScale from "../components/Mascot";
 import NoWorkoutsLoggedYetDefaultMascot from "../assets/noWorkoutsLoggedYetDefault.svg";
+
 const WorkoutsHistory = () => {
   const { workoutHistory, clearWorkoutData } = useWorkout();
   console.log("workoutHistory", workoutHistory);
+
   return (
     <SafeScreen style={styles.Background}>
       <View
@@ -42,38 +43,44 @@ const WorkoutsHistory = () => {
               <NoWorkoutsLoggedYetDefaultMascot width={300} height={400} />
             </View>
           ) : (
-            workoutHistory.map((workout, index) => (
-              <View key={index} style={{ marginTop: 10, alignItems: "center" }}>
-                {/* <Text style={styles.defaultText}>{workout.name}</Text> */}
-                <Image
-                  source={{ uri: workout.gif }}
-                  style={{
-                    width: 100,
-                    height: 100,
-                    borderRadius: 10,
-                    alignContent: "center",
-                    marginTop: 10,
-                  }}
-                  contentFit="cover"
-                  transition={1000}
-                />
-                <Pressable
-                  style={{
-                    ...styles.workoutGoalButton,
-                  }}
-                  onPress={() => {
-                    clearWorkoutData();
-                    console.log("Cleared workout history");
-                    console.log("workoutHistory after clear", workoutHistory);
-                  }}>
-                  <Text style={{ ...styles.defaultText }}>
-                    Clear Workout History
-                  </Text>
-                </Pressable>
-              </View>
-            ))
+            workoutHistory.map((workout) =>
+              workout.data.map((exercise, i) => (
+                <View key={i} style={{ marginTop: 10, alignItems: "center" }}>
+                  <Image
+                    source={{ uri: exercise.gif }}
+                    style={{
+                      width: 100,
+                      height: 100,
+                      borderRadius: 10,
+                      alignContent: "center",
+                      marginTop: 10,
+                    }}
+                    contentFit="cover"
+                    transition={1000}
+                  />
+                </View>
+              ))
+            )
           )}
         </View>
+        {workoutHistory.length > 0 && (
+          <Pressable
+            style={{
+              ...styles.workoutGoalButton,
+              alignItems: "center",
+              justifyContent: "center",
+              width: "90%",
+              top: "65%",
+              alignSelf: "center",
+            }}
+            onPress={() => {
+              clearWorkoutData();
+              console.log("Cleared workout history");
+              console.log("workoutHistory after clear", workoutHistory);
+            }}>
+            <Text style={{ ...styles.defaultText }}>Clear Workout History</Text>
+          </Pressable>
+        )}
       </View>
     </SafeScreen>
   );
