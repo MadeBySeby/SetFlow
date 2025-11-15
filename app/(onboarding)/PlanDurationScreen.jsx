@@ -28,7 +28,6 @@ const PlanDurationScreen = () => {
     clearDailyWorkoutTime,
   } = useWorkout();
   const { DailyWorkoutTime, PlanDuration } = UserProfile;
-  console.log(UserProfile);
   const weekdays = [
     { label: "Monday", value: "monday" },
     { label: "Tuesday", value: "tuesday" },
@@ -38,8 +37,6 @@ const PlanDurationScreen = () => {
     { label: "Saturday", value: "saturday" },
     { label: "Sunday", value: "sunday" },
   ];
-
-  console.log(UserProfile);
 
   const handleSubmit = () => {
     router.push("PersonalDetailsScreen");

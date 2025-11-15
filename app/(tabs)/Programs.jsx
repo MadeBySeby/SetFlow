@@ -14,8 +14,9 @@ import ProgramWorkoutCard from "../components/ProgramWorkoutCard";
 import { ScrollView } from "moti";
 import WorkoutScreen from "../(onboarding)/WorkoutScreen";
 const Programs = () => {
-  console.log("papi", presetPrograms.workouts[0].exercises[0]);
+  // console.log("papi", presetPrograms.workouts[0].exercises[0]);
   const [workoutModalVisible, setWorkoutModalVisible] = useState(false);
+  const [selectedWorkout, setSelectedWorkout] = useState(null);
   return (
     <SafeScreen
       excludeBottomSafeArea={false}
@@ -27,30 +28,20 @@ const Programs = () => {
         data={presetPrograms.workouts}
         // ListFooterComponent={}
         renderItem={({ item, index }) => (
-          <Pressable
-            onPress={() => {
-              setWorkoutModalVisible(true);
-              alert("Starting Workout from Program");
-            }}>
-            <ProgramWorkoutCard key={index} workout={item} />
-          </Pressable>
+          <ProgramWorkoutCard
+            workoutModalVisible={workoutModalVisible}
+            setWorkoutModalVisible={setWorkoutModalVisible}
+            key={index}
+            workout={item}
+            onOpen={() => {
+              setSelectedWorkout(item); // <- store the clicked workout
+              // setModalVisible(true); // <- open single modal
+            }}
+            selectedWorkout={selectedWorkout}
+          />
         )}
         keyExtractor={(item, index) => `workout-${index}`}
       />
-
-      <Modal
-        visible={workoutModalVisible}
-        animationType="slide"
-        presentationStyle="fullScreen"
-        onRequestClose={() => {}}>
-        <WorkoutScreen
-          currentExercise={presetPrograms.workouts[0].exercises[0]}
-          setWorkoutModalVisible={setWorkoutModalVisible}
-          onClose={() => {
-            setWorkoutModalVisible(false);
-          }}
-        />
-      </Modal>
     </SafeScreen>
   );
 };

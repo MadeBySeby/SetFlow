@@ -33,7 +33,6 @@ const WorkoutScreen = ({
   const { addWorkout, setRestartWorkoutValue, restartWorkoutValue } =
     useWorkout();
   const [exerciseForHistory, setExerciseForHistory] = useState([]);
-  console.log("ესაა", restartWorkoutValue);
   const handleSetComplete = (setNumber) => {
     console.log("Set completed:", setNumber, completedSets);
     setWorkoutStarted((prev) => !prev);
@@ -122,7 +121,7 @@ const WorkoutScreen = ({
           </TouchableOpacity>
           <Modal
             animationType="slide"
-            presentationStyle="formSheet"
+            presentationStyle="fullScreen"
             visible={exerciseDetailModalVisible}
             onRequestClose={() => showExerciseDetailModal(false)}>
             <ExerciseDetail

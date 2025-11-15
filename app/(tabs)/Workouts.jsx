@@ -17,6 +17,7 @@ import { getAllExercises, searchExercises } from "../api/exercises";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import PulseAnimations from "../animations/PulseAnimations";
 import { Image } from "expo-image";
+import LottieView from "lottie-react-native";
 const Workouts = () => {
   const JumpingMascot = require("../assets/jumpingDefaultMascot.svg").default;
   const [query, setQuery] = useState("");
@@ -29,15 +30,14 @@ const Workouts = () => {
       } else {
         const timeout = setTimeout(() => {
           searchExercises(query).then((data) => {
-            setResults(data); // just data, not data.data
-            console.log("results from API:", data); // log fetched data
+            setResults(data);
+            console.log("results from API:", data);
           });
         }, 300);
         return () => clearTimeout(timeout);
       }
     };
     fetchResults();
-    console.log("resulysss", results);
   }, [query]);
 
   return (
@@ -55,7 +55,6 @@ const Workouts = () => {
       <Text style={{ ...styles.defaultText, alignSelf: "center" }}>
         {results.data?.length ? `${results.data.length} results found` : ""}
       </Text>
-      {console.log("results.data?.length", results.data?.length)}
       {results.length < 1 && (
         <View
           style={{
@@ -82,11 +81,11 @@ const Workouts = () => {
               }}
             /> */}
           </PulseAnimations>
-          <Image
-            source={require("../assets/writingg.gif")}
-            style={{ width: 300, height: 300, marginTop: 0 }}
-            contentFit="contain"
-            transition={300}
+          <LottieView
+            source={require("../assets/writingloop.json")}
+            autoPlay
+            loop
+            style={{ width: 300, height: 300, marginTop: -200 }}
           />
           <Text
             style={{

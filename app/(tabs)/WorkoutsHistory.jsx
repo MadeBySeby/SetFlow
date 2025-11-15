@@ -75,8 +75,6 @@ const WorkoutsHistory = () => {
             }}
             onPress={() => {
               clearWorkoutData();
-              console.log("Cleared workout history");
-              console.log("workoutHistory after clear", workoutHistory);
             }}>
             <Text style={{ ...styles.defaultText }}>Clear Workout History</Text>
           </Pressable>

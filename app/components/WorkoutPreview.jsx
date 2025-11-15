@@ -45,20 +45,7 @@ const WorkoutPreview = ({ selectedDate, month, day, dayOfTheWeek }) => {
     (day) => weekdayMap[day]
   );
   console.log("daysForWorkout", plan, UserProfile, hydrated);
-  if (!hydrated || !plan) {
-    return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Image
-          source={require("../assets/writingg.gif")}
-          style={{ width: 300, height: 300, marginTop: -200 }}
-          contentFit="contain"
-          transition={300}
-        />
-        <Text style={styles.defaultText}>Writing your plan...</Text>
-      </View>
-    );
-  }
-  console.log("plan in preview", plan);
+
   useEffect(() => {
     console.log("daysforworkout", daysForWorkout);
     console.log("dayOfTheWeek", dayOfTheWeek, daysForWorkout);
@@ -163,19 +150,19 @@ const WorkoutPreview = ({ selectedDate, month, day, dayOfTheWeek }) => {
     // </AnimatedItem>
     // </View>
   );
-  if (exercises.length < 1)
+  if (!hydrated || !plan || exercises.length < 1) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Image
-          source={require("../assets/writingg.gif")}
+        <LottieView
+          source={require("../assets/writingloop.json")}
+          autoPlay
+          loop
           style={{ width: 300, height: 300, marginTop: -200 }}
-          contentFit="contain"
-          transition={300}
         />
         <Text style={styles.defaultText}>Writing your plan...</Text>
       </View>
     );
-
+  }
   return (
     <View
       style={{

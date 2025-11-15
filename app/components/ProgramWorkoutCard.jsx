@@ -1,6 +1,8 @@
-import { Image, ImageBackground } from "expo-image";
+import { Image } from "expo-image";
+import { ImageBackground } from "react-native";
 import React, { useState } from "react";
 import {
+  Modal,
   Pressable,
   StyleSheet,
   Text,
@@ -8,13 +10,16 @@ import {
   View,
 } from "react-native";
 import styles from "./style";
-import { LinearGradient } from "expo-linear-gradient";
-import Icon from "react-native-vector-icons/FontAwesome";
-import { IconContext } from "phosphor-react";
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+// import { LinearGradient } from "expo-linear-gradient";
+// import Icon from "react-native-vector-icons/FontAwesome";
+// import { IconContext } from "phosphor-react";
+// import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { EquipmentIconsExample } from "./equipmentIcons";
-import Body from "react-native-body-highlighter";
+import { presetPrograms } from "../api/PreSetPrograms";
+// import Body from "react-native-body-highlighter";
 import AutoBody from "./AutoBody";
+// import WorkoutScreen from "../(onboarding)/WorkoutScreen";
+import ProgramWorkoutScreen from "./ProgramWorkoutScreen";
 const getGradientForIntensity = (intensity) => {
   switch (intensity.toLowerCase()) {
     case "light":
@@ -31,9 +36,18 @@ const getGradientForIntensity = (intensity) => {
       return ["#161C43", "#161C43"]; // fallback to base color
   }
 };
-export default function ProgramWorkoutCard({ workout }) {
+export default function ProgramWorkoutCard({
+  workoutModalVisible,
+  setWorkoutModalVisible,
+  workout,
+  selectedWorkout,
+  onOpen,
+}) {
   console.log("workout in ProgramWorkoutCard:", workout);
   const gradientColors = getGradientForIntensity(workout.intensity);
+  const [currentExercise, setCurrentExercise] = useState();
+
+  // console.log(workout, "test");
   //  name: "10-Minute Abs & Core Blast",
   //     duration_minutes: 10,
   //     focus: "Abs / Cardio",
@@ -77,7 +91,18 @@ export default function ProgramWorkoutCard({ workout }) {
           borderColor: "black",
           overflow: "hidden",
         }}>
-        <TouchableOpacity style={{ gap: 5, color: "red" }}>
+        <TouchableOpacity
+          onPress={() => {
+            console.log("Opening workout modal");
+            // setCurrentExercise(workout?.name);
+
+            // setCurrentExercise(workout.exercises);
+            onOpen();
+            setWorkoutModalVisible(true);
+
+            console.log("worki", selectedWorkout);
+          }}
+          style={{ gap: 5, color: "red" }}>
           <View style={{ alignItems: "center", marginBottom: 10 }}>
             <Text
               style={{ ...styles.TitleText, fontSize: 18, color: "#47b977" }}>
@@ -157,6 +182,20 @@ export default function ProgramWorkoutCard({ workout }) {
           {/* </LinearGradient> */}
         </View>
       </ImageBackground>
+      <Modal
+        visible={workoutModalVisible}
+        animationType="slide"
+        presentationStyle="fullScreen"
+        onRequestClose={() => {}}>
+        <ProgramWorkoutScreen
+          workouts={workout}
+          rame={selectedWorkout}
+          setWorkoutModalVisible={setWorkoutModalVisible}
+          onClose={() => {
+            setWorkoutModalVisible(false);
+          }}
+        />
+      </Modal>
     </View>
   );
 }

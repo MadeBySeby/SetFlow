@@ -63,7 +63,6 @@ const ScreenTwo = () => {
     // Vibration.vibrate(50);
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
   };
-  console.log("inputValue:", inputValue);
   function getIcon(option) {
     switch (option) {
       case "Gym Membership":

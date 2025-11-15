@@ -12,9 +12,9 @@ import { router, useLocalSearchParams } from "expo-router";
 import { getExerciseById } from "./api/exercises";
 import { Image } from "expo-image";
 import { Video } from "expo-av";
+import LottieView from "lottie-react-native";
 
 const ExerciseDetail = ({ id }) => {
-  const videoRef = React.useRef(null);
   const route = useLocalSearchParams();
   console.log("route in ExerciseDetail", route);
   const exerciseId = route?.exerciseId || id;
@@ -35,11 +35,11 @@ const ExerciseDetail = ({ id }) => {
       }}>
       {!exercise ? (
         // <ActivityIndicator size="large" color="#00ff00" />
-        <Image
-          source={require("./assets/writingg.gif")}
-          style={{ width: 300, height: 300, marginTop: 20 }}
-          contentFit="contain"
-          transition={300}
+        <LottieView
+          source={require("./assets/writingloop.json")}
+          autoPlay
+          loop
+          style={{ width: 300, height: 300, marginTop: 200 }}
         />
       ) : (
         <>

@@ -8,7 +8,6 @@ import { router } from "expo-router";
 const LevelScreen = () => {
   const { completeOnboarding, updateLevel, userProfile } = useWorkout();
   const handleSelectLevel = async (level) => {
-    console.log("Selected level:", level, userProfile);
     updateLevel(level);
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     await completeOnboarding();

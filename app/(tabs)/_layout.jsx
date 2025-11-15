@@ -5,6 +5,7 @@ import Svg, { Path } from "react-native-svg";
 import { useWorkout } from "../contexts/WorkoutContext";
 import LottieView from "lottie-react-native/src";
 import { Image } from "expo-image";
+import { useState, useRef, useEffect } from "react";
 
 const HomeIcon = ({ color, size }) => (
   <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
@@ -57,14 +58,45 @@ const HistoryIcon = ({ color, size }) => (
   </Svg>
 );
 
+const TabIconWithAnimation = ({ focused, animationSource, Icon }) => {
+  const animationEndedRef = useRef(false);
+  const animationRef = useRef(null);
+
+  useEffect(() => {
+    if (!focused) {
+      animationEndedRef.current = false;
+    }
+  }, [focused]);
+  return (
+    <>
+      {focused && !animationRef.current ? (
+        <LottieView
+          source={animationSource}
+          // autoPlay={focused}
+          // ref={animationRef}
+          key={focused ? "focus" : "blur"}
+          loop={true}
+          autoPlay
+          onAnimationFinish={() => {
+            animationEndedRef.current = true;
+            console.log("Animation finished");
+          }}
+          style={{ width: 56, height: 56 }}
+        />
+      ) : (
+        <Icon color={focused ? "#47b977" : "gray"} size={24} />
+      )}
+    </>
+  );
+};
 export default function TabLayout() {
   const { isOnboardingCompleted } = useWorkout();
+  const animationEndedRef = useRef(false);
+  const [, forceUpdate] = useState({});
   console.log("Onboarding status in layout:", isOnboardingCompleted);
   if (!isOnboardingCompleted) {
     return <Redirect href="/(onboarding)/ScreenOne" />;
   }
-  console.log("Ionicons font:", Ionicons.font);
-  console.log("MaterialCommunityIcons font:", MaterialCommunityIcons.font);
 
   return (
     <Tabs
@@ -95,29 +127,11 @@ export default function TabLayout() {
         options={{
           title: "Programs",
           tabBarIcon: ({ focused }) => (
-            <>
-              {/* <LottieView
-                source={require("../assets/rame.json")}
-                autoPlay={true}
-                loop={true}
-                style={{ width: 56, height: 56 }}
-              /> */}
-              {focused ? (
-                <Image
-                  source={require("../assets/run.gif")}
-                  // autoplay={focused}
-                  // loop={false}
-                  // autoplay={focused}
-
-                  style={{
-                    width: 40,
-                    height: 40,
-                  }}
-                />
-              ) : (
-                <FitnessIcon color={focused ? "#47b977" : "gray"} size={24} />
-              )}
-            </>
+            <TabIconWithAnimation
+              focused={focused}
+              animationSource={require("../assets/TabsRunAnim.json")}
+              Icon={FitnessIcon}
+            />
           ),
         }}
       />

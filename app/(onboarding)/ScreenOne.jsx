@@ -23,13 +23,6 @@ const ScreenOne = () => {
   const [selectedGoal, setSelectedGoal] = useState(null);
   const goals = ["Muscle Gain", "Weight Loss", "Endurance"];
   const [clicked, setClicked] = useState(false);
-  console.log("UserProfile in ScreenOne", UserProfile);
-  // const playClick = async () => {
-  //   const { sound } = await Audio.Sound.createAsync(
-  //     require("../assets/buttonclicksound.mp3")
-  //   );
-  //   await sound.playAsync();
-  // };
 
   const handleSelectGoal = (goal) => {
     if (goal === "Muscle Gain") goal = "muscleGain";
@@ -40,16 +33,12 @@ const ScreenOne = () => {
     setClicked(true);
     setSelectedGoal(goal);
     console.log("Selected Goal from state:", selectedGoal, "and goal:", goal);
-    // setTimeout(() => {
 
-    // }, 500);
-    // playClick();
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
   };
   useEffect(() => {
     console.log("Selected Goal changed to:", selectedGoal);
   }, [selectedGoal]);
-  // ბორდერის ლაინებით რო გავაკეთო ანიმაცია
 
   return (
     <SafeScreen style={style.Background}>
@@ -74,7 +63,6 @@ const ScreenOne = () => {
                 key={goal}
                 clicked={isSelected}
                 screen={"ScreenOne"}>
-                s
                 <Pressable
                   onPress={() => handleSelectGoal(goal)}
                   style={{

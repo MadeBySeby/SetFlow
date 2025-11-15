@@ -16,6 +16,22 @@ export const searchExercises = async (query) => {
     return [];
   }
 };
+export const searchOldExercises = async (query) => {
+  if (!query) return [];
+  try {
+    const response = await fetch(
+      `https://v1.exercisedb.dev/api/v1/exercises/search?search=${encodeURIComponent(
+        query
+      )}`
+    );
+    const json = await response.json();
+    console.log("kaka response status:", json);
+    return json.data || [];
+  } catch (error) {
+    console.error("Error fetching exercises:", error);
+    return [];
+  }
+};
 export async function getExerciseById(exerciseId) {
   try {
     console.log("Fetching exercise with ID:", exerciseId);

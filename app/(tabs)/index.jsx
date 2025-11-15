@@ -17,14 +17,12 @@ const HomeScreen = () => {
   const month = date.getMonth() + 1;
   const day = date.getDate();
   const dayOfTheWeek = date.getDay();
-  console.log(isOnboardingCompleted);
   const {
     workoutHistory,
     clearWorkoutData,
     setRestartWorkoutValue,
     restartWorkoutValue,
   } = useWorkout();
-  console.log("workoutHistor1y in home", workoutHistory);
   const selectedDateISO = useMemo(
     () => dayjs(selectedDate).format("YYYY-MM-DD"),
     [selectedDate]
@@ -34,7 +32,6 @@ const HomeScreen = () => {
     (w) => w?.date === selectedDateISO
   );
 
-  console.log("isWorkoutDoneToday", isWorkoutDoneToday);
   // if (isWorkoutDoneToday) {
   //   return (
   //     <SafeScreen style={styles.Background}>
@@ -75,8 +72,6 @@ const HomeScreen = () => {
           dateNameStyle={{ color: "white" }}
           iconContainer={{ flex: 0.1 }}
           minDate={today}
-          // add border to selected date
-
           // maxDate={today.add(30, "day")}
           onDateSelected={(date) => {
             setSelectedDate(date);
@@ -94,7 +89,6 @@ const HomeScreen = () => {
           scrollerPaging={true}
           startingDate={today}
         />
-        {console.log(isWorkoutDoneToday, "restartWorkoutValue in home")}
         {!isWorkoutDoneToday || restartWorkoutValue ? (
           <WorkoutPreview
             selectedDate={selectedDate}
