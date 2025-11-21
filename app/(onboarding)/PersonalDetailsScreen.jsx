@@ -22,12 +22,12 @@ import HorizontalNumberPicker from "../components/Roller";
 import RadioSlider from "../components/Roller";
 import Slider from "@react-native-community/slider";
 import MascotSvg from "../components/MascotSvg";
+import { Picker } from "@react-native-picker/picker";
 const PersonalDetailsScreen = () => {
   const fields = ["Height", "Weight", "Age"];
   const { updateHeight, updateWeight, updateAge, UserProfile } = useWorkout();
   const { age, height, weight } = UserProfile;
   const allFieldsFilled = age && height && weight;
-  // In your PersonalDetailsScreen (temporarily)
   const handleOnPress = (field, value) => {
     switch (field) {
       case "Height":
@@ -45,125 +45,82 @@ const PersonalDetailsScreen = () => {
         break;
     }
   };
+
   return (
     <SafeScreen
       style={{
         ...styles.Background,
         flex: 1,
-        // justifyContent: "space-between",
+        alignItems: "center",
+        width: "100%",
+        display: "flex",
+        paddingTop: 30,
       }}>
-      {/* <DuolingoLikeMascotOnScale size={400} /> */}
+      <Text style={{ ...styles.TitleText, marginTop: 0, textAlign: "center" }}>
+        Enter Your Personal Details
+      </Text>
+      {fields.map((field) => {
+        const currentValue =
+          field === "Height"
+            ? height || 170
+            : field === "Weight"
+            ? weight || 70
+            : age || 25;
 
-      {/* <RadioSlider /> */}
+        const unit =
+          field === "Height" ? "cm" : field === "Weight" ? "kg" : "yrs";
 
-      <KeyboardAwareScrollView
-        contentContainerStyle={{
-          flexGrow: 1,
-          alignItems: "center",
-          paddingBottom: 40,
-        }}
-        extraScrollHeight={80}
-        enableOnAndroid={true}
-        keyboardShouldPersistTaps="handled">
-        {/* <Text style={{ ...styles.TitleText }}>Tell Us About Yourself</Text> */}
-        <View
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            alignItems: "center",
-            justifyContent: "center", // Center vertically
-            zIndex: -1, // Ensure it's behind content
-          }}>
-          {/* <DuolingoLikeMascotOnScale
-            weight={weight || 20} // Use user input or default
-            height={height || 200} // Use user input or default
-            size={Dimensions.get("window").height} // 90% of screen height
-            mascotScale={1.0}
-          /> */}
-          {/* <MascotSvg
-            age={age || 0}
-            weight={weight || 0}
-            userHeight={height || 200}
-          /> */}
-          {/* <WeightScale weight={weight || 10} /> */}
-        </View>
-        {fields.map((field) => {
-          return (
-            <View
-              key={field}
-              style={{ ...styles.workoutGoalButton, borderWidth: 0 }}>
-              <Label
-                style={{
-                  ...styles.defaultText,
-                  display: "flex",
-                  alignContent: "flex-start",
-                  alignSelf: "flex-start",
-                }}>
-                {field}
-              </Label>
-              {/* <TextInput
-                style={{ ...styles.input, marginTop: 20 }}
-                placeholder={`Enter your ${field.toLowerCase()}`}
-                placeholderTextColor="#999"
-                keyboardType="numeric"
-                returnKeyType="go"
-                // onSubmitEditing={(e) =>
-                //   handleOnPress(field, e.nativeEvent.text)
-                // }
-                onChangeText={(value) => handleOnPress(field, value)}
-              /> */}
-              <Text style={{ color: "white", marginTop: 10, fontSize: 16 }}>
-                {field === "Height"
-                  ? height || 170
-                  : field === "Weight"
-                  ? weight || 70
-                  : age || 25}{" "}
-                {field === "Height" ? "cm" : field === "Weight" ? "kg" : "yrs"}
-              </Text>
-              <Slider
-                style={{ width: 300, height: 40 }}
-                step={1}
-                value={
-                  field === "Height"
-                    ? height || 170
-                    : field === "Weight"
-                    ? weight || 70
-                    : age || 25
-                }
-                minimumValue={
-                  field === "Height" ? 140 : field === "Weight" ? 40 : 10
-                } // <-- add
-                maximumValue={
-                  field === "Height" ? 220 : field === "Weight" ? 150 : 100
-                } // <-- add
-                onValueChange={(value) => handleOnPress(field, value)}
-                minimumTrackTintColor="#4CAF50"
-                maximumTrackTintColor="#ccc"
-                thumbTintColor="#4CAF50"
-              />
-            </View>
-          );
-        })}
-        {allFieldsFilled && (
-          <Pressable
+        const min = field === "Height" ? 140 : field === "Weight" ? 40 : 10;
+
+        const max = field === "Height" ? 220 : field === "Weight" ? 150 : 100;
+
+        return (
+          <View
+            key={field}
             style={{
               ...styles.workoutGoalButton,
-              borderColor: "black",
-              backgroundColor: "black",
-              width: 200,
-              marginTop: 20,
-            }}
-            onPress={() => {
-              router.push("LevelScreen");
-              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+              borderWidth: 0,
+              marginTop: 0,
             }}>
-            <Text style={styles.defaultText}>Submit</Text>
-          </Pressable>
-        )}
-      </KeyboardAwareScrollView>
+            <Label
+              style={{
+                ...styles.defaultText,
+                display: "flex",
+                alignContent: "flex-start",
+                alignSelf: "center",
+              }}>
+              {/* {field} */}
+            </Label>
+            <Picker
+              selectedValue={currentValue}
+              style={{ height: 120, width: 200, color: "white" }}
+              onValueChange={(val) => handleOnPress(field, val)}>
+              {Array.from({ length: max - min + 1 }).map((_, i) => {
+                const num = min + i;
+                return (
+                  <Picker.Item key={num} label={`${num} ${unit}`} value={num} />
+                );
+              })}
+            </Picker>
+          </View>
+        );
+      })}
+      {allFieldsFilled && (
+        <Pressable
+          style={{
+            ...styles.workoutGoalButton,
+            borderColor: "black",
+            backgroundColor: "black",
+            width: 200,
+            marginTop: 20,
+          }}
+          onPress={() => {
+            router.push("LevelScreen");
+            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+          }}>
+          <Text style={styles.defaultText}>Submit</Text>
+        </Pressable>
+      )}
     </SafeScreen>
   );
 };

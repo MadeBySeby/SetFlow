@@ -190,7 +190,6 @@ const WorkoutPreview = ({ selectedDate, month, day, dayOfTheWeek }) => {
         onRequestClose={() => setWorkoutModalVisible(false)}>
         <WorkoutScreen
           currentExercise={currentExercise}
-          // 2025-10-24
           selectedDate={`2025-${month}-${day}`}
           setWorkoutModalVisible={setWorkoutModalVisible}
           onClose={() => {
@@ -200,7 +199,6 @@ const WorkoutPreview = ({ selectedDate, month, day, dayOfTheWeek }) => {
           }}
         />
       </Modal>
-      {console.log("currentExercise", currentExercise.length)}
       {currentExercise[0]?.name !== "Rest Day" ? (
         <>
           <FlatList

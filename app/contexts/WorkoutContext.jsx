@@ -72,8 +72,17 @@ export const WorkoutProvider = ({ children }) => {
       !UserProfile.PlanDuration
     )
       return;
+    console.log(
+      "Generating plan for:",
+      UserProfile.equipment.split(" ").join(""),
+      PresetPlans[0]?.[UserProfile.level]?.["NoEquipment"]?.[
+        UserProfile.workoutGoal
+      ]
+    );
     let planFromPreset =
-      PresetPlans[0]?.[UserProfile.level]?.[UserProfile.workoutGoal] || [];
+      PresetPlans[0]?.[UserProfile.level]?.[
+        UserProfile.equipment.split(" ").join("")
+      ]?.[UserProfile.workoutGoal] || [];
     planFromPreset = filterPlanByDays(
       planFromPreset,
       parseInt(UserProfile.PlanDuration) || 0
@@ -165,12 +174,12 @@ export const WorkoutProvider = ({ children }) => {
     updateWeight: (weight) => setUserProfile((prev) => ({ ...prev, weight })),
     isOnboardingCompleted,
     completeOnboarding,
-    addWorkout: (workout, date) => {
+    addWorkout: (workout, date, type = "Normal") => {
       const workoutDate =
         date || workout?.date || new Date().toISOString().split("T")[0];
       setWorkoutHistory((prev) => [
         ...prev,
-        { date: workoutDate, data: workout },
+        { date: workoutDate, type, data: workout },
       ]);
     },
     clearWorkoutData,

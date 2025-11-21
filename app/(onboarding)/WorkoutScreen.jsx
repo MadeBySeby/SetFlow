@@ -19,30 +19,29 @@ import LottieView from "lottie-react-native";
 import * as Haptics from "expo-haptics";
 import { useWorkout } from "../contexts/WorkoutContext";
 import * as Progress from "react-native-progress";
+import { Sound } from "expo-av/build/Audio";
 const WorkoutScreen = ({
   selectedDate,
   setWorkoutModalVisible,
   currentExercise,
+  restSec,
+  type = "Normal",
 }) => {
   const [nextWorkoutNumber, setNextWorkoutNumber] = useState(0);
   const [workoutStarted, setWorkoutStarted] = useState(false);
   const [exerciseDetailModalVisible, showExerciseDetailModal] = useState(false);
   const [completedSets, setCompletedSets] = useState(0);
   const [animationShow, setAnimationShow] = useState(false);
+  const [phase, setPhase] = useState("idle");
   const [timeLeft, setTimeLeft] = useState(0);
   const { addWorkout, setRestartWorkoutValue, restartWorkoutValue } =
     useWorkout();
   const [exerciseForHistory, setExerciseForHistory] = useState([]);
   const handleSetComplete = (setNumber) => {
-    console.log("Set completed:", setNumber, completedSets);
-    setWorkoutStarted((prev) => !prev);
-
     if (setNumber === completedSets + 1) {
       setCompletedSets(setNumber);
     }
-    console.log(completedSets, setNumber, "sik");
   };
-  console.log(selectedDate, "selectedDate in workout screen");
   return (
     <SafeScreen style={styles.Background}>
       <View
@@ -55,22 +54,6 @@ const WorkoutScreen = ({
           Workout {nextWorkoutNumber + 1} of {currentExercise.length}
         </Text>
         <View>
-          {animationShow && (
-            <LottieView
-              source={require("../assets/Done.json")}
-              autoPlay
-              loop={false}
-              style={{
-                width: 300,
-                height: 300,
-                position: "absolute",
-                top: "30%",
-                left: "15%",
-                zIndex: 10,
-              }}
-              onAnimationFinish={() => setAnimationShow(false)}
-            />
-          )}
           <Pressable
             style={{ position: "absolute", top: 0, right: 20, zIndex: 10 }}
             onPress={() => {
@@ -125,6 +108,7 @@ const WorkoutScreen = ({
             visible={exerciseDetailModalVisible}
             onRequestClose={() => showExerciseDetailModal(false)}>
             <ExerciseDetail
+              field="WorkoutScreen"
               id={currentExercise[nextWorkoutNumber].exerciseId}
               onClose={() => showExerciseDetailModal(false)}
             />
@@ -142,7 +126,15 @@ const WorkoutScreen = ({
                     key={setNumber}
                     onPress={() => {
                       handleSetComplete(setNumber);
-                      setTimeLeft(30);
+                      if (type === "Programs") {
+                        setPhase("exercise");
+                        setTimeLeft(currentExercise[nextWorkoutNumber].reps);
+                        setWorkoutStarted(true);
+                      } else {
+                        setPhase("rest");
+                        setTimeLeft(30);
+                        setWorkoutStarted(true);
+                      }
                       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
                     }}
                     disabled={!isActive}
@@ -167,7 +159,9 @@ const WorkoutScreen = ({
                         style={{
                           ...styles.defaultText,
                         }}>
-                        Set {setNumber}
+                        {type === "Programs"
+                          ? `Start Set ${setNumber}`
+                          : `Set ${setNumber} Done`}
                       </Text>
                       <Ionicons
                         name="stopwatch-sharp"
@@ -183,11 +177,89 @@ const WorkoutScreen = ({
 
           {workoutStarted ? (
             <>
+              <View
+                style={{
+                  // backgroundColor: "#0B1026",
+                  // borderWidth: 1,
+                  // borderColor: "#47b977",
+                  position: "absolute",
+                  // top: "10%",
+                  // left: "50%",
+                  // transform: [{ translateX: "-0%" }],
+                  width: 200,
+                  height: 200,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  alignSelf: "center",
+                  zIndex: 999,
+                  display: "flex",
+                  justifyContent: "center",
+                  display: "flex",
+                  // alignItems: "center",
+                }}>
+                <Text
+                  style={{
+                    ...styles.TitleText,
+                    paddingHorizontal: 16,
+                    paddingVertical: 6,
+                    borderRadius: 12,
+                    color: "#47b977",
+                    textShadowColor: "rgba(0, 0, 0, 0.9)",
+                    textShadowOffset: { width: 1, height: 2 },
+                    textShadowRadius: 10,
+                    shadowColor: "#000",
+                    shadowOffset: { width: 0, height: 0 },
+                    shadowOpacity: 1,
+                    shadowRadius: 10,
+                  }}>
+                  {phase === "exercise"
+                    ? timeLeft > 0 && timeLeft < 15
+                      ? "LAST SECONDS AMIGOO!"
+                      : "Keep Going!"
+                    : "Rest Time! !"}
+                  {phase === "rest" && (
+                    <LottieView
+                      source={require("../assets/o.json")}
+                      autoPlay
+                      loop
+                      style={{
+                        width: 200,
+                        height: 200,
+                        // alignSelf: "center",
+                        // alignContent: "center",
+                        // justifyContent: "center",
+                        // alignItems: "center",
+                        // position: "absolute",
+                        // top: "50%",
+                        // left: "50%",
+                        // transform: [{ translateX: -50 }, { translateY: -50 }],
+                      }}
+                    />
+                  )}
+                </Text>
+              </View>
               <TimerComponent
                 setWorkoutStarted={setWorkoutStarted}
                 workoutStarted={workoutStarted}
                 timeLeft={timeLeft}
                 setTimeLeft={setTimeLeft}
+                type={type}
+                restSec={restSec}
+                onComplete={() => {
+                  if (type === "Programs") {
+                    if (phase === "exercise") {
+                      setPhase("rest");
+                      setTimeLeft(restSec);
+                      setWorkoutStarted(true);
+                    } else if (phase === "rest") {
+                      setPhase("idle");
+                      setWorkoutStarted(false);
+                    }
+                  } else {
+                    setPhase("idle");
+                    setWorkoutStarted(false);
+                  }
+                }}
               />
               <BlurView
                 intensity={10}
@@ -235,7 +307,6 @@ const WorkoutScreen = ({
                 completedSets !== currentExercise[nextWorkoutNumber]?.sets
               }
               onPress={() => {
-                console.log("nextWorkoutNumber", nextWorkoutNumber);
                 setNextWorkoutNumber((prev) => prev + 1);
                 setCompletedSets(0);
                 // addWorkout(currentExercise[nextWorkoutNumber]);
@@ -243,12 +314,12 @@ const WorkoutScreen = ({
                   ...prev,
                   currentExercise[nextWorkoutNumber],
                 ]);
-                console.log("exerciseForHistory", exerciseForHistory);
               }}>
-              {console.log("restartWorkoutValue", restartWorkoutValue)}
               <Text
                 style={{
                   color: "white",
+                  disabled:
+                    completedSets !== currentExercise[nextWorkoutNumber]?.sets,
                   opacity:
                     completedSets === currentExercise[nextWorkoutNumber]?.sets
                       ? 1
@@ -278,15 +349,14 @@ const WorkoutScreen = ({
               Haptics.notificationAsync(
                 Haptics.NotificationFeedbackType.Success
               );
-              // add all exercises that were in the workout
+
               setExerciseForHistory((prev) => [
                 ...prev,
                 currentExercise[nextWorkoutNumber],
               ]);
-              console.log("Final exerciseForHistory", exerciseForHistory);
 
               !restartWorkoutValue
-                ? addWorkout(exerciseForHistory, selectedDate)
+                ? addWorkout(exerciseForHistory, selectedDate, type)
                 : null;
 
               setWorkoutModalVisible(false);

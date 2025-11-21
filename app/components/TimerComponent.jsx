@@ -8,8 +8,14 @@ const TimerComponent = ({
   setTimeLeft,
   setWorkoutStarted,
   workoutStarted,
+  restSec,
+  type,
+  onComplete,
 }) => {
   const [isPaused, setIsPaused] = useState(false);
+  const [firstTimer, setFirstTimer] = useState(true);
+  const isPrograms = type === "Programs";
+  console.log(isPrograms, "isPrograms");
   const handleOnPress = () => {
     if (workoutStarted) {
       setWorkoutStarted(false);
@@ -22,9 +28,9 @@ const TimerComponent = ({
       interval = setInterval(() => {
         setTimeLeft((prev) => {
           if (isPaused) return prev;
-          if (prev === 1) {
+          if (prev <= 1) {
             clearInterval(interval);
-            setWorkoutStarted(false);
+            onComplete();
             return 0;
           }
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -33,11 +39,12 @@ const TimerComponent = ({
       }, 1000);
     }
     return () => clearInterval(interval);
-  }, [workoutStarted, isPaused]);
+  }, [workoutStarted, isPaused, timeLeft]);
   return (
     <Pressable
       style={{
         position: "absolute",
+        top: "50%",
         top: "50%",
         left: "50%",
         transform: [{ translateX: -50 }, { translateY: -50 }],
@@ -47,7 +54,7 @@ const TimerComponent = ({
         height: 150,
         borderRadius: 75,
         backgroundColor: "rgba(9, 48, 36, 0.2)",
-        borderWidth: 6,
+        borderWidth: 5,
         borderColor: "#47b977",
         justifyContent: "center",
         alignItems: "center",
@@ -72,8 +79,8 @@ const TimerComponent = ({
       </Pressable>
       <Pressable
         onPress={() => setIsPaused(!isPaused)}
-        style={{ position: "absolute", top: 0 }}>
-        <Ionicons name={isPaused ? "play" : "pause"} size={24} color="white" />
+        style={{ position: "absolute", top: 2 }}>
+        <Ionicons name={isPaused ? "play" : "pause"} size={32} color="white" />
       </Pressable>
     </Pressable>
   );

@@ -27,9 +27,10 @@ const HomeScreen = () => {
     () => dayjs(selectedDate).format("YYYY-MM-DD"),
     [selectedDate]
   );
+  console.log("selectedDateISO", workoutHistory);
 
   const isWorkoutDoneToday = workoutHistory.some(
-    (w) => w?.date === selectedDateISO
+    (w) => w?.date === selectedDateISO && w?.type != "Programs"
   );
 
   // if (isWorkoutDoneToday) {

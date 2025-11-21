@@ -28,17 +28,16 @@ const ScreenOne = () => {
     if (goal === "Muscle Gain") goal = "muscleGain";
     if (goal === "Weight Loss") goal = "weightLoss";
     if (goal === "Endurance") goal = "endurance";
-    console.log("Selected Goal:", goal);
     updateGoal(goal);
     setClicked(true);
-    setSelectedGoal(goal);
-    console.log("Selected Goal from state:", selectedGoal, "and goal:", goal);
+    if (selectedGoal === goal) {
+      setSelectedGoal(null);
+    } else {
+      setSelectedGoal(goal);
+    }
 
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
   };
-  useEffect(() => {
-    console.log("Selected Goal changed to:", selectedGoal);
-  }, [selectedGoal]);
 
   return (
     <SafeScreen style={style.Background}>
@@ -58,6 +57,7 @@ const ScreenOne = () => {
             const isSelected =
               selectedGoal?.toLowerCase().replace(/\s/g, "") ===
               goal.toLowerCase().replace(/\s/g, "");
+
             return (
               <ButtonAnimation
                 key={goal}
@@ -68,7 +68,7 @@ const ScreenOne = () => {
                   style={{
                     ...style.workoutGoalButton,
                     color: `${isSelected ? "white" : "red"}`,
-                    backgroundColor: isSelected ? "#47b977" : "",
+                    backgroundColor: isSelected ? "#47b977" : "transparent",
                     width: "80%",
                   }}>
                   <Text style={style.defaultText}>{goal}</Text>

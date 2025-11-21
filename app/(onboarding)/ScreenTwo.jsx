@@ -45,11 +45,7 @@ const ScreenTwo = () => {
   const [inputValue, setInputValue] = useState("");
   const [selectedOption, setSelectedOption] = useState(null);
   const [addedEquipment, setAddedEquipment] = useState(false);
-  const equipmentOptions = [
-    "Gym Membership",
-    "At Home Equipment",
-    "No Equipment",
-  ];
+  const equipmentOptions = ["Gym Membership", "No Equipment"];
   const { push } = router;
   const handleOnPress = (option) => {
     setSelectedOption(option);
@@ -69,10 +65,7 @@ const ScreenTwo = () => {
         return (
           <GymMembershipIcon isActive={selectedOption === option} size={40} />
         );
-      case "At Home Equipment":
-        return (
-          <AtHomeEquipmentIcon isActive={selectedOption === option} size={50} />
-        );
+
       case "No Equipment":
         return (
           <NoEquipmentIcon isActive={selectedOption === option} size={40} />
@@ -107,26 +100,6 @@ const ScreenTwo = () => {
                       <Text style={style.defaultText}>{option}</Text>
                       {getIcon(option)}
                     </View>
-
-                    {addedEquipment && option === "At Home Equipment" && (
-                      <View>
-                        <Text
-                          style={{
-                            color: "white",
-                            textAlign: "center",
-                            marginTop: 20,
-                          }}>
-                          Add Your Equipment
-                        </Text>
-                        <TextInput
-                          style={style.input}
-                          placeholder="Enter equipment name"
-                          placeholderTextColor="#999"
-                          value={inputValue}
-                          onChangeText={setInputValue}
-                        />
-                      </View>
-                    )}
                   </Pressable>
                 );
               })}

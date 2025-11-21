@@ -19,7 +19,6 @@ const about = () => {
     { label: "Height", value: UserProfile?.height },
     { label: "Weight", value: UserProfile?.weight },
     { label: "Fitness Level", value: UserProfile?.fitnessLevel },
-    // { label: "Daily Workout Time", value: UserProfile?.DailyWorkoutTime },
     { label: "Plan Duration", value: UserProfile?.PlanDuration },
     { label: "Equipment", value: UserProfile?.equipment },
   ];

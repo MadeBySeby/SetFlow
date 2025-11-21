@@ -16,10 +16,13 @@ import styles from "./style";
 // import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { EquipmentIconsExample } from "./equipmentIcons";
 import { presetPrograms } from "../api/PreSetPrograms";
+// import Photo from "../assets/10minuteabs.svg";
 // import Body from "react-native-body-highlighter";
 import AutoBody from "./AutoBody";
 // import WorkoutScreen from "../(onboarding)/WorkoutScreen";
 import ProgramWorkoutScreen from "./ProgramWorkoutScreen";
+import Svg from "react-native-svg";
+import { getSvg } from "../assets/programsMascotImages/getSvg";
 const getGradientForIntensity = (intensity) => {
   switch (intensity.toLowerCase()) {
     case "light":
@@ -36,6 +39,7 @@ const getGradientForIntensity = (intensity) => {
       return ["#161C43", "#161C43"]; // fallback to base color
   }
 };
+
 export default function ProgramWorkoutCard({
   workoutModalVisible,
   setWorkoutModalVisible,
@@ -43,27 +47,7 @@ export default function ProgramWorkoutCard({
   selectedWorkout,
   onOpen,
 }) {
-  console.log("workout in ProgramWorkoutCard:", workout);
-  const gradientColors = getGradientForIntensity(workout.intensity);
-  const [currentExercise, setCurrentExercise] = useState();
-
-  // console.log(workout, "test");
-  //  name: "10-Minute Abs & Core Blast",
-  //     duration_minutes: 10,
-  //     focus: "Abs / Cardio",
-  //     intensity: "High",
-  //     sets_per_round: 2,
-  //     rest_between_exercises_seconds: 15,
-  //     notes:
-  //       "Perform 2 sets of the circuit. Minimize rest to keep intensity high.",
-  //     exercises: [
-  //       {
-  //         name: "Mountain Climber",
-  //         duration_seconds: 45,
-  //         target_muscles: ["cardiovascular system", "core", "shoulders"],
-  //         equipment: ["body weight"],
-  //         gifUrl: "https://static.exercisedb.dev/media/RJgzwny.gif",
-  //       },
+  const Photo = getSvg(workout?.name);
 
   return (
     <View
@@ -76,21 +60,33 @@ export default function ProgramWorkoutCard({
         borderColor: "black",
         color: "red",
       }}>
-      <ImageBackground
-        source={require(`../assets/10-MinuteBodyweightAbs.png`)}
-        resizeMode="cover"
-        // make sure images opacity is lower so text is readable
-        imageStyle={{ borderRadius: 10, opacity: 0.2 }}
-        // onLoad={() => setLoaded(true)}
+      <View
         style={{
           margin: 10,
           padding: 20,
           borderRadius: 10,
           borderWidth: 1,
-
           borderColor: "black",
           overflow: "hidden",
+          position: "relative",
         }}>
+        <View
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            opacity: 0.2,
+            justifyContent: "center",
+            alignItems: "center",
+          }}>
+          <Photo
+            width="100%"
+            height="100%"
+            preserveAspectRatio="xMidYMid slice"
+          />
+        </View>
         <TouchableOpacity
           onPress={() => {
             console.log("Opening workout modal");
@@ -124,6 +120,7 @@ export default function ProgramWorkoutCard({
               Focus: {workout?.focus}
             </Text>
           </View>
+
           <AutoBody focus={workout?.focus} />
         </TouchableOpacity>
         <View
@@ -181,7 +178,7 @@ export default function ProgramWorkoutCard({
           })()}
           {/* </LinearGradient> */}
         </View>
-      </ImageBackground>
+      </View>
       <Modal
         visible={workoutModalVisible}
         animationType="slide"
@@ -189,7 +186,7 @@ export default function ProgramWorkoutCard({
         onRequestClose={() => {}}>
         <ProgramWorkoutScreen
           workouts={workout}
-          rame={selectedWorkout}
+          workoutData={selectedWorkout}
           setWorkoutModalVisible={setWorkoutModalVisible}
           onClose={() => {
             setWorkoutModalVisible(false);

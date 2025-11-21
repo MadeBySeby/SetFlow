@@ -9,7 +9,6 @@ import NoWorkoutsLoggedYetDefaultMascot from "../assets/noWorkoutsLoggedYetDefau
 
 const WorkoutsHistory = () => {
   const { workoutHistory, clearWorkoutData } = useWorkout();
-  console.log("workoutHistory", workoutHistory);
 
   return (
     <SafeScreen style={styles.Background}>

@@ -10,18 +10,25 @@ import React, { useEffect, useState } from "react";
 import styles from "./components/style";
 import { router, useLocalSearchParams } from "expo-router";
 import { getExerciseById } from "./api/exercises";
+import { getExerciseById2 } from "./api/exercises";
 import { Image } from "expo-image";
 import { Video } from "expo-av";
 import LottieView from "lottie-react-native";
+import { Ionicons } from "@expo/vector-icons";
 
-const ExerciseDetail = ({ id }) => {
+const ExerciseDetail = ({ id, field = "details", onClose }) => {
   const route = useLocalSearchParams();
   console.log("route in ExerciseDetail", route);
   const exerciseId = route?.exerciseId || id;
   console.log("exerciseId in ExerciseDetail", exerciseId);
   const [exercise, setExercise] = useState(null);
   useEffect(() => {
-    getExerciseById(exerciseId).then((data) => setExercise(data.data));
+    if (field === "WorkoutScreen") {
+      getExerciseById2(exerciseId).then((data) => setExercise(data.data));
+      console.log("fetched from getExerciseById2");
+    } else {
+      getExerciseById(exerciseId).then((data) => setExercise(data.data));
+    }
   }, [exerciseId]);
   console.log("exercise", exercise);
   return (
@@ -43,40 +50,50 @@ const ExerciseDetail = ({ id }) => {
         />
       ) : (
         <>
-          <Text
-            style={{ ...styles.defaultText, marginTop: 15, fontWeight: "500" }}>
-            {exercise.name}
-          </Text>
-          <Pressable onPress={() => router.back()} style={{ marginTop: 10 }}>
-            <Text>Go back</Text>
-          </Pressable>
-          {/* <Video
-            ref={videoRef}
-            source={{ uri: exercise.videoUrl }} // Your video URL
-            style={{
-              width: 300,
-              height: 300,
-              borderRadius: 10,
-              marginTop: 20,
-              // backgroundColor: "#000",
-            }}
-            useNativeControls // shows play/pause, seek bar, etc.
-            resizeMode="contain"
-            shouldPlay={false} // auto play if true
-          /> */}
-          <Image
-            source={{ uri: exercise.gifUrl }}
-            style={{
-              width: 300,
-              height: 300,
-              borderRadius: 10,
+          <View>
+            <Text
+              style={{
+                ...styles.defaultText,
+                marginTop: 20,
+                fontWeight: "500",
+                display: "flex",
+                flexDirection: "row",
+              }}>
+              {exercise.name}
+            </Text>
+            <Pressable
+              onPress={() => onClose()}
+              style={{ position: "absolute", left: -40, top: 20 }}>
+              <Ionicons name="arrow-back-circle" size={30} color="#47b977" />
+            </Pressable>
+          </View>
+          {field != "WorkoutScreen" ? (
+            <Video
+              source={{ uri: exercise.videoUrl }}
+              style={{
+                width: 300,
+                height: 300,
+                borderRadius: 10,
+                marginTop: 20,
+              }}
+              useNativeControls
+              resizeMode="contain"
+              shouldPlay={true}
+            />
+          ) : (
+            <Image
+              source={{ uri: exercise.gifUrl }}
+              style={{
+                width: 300,
+                height: 300,
+                borderRadius: 10,
 
-              marginTop: 20,
-              // backgroundColor: "#000",
-            }}
-            contentFit="contain"
-            transition={300}
-          />
+                marginTop: 20,
+              }}
+              contentFit="contain"
+              transition={300}
+            />
+          )}
           <Text style={{ ...styles.defaultText, marginTop: 10 }}>
             Target Muscle: {exercise.targetMuscles[0]}
           </Text>

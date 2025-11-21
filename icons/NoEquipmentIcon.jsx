@@ -1,5 +1,5 @@
 import React from "react";
-import Svg, { Rect, Path, Circle, G } from "react-native-svg";
+import Svg, { Rect, Circle, Path, G } from "react-native-svg";
 
 export default function NoEquipmentIcon({
   size = 24,
@@ -8,64 +8,85 @@ export default function NoEquipmentIcon({
 }) {
   return (
     <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-      {/* Base Icon: a simple gym item (barbell/kettlebell abstract) */}
       <Rect
-        x="6"
-        y="8"
-        width="12"
-        height="8"
-        rx="2"
-        ry="2"
+        x="3"
+        y="9"
+        width="3"
+        height="6"
+        rx="1"
         stroke={color}
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        strokeWidth="1.5"
+        fill="none"
       />
-      <Path
-        d="M6 8V6A3 3 0 0 1 18 6V8"
+
+      <Rect
+        x="18"
+        y="9"
+        width="3"
+        height="6"
+        rx="1"
         stroke={color}
-        strokeWidth="1.8"
+        strokeWidth="1.5"
+        fill="none"
+      />
+
+      <Path
+        d="M6 12H18"
+        stroke={color}
+        strokeWidth="1.5"
         strokeLinecap="round"
-        strokeLinejoin="round"
+      />
+
+      <Circle
+        cx="9"
+        cy="12"
+        r="1.5"
+        stroke={color}
+        strokeWidth="1.5"
+        fill="none"
       />
       <Circle
-        cx="12"
-        cy="7"
-        r="2"
+        cx="15"
+        cy="12"
+        r="1.5"
+        stroke={color}
+        strokeWidth="1.5"
+        fill="none"
+      />
+
+      <Path
+        d="M4 4L20 20"
         stroke={color}
         strokeWidth="1.8"
         strokeLinecap="round"
-        strokeLinejoin="round"
       />
-
-      {/* Slash for "No Equipment" */}
       <Path
-        d="M5 19L19 5"
+        d="M20 4L4 20"
         stroke={color}
-        strokeWidth="2"
+        strokeWidth="1.8"
         strokeLinecap="round"
-        strokeLinejoin="round"
       />
 
-      {/* MARKED State: Checkmark Badge */}
-      <G>
-        <Circle
-          cx="20"
-          cy="20"
-          r="4"
-          fill={color}
-          stroke="#ffffff"
-          strokeWidth="1.2"
-        />
-        <Path
-          d="M18.5 20L19.5 21L21.5 18.5"
-          fill="none"
-          stroke="#ffffff"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </G>
+      {isActive && (
+        <G>
+          <Circle
+            cx="20"
+            cy="20"
+            r="4"
+            fill={color}
+            stroke="#ffffff"
+            strokeWidth="1.2"
+          />
+          <Path
+            d="M18.5 20L19.5 21L21.5 18.5"
+            fill="none"
+            stroke="#ffffff"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </G>
+      )}
     </Svg>
   );
 }

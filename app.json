@@ -2,17 +2,32 @@
   "expo": {
     "name": "SetFlow Fitness",
     "slug": "SetFlow",
+    "splash": {
+      "image": "./app/assets/10-MinuteBodyweightAbs.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./app/assets/splashImage.png",
     "scheme": "setflow",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
+      "splash": {
+        "image": "./app/assets/splashImage.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#ffffff"
+      },
       "supportsTablet": true,
       "jsEngine": "hermes"
     },
     "android": {
+      "splash": {
+        "image": "./app/assets/splashImage.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#ffffff"
+      },
       "package": "ge.seby.setflowfitness",
       "versionCode": 2,
       "edgeToEdgeEnabled": true,

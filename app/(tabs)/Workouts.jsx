@@ -18,9 +18,12 @@ import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import PulseAnimations from "../animations/PulseAnimations";
 import { Image } from "expo-image";
 import LottieView from "lottie-react-native";
+import Body from "react-native-body-highlighter";
+import AutoBody from "../components/AutoBody";
 const Workouts = () => {
   const JumpingMascot = require("../assets/jumpingDefaultMascot.svg").default;
   const [query, setQuery] = useState("");
+  const [highlighted, setHighlighted] = useState([]);
   const [results, setResults] = useState([]);
   useEffect(() => {
     const fetchResults = async () => {
@@ -39,11 +42,13 @@ const Workouts = () => {
     };
     fetchResults();
   }, [query]);
-
+  useEffect(() => {
+    if (!query) {
+      setHighlighted([]);
+    }
+  }, [query]);
   return (
     <SafeScreen excludeBottomSafeArea={true} style={{ ...styles.Background }}>
-      {/* <AiWorkoutAssistant /> */}
-
       <TextInput
         style={{ ...styles.input, margin: 20, width: "90%", marginTop: 50 }}
         placeholder="Search Exercises..."
@@ -65,37 +70,44 @@ const Workouts = () => {
             justifyContent: "center",
             flex: 1,
           }}>
-          <PulseAnimations>
-            {/* <JumpingMascot width={300} height={400} /> */}
-            {/* <MaterialCommunityIcons
-              name="dumbbell"
-              size={70}
-              color="#47b977"
-              style={{
-                display: "flex",
-                alignSelf: "center",
-
-                // please rotate this icon
-                transform: [{ rotate: "-10deg" }],
-                alignContent: "center",
+          <View style={{ flexDirection: "row", gap: 5 }}>
+            <Body
+              onBodyPartPress={(e) => {
+                setQuery(e.slug);
+                setHighlighted([{ slug: e.slug, color: "red", intensity: 1 }]);
               }}
-            /> */}
-          </PulseAnimations>
-          <LottieView
-            source={require("../assets/writingloop.json")}
-            autoPlay
-            loop
-            style={{ width: 300, height: 300, marginTop: -200 }}
-          />
+              data={highlighted}
+              style={{ width: 200, height: 200 }}
+              strokeWidth={2}
+              scale={1}
+              border="#47b977"
+              side="front"
+              gender="male"
+            />
+            <Body
+              onBodyPartPress={(e) => {
+                setQuery(e.slug);
+                setHighlighted([{ slug: e.slug, color: "red", intensity: 1 }]);
+              }}
+              data={highlighted}
+              style={{ width: 200, height: 200 }}
+              strokeWidth={2}
+              scale={1}
+              border="#47b977"
+              side="back"
+              gender="male"
+            />
+          </View>
+
           <Text
             style={{
               ...styles.defaultText,
               fontSize: 20,
               alignSelf: "center",
-              color: "#47b977",
+              color: "white",
               opacity: results.data?.length ? 0 : 1,
             }}>
-            Start searching for exercises
+            Click On the Body Parts To Search Exercises
           </Text>
         </View>
       )}

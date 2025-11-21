@@ -79,7 +79,6 @@ const TabIconWithAnimation = ({ focused, animationSource, Icon }) => {
           autoPlay
           onAnimationFinish={() => {
             animationEndedRef.current = true;
-            console.log("Animation finished");
           }}
           style={{ width: 56, height: 56 }}
         />
@@ -93,7 +92,6 @@ export default function TabLayout() {
   const { isOnboardingCompleted } = useWorkout();
   const animationEndedRef = useRef(false);
   const [, forceUpdate] = useState({});
-  console.log("Onboarding status in layout:", isOnboardingCompleted);
   if (!isOnboardingCompleted) {
     return <Redirect href="/(onboarding)/ScreenOne" />;
   }
@@ -137,21 +135,6 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
-        name="about"
-        options={{
-          title: "About",
-          tabBarIcon: ({ color, size }) => (
-            // <MaterialCommunityIcons
-            //   name="information-outline"
-            //   size={size}
-            //   color={color}
-            // />
-            <InfoIcon color={color} size={size} />
-          ),
-        }}
-      />
-
-      <Tabs.Screen
         name="Workouts"
         options={{
           title: "Workouts",
@@ -168,6 +151,20 @@ export default function TabLayout() {
           tabBarIcon: ({ color, size }) => (
             // <MaterialCommunityIcons name="history" size={size} color={color} />
             <HistoryIcon color={color} size={size} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="about"
+        options={{
+          title: "About",
+          tabBarIcon: ({ color, size }) => (
+            // <MaterialCommunityIcons
+            //   name="information-outline"
+            //   size={size}
+            //   color={color}
+            // />
+            <InfoIcon color={color} size={size} />
           ),
         }}
       />
