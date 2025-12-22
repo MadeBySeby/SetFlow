@@ -39,8 +39,8 @@ The app focuses on smooth UX, clear structure, and interactive animations.
 ### Select Equipment
 <img src="./docs/images/selectYourEquipScreen.png" width="300" />
 
-### Select Workout
-<img src="./docs/images/selectYourWorkoutScreen.png" width="300" />
+### Select Workout Goal
+<img src="./docs/images/selectYourWorkoutGoalScreen.png" width="300" />
 
 ### Workout Flow
 <img src="./docs/images/workoutFlowScreen.png" width="300" />
