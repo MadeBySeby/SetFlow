@@ -31,8 +31,8 @@ The app focuses on smooth UX, clear structure, and interactive animations.
 ### Search by Body Figure
 <p>
   
-<img src="./docs/images/searchedWorkoutScreen.png" width="300" />
 <img src="./docs/images/searchWorkoutByManFigure.png" width="300" />
+<img src="./docs/images/searchedWorkoutScreen.png" width="300" />
 
 </p>
 
