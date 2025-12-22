@@ -1,23 +1,43 @@
 {
   "expo": {
-    "name": "SetFlow",
+    "name": "SetFlow Fitness",
     "slug": "SetFlow",
+    "splash": {
+      "image": "./app/assets/10-MinuteBodyweightAbs.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./app/assets/splashImage.png",
     "scheme": "setflow",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "splash": {
+        "image": "./app/assets/splashImage.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#ffffff"
+      },
+      "supportsTablet": true,
+      "jsEngine": "hermes"
     },
     "android": {
+      "splash": {
+        "image": "./app/assets/splashImage.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "ge.seby.setflowfitness",
+      "versionCode": 2,
+      "edgeToEdgeEnabled": true,
+      "jsEngine": "hermes",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      },
-      "edgeToEdgeEnabled": true
+      }
     },
+    "assetBundlePatterns": ["**/*"],
     "web": {
       "bundler": "metro",
       "output": "static",
@@ -26,6 +46,19 @@
     "plugins": [
       "expo-router",
       [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 35,
+            "targetSdkVersion": 35,
+            "minSdkVersion": 24,
+            "kotlinVersion": "1.9.24",
+            "enableProguardInReleaseBuilds": true,
+            "javaMaxHeapSize": "4g"
+          }
+        }
+      ],
+      [
         "expo-splash-screen",
         {
           "image": "./assets/images/splash-icon.png",
@@ -33,10 +66,18 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ]
+      ],
+      "expo-font",
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "14e750be-8398-4df2-b2a8-2a905c25db2b"
+      }
     }
   }
 }
