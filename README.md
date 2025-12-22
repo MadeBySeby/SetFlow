@@ -1,66 +1,67 @@
 # 🏋️ Setflow
 
-Setflow is a fitness workflow application that helps users build
+Setflow is a mobile fitness workflow application that helps users build
 personalized workout plans through a guided, step-by-step flow.
+The app focuses on smooth UX, clear structure, and interactive animations.
 
 ---
 
 ## ✨ Features
-- Personalized workout plan builder
-- Program and duration selection
-- Equipment-based workout filtering
-- Clean and intuitive mobile-first UI
-- Smooth animated transitions
+- Step-by-step workout plan builder
+- Workout data fetched from an external REST API
+- Search workouts by muscle group and body figure
+- Equipment-based workout selection
+- Smooth Lottie animations for loading and transitions
+- Clean mobile-first UI built with React Native & Expo
 
 ---
 
 ## 🖼 App Screens
 
 ### Home
-![Home](./docs/images/home.png)
+<img src="./docs/images/home.png" width="300" />
 
-### Plan Duration Selection
-![Plan Duration](./docs/images/planDurationScreen.png)
+### Plan Duration
+<img src="./docs/images/planDurationScreen.png" width="300" />
 
 ### Programs
-![Programs](./docs/images/programScreen.png)
+<img src="./docs/images/programScreen.png" width="300" />
 
 ### Search Workout
-![Search Workout](./docs/images/searchWorkoutScreen.png)
+<img src="./docs/images/searchWorkoutScreen.png" width="300" />
 
-### Search by Man Figure
-![Search By Man Figure](./docs/images/searchWorkoutByManFigure.png)
+### Search by Body Figure
+<img src="./docs/images/searchWorkoutByManFigure.png" width="300" />
 
 ### Select Equipment
-![Select Equipment](./docs/images/selectYourEquipScreen.png)
+<img src="./docs/images/selectYourEquipScreen.png" width="300" />
 
 ### Select Workout
-![Select Workout](./docs/images/selectYourWorkoutScreen.png)
+<img src="./docs/images/selectYourWorkoutScreen.png" width="300" />
 
 ### Workout Flow
-![Workout Flow](./docs/images/workoutFlowScreen.png)
+<img src="./docs/images/workoutFlowScreen.png" width="300" />
 
-### Writing Plan (Animation)
-![Writing Plan](./docs/images/writingYourPlanAnim.png)
+### Writing Plan (Lottie Animation)
+<img src="./docs/images/writingYourPlanAnim.png" width="300" />
 
 ---
 
 ## 🛠 Tech Stack
 - React Native
 - Expo
-- TypeScript
-- Tailwind / NativeWind (if used)
+- JavaScript
+- Lottie Animations
+- REST API (Workout data fetching)
 
 ---
 
-## 🚀 Status
+## 🚀 Project Status
 Actively developing
 
 ---
 
 ## 👤 Author
 **Dato Sebiskveradze**  
-Frontend Developer – Tbilisi, Georgia
+Frontend Developer — Tbilisi, Georgia
 
-- GitHub: https://github.com/your-username
-- Portfolio: https://your-portfolio-link
