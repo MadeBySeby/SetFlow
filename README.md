@@ -25,13 +25,16 @@ The app focuses on smooth UX, clear structure, and interactive animations.
 <img src="./docs/images/planDurationScreen.png" width="300" />
 
 ### Programs
-<img src="./docs/images/programScreen.png" width="300" />
+<img src="./docs/images/programsScreen.png" width="300" />
 
-### Search Workout
-<img src="./docs/images/searchWorkoutScreen.png" width="300" />
 
 ### Search by Body Figure
+<p>
+  
+<img src="./docs/images/searchedWorkoutScreen.png" width="300" />
 <img src="./docs/images/searchWorkoutByManFigure.png" width="300" />
+
+</p>
 
 ### Select Equipment
 <img src="./docs/images/selectYourEquipScreen.png" width="300" />
