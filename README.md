@@ -1,50 +1,66 @@
-# Welcome to your Expo app 👋
+# 🏋️ Setflow
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Setflow is a fitness workflow application that helps users build
+personalized workout plans through a guided, step-by-step flow.
 
-## Get started
+---
 
-1. Install dependencies
+## ✨ Features
+- Personalized workout plan builder
+- Program and duration selection
+- Equipment-based workout filtering
+- Clean and intuitive mobile-first UI
+- Smooth animated transitions
 
-   ```bash
-   npm install
-   ```
+---
 
-2. Start the app
+## 🖼 App Screens
 
-   ```bash
-   npx expo start
-   ```
+### Home
+![Home](./docs/images/home.png)
 
-In the output, you'll find options to open the app in a
+### Plan Duration Selection
+![Plan Duration](./docs/images/planDurationScreen.png)
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+### Programs
+![Programs](./docs/images/programScreen.png)
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### Search Workout
+![Search Workout](./docs/images/searchWorkoutScreen.png)
 
-## Get a fresh project
+### Search by Man Figure
+![Search By Man Figure](./docs/images/searchWorkoutByManFigure.png)
 
-When you're ready, run:
+### Select Equipment
+![Select Equipment](./docs/images/selectYourEquipScreen.png)
 
-```bash
-npm run reset-project
-```
+### Select Workout
+![Select Workout](./docs/images/selectYourWorkoutScreen.png)
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### Workout Flow
+![Workout Flow](./docs/images/workoutFlowScreen.png)
 
-## Learn more
+### Writing Plan (Animation)
+![Writing Plan](./docs/images/writingYourPlanAnim.png)
 
-To learn more about developing your project with Expo, look at the following resources:
+---
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## 🛠 Tech Stack
+- React Native
+- Expo
+- TypeScript
+- Tailwind / NativeWind (if used)
 
-## Join the community
+---
 
-Join our community of developers creating universal apps.
+## 🚀 Status
+Actively developing
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+---
+
+## 👤 Author
+**Dato Sebiskveradze**  
+Frontend Developer – Tbilisi, Georgia
+
+- GitHub: https://github.com/your-username
+- Portfolio: https://your-portfolio-link
