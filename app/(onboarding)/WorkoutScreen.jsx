@@ -179,44 +179,43 @@ const WorkoutScreen = ({
             <>
               <View
                 style={{
-                  // backgroundColor: "#0B1026",
-                  // borderWidth: 1,
-                  // borderColor: "#47b977",
                   position: "absolute",
-                  // top: "10%",
-                  // left: "50%",
-                  // transform: [{ translateX: "-0%" }],
-                  width: 200,
-                  height: 200,
+                  // top: "-10%",
+                  left: "25%",
+                  // right: "50%",
+                  // bottom: "50%",
+                  // transform: [{ translateX: -150 }, { translateY: -100 }],
+                  // backgroundColor: "rgba(52, 52, 52, 0.7)",
+                  borderRadius: 20,
+                  zIndex: 999,
+                  // width: "100%",
+                  // height: "100%",
                   justifyContent: "center",
                   alignItems: "center",
-                  alignSelf: "center",
-                  zIndex: 999,
-                  display: "flex",
-                  justifyContent: "center",
-                  display: "flex",
-                  // alignItems: "center",
+                  paddingHorizontal: 20,
                 }}>
-                <Text
+                <View
                   style={{
-                    ...styles.TitleText,
-                    paddingHorizontal: 16,
-                    paddingVertical: 6,
-                    borderRadius: 12,
-                    color: "#47b977",
-                    textShadowColor: "rgba(0, 0, 0, 0.9)",
-                    textShadowOffset: { width: 1, height: 2 },
-                    textShadowRadius: 10,
-                    shadowColor: "#000",
-                    shadowOffset: { width: 0, height: 0 },
-                    shadowOpacity: 1,
-                    shadowRadius: 10,
+                    justifyContent: "center",
+                    alignItems: "center",
                   }}>
-                  {phase === "exercise"
-                    ? timeLeft > 0 && timeLeft < 15
-                      ? "LAST SECONDS AMIGOO!"
-                      : "Keep Going!"
-                    : "Rest Time! !"}
+                  <Text
+                    style={{
+                      ...styles.TitleText,
+                      color: "#47b977",
+                      marginBottom: phase === "rest" ? 10 : 0,
+                      textAlign: "center",
+                      textShadowColor: "rgba(0, 0, 0, 0.9)",
+                      textShadowOffset: { width: 1, height: 2 },
+                      textShadowRadius: 10,
+                    }}>
+                    {phase === "exercise"
+                      ? timeLeft > 0 && timeLeft < 15
+                        ? "LAST SECONDS AMIGOO!"
+                        : "Keep Going!"
+                      : "Rest Time!"}
+                  </Text>
+
                   {phase === "rest" && (
                     <LottieView
                       source={require("../assets/o.json")}
@@ -225,18 +224,10 @@ const WorkoutScreen = ({
                       style={{
                         width: 200,
                         height: 200,
-                        // alignSelf: "center",
-                        // alignContent: "center",
-                        // justifyContent: "center",
-                        // alignItems: "center",
-                        // position: "absolute",
-                        // top: "50%",
-                        // left: "50%",
-                        // transform: [{ translateX: -50 }, { translateY: -50 }],
                       }}
                     />
                   )}
-                </Text>
+                </View>
               </View>
               <TimerComponent
                 setWorkoutStarted={setWorkoutStarted}
