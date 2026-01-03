@@ -31,11 +31,13 @@ const Workouts = () => {
         setResults([]);
         return;
       } else {
-        const timeout = setTimeout(() => {
-          searchExercises(query).then((data) => {
+        const timeout = setTimeout(async () => {
+          try {
+            const data = await searchExercises(query);
             setResults(data);
-            console.log("results from API:", data);
-          });
+          } catch (e) {
+            console.log("error in fetching search results", e);
+          }
         }, 300);
         return () => clearTimeout(timeout);
       }
