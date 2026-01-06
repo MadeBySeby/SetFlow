@@ -1,4 +1,4 @@
-package com.anonymous.SetFlow
+package ge.seby.setflowfitness
 import expo.modules.splashscreen.SplashScreenManager
 
 import android.os.Build

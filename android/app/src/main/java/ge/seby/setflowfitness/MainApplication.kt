@@ -1,4 +1,4 @@
-package com.anonymous.SetFlow
+package ge.seby.setflowfitness
 
 import android.app.Application
 import android.content.res.Configuration

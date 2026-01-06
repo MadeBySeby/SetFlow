@@ -2,11 +2,7 @@
   "expo": {
     "name": "SetFlow Fitness",
     "slug": "SetFlow",
-    "splash": {
-      "image": "./assets/splashImage.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
+
     "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/logo.png",
@@ -23,18 +19,11 @@
       "jsEngine": "hermes"
     },
     "android": {
-      "splash": {
-        "image": "./app/assets/splashImage.png",
-        "resizeMode": "contain",
-        "backgroundColor": "#ffffff"
-      },
       "package": "ge.seby.setflowfitness",
-      "versionCode": 3,
-      "edgeToEdgeEnabled": true,
-      "jsEngine": "hermes",
+      "versionCode": 4,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#050A30"
       }
     },
     "assetBundlePatterns": ["**/*"],
@@ -52,7 +41,6 @@
             "compileSdkVersion": 35,
             "targetSdkVersion": 35,
             "minSdkVersion": 24,
-            "kotlinVersion": "1.9.24",
             "enableProguardInReleaseBuilds": true,
             "javaMaxHeapSize": "4g"
           }
@@ -61,10 +49,10 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/splashImage.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "backgroundColor": "#050A30"
         }
       ],
       "expo-font",
