@@ -2,9 +2,10 @@ const BASE_URL = "https://v2.exercisedb.dev/api/v1";
 
 export const searchExercises = async (query) => {
   if (!query) return [];
+  console.log("searchExercises called with query1:", query);
   try {
     const response = await fetch(
-      `https://v2.exercisedb.dev/api/v1/exercises/search?search=${encodeURIComponent(
+      `https://v2.exercisedb.dev/api/v1/exercises?name=${encodeURIComponent(
         query
       )}`
     );
@@ -72,7 +73,9 @@ export async function getExerciseById2(exerciseId) {
 
 export const getAllExercises = async () => {
   try {
-    const response = await fetch(`${BASE_URL}/exercises`);
+    const response = await fetch(
+      `https://exercisedb-api.vercel.app/api/v1/exercises`
+    );
     return response.json();
   } catch (error) {
     console.error("Error fetching all exercises:", error);

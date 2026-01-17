@@ -62,10 +62,10 @@ const PersonalDetailsScreen = () => {
       {fields.map((field) => {
         const currentValue =
           field === "Height"
-            ? height || 170
+            ? height || "Select Height"
             : field === "Weight"
-            ? weight || 70
-            : age || 25;
+            ? weight || "Select Weight"
+            : age || "Select Age";
 
         const unit =
           field === "Height" ? "cm" : field === "Weight" ? "kg" : "yrs";
@@ -92,11 +92,21 @@ const PersonalDetailsScreen = () => {
               {/* {field} */}
             </Label>
             <Picker
+              mode="dropdown"
               selectedValue={currentValue}
               style={{ height: 120, width: 200, color: "white" }}
               onValueChange={(val) => handleOnPress(field, val)}>
               {Array.from({ length: max - min + 1 }).map((_, i) => {
                 const num = min + i;
+                if (i === 0) {
+                  return (
+                    <Picker.Item
+                      key={num}
+                      label={`Select ${field}`}
+                      value={num}
+                    />
+                  );
+                }
                 return (
                   <Picker.Item key={num} label={`${num} ${unit}`} value={num} />
                 );

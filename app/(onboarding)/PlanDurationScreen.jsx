@@ -62,13 +62,14 @@ const PlanDurationScreen = () => {
         <Picker
           style={{ color: "#47b977", width: "80%", textAlign: "center" }}
           dropdownIconColor="white"
+          mode="dropdown"
           selectedValue={PlanDuration}
           onValueChange={(itemValue) => {
             updatePlanDuration(itemValue);
             clearDailyWorkoutTime();
             Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
           }}>
-          <Picker.Item label="" value="" />
+          <Picker.Item label="Select Days" value="" />
           <Picker.Item label="1 Day" value="1" />
           <Picker.Item label="2 Days" value="2" />
           <Picker.Item label="3 Days" value="3" />
@@ -95,7 +96,7 @@ const PlanDurationScreen = () => {
           }}>
           {weekdays.map((day) => {
             const isSelected = DailyWorkoutTime.includes(day.value);
-
+            PlanDuration === 7 ? (isSelected = true) : null;
             return (
               <ButtonAnimation clicked={isSelected} key={day.value}>
                 <Pressable

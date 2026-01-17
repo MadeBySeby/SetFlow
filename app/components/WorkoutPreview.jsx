@@ -50,6 +50,7 @@ const WorkoutPreview = ({ selectedDate, month, day, dayOfTheWeek }) => {
     console.log("daysforworkout", daysForWorkout);
     console.log("dayOfTheWeek", dayOfTheWeek, daysForWorkout);
     getAllExercises().then((data) => setExercises(data.data));
+    console.log("exercises fetched1", exercises);
   }, [month, day]);
 
   useEffect(() => {

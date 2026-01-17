@@ -2,39 +2,31 @@
   "expo": {
     "name": "SetFlow Fitness",
     "slug": "SetFlow",
-    "splash": {
-      "image": "./app/assets/10-MinuteBodyweightAbs.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./app/assets/splashImage.png",
+    "icon": "./assets/logo.png",
     "scheme": "setflow",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
       "splash": {
-        "image": "./app/assets/splashImage.png",
+        "image": "./assets/splashImage.png",
         "resizeMode": "contain",
         "backgroundColor": "#ffffff"
       },
       "supportsTablet": true,
-      "jsEngine": "hermes"
+      "jsEngine": "hermes",
+      "bundleIdentifier": "ge.seby.setflowfitnesasas",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
-      "splash": {
-        "image": "./app/assets/splashImage.png",
-        "resizeMode": "contain",
-        "backgroundColor": "#ffffff"
-      },
       "package": "ge.seby.setflowfitness",
-      "versionCode": 2,
-      "edgeToEdgeEnabled": true,
-      "jsEngine": "hermes",
+      "versionCode": 4,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#050A30"
       }
     },
     "assetBundlePatterns": ["**/*"],
@@ -52,19 +44,19 @@
             "compileSdkVersion": 35,
             "targetSdkVersion": 35,
             "minSdkVersion": 24,
-            "kotlinVersion": "1.9.24",
             "enableProguardInReleaseBuilds": true,
-            "javaMaxHeapSize": "4g"
+            "javaMaxHeapSize": "4g",
+            "enableMinifyInReleaseBuilds": true
           }
         }
       ],
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/splashImage.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "backgroundColor": "#050A30"
         }
       ],
       "expo-font",
