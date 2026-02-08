@@ -1,10 +1,8 @@
-import { Redirect, Tabs } from "expo-router";
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { Redirect, Tabs, useSegments } from "expo-router";
 
 import Svg, { Path } from "react-native-svg";
 import { useWorkout } from "../contexts/WorkoutContext";
 import LottieView from "lottie-react-native/src";
-import { Image } from "expo-image";
 import { useState, useRef, useEffect } from "react";
 
 const HomeIcon = ({ color, size }) => (
@@ -61,23 +59,30 @@ const HistoryIcon = ({ color, size }) => (
 const TabIconWithAnimation = ({ focused, animationSource, Icon }) => {
   const animationEndedRef = useRef(false);
   const animationRef = useRef(null);
-
+  const [showAnimation, setShowAnimation] = useState(false);
+  const segments = useSegments();
+  const resetAnimationShow = () => {
+    setShowAnimation(false);
+    animationEndedRef.current = false;
+  };
   useEffect(() => {
-    if (!focused) {
-      animationEndedRef.current = false;
+    if (segments[1] === "Programs" && focused && !animationEndedRef.current) {
+      setShowAnimation(true);
+    } else {
+      resetAnimationShow();
     }
-  }, [focused]);
+  }, [focused, segments]);
   return (
     <>
-      {focused && !animationRef.current ? (
+      {showAnimation ? (
         <LottieView
           source={animationSource}
-          // autoPlay={focused}
-          // ref={animationRef}
+          ref={animationRef}
           key={focused ? "focus" : "blur"}
-          loop={true}
+          loop={false}
           autoPlay
           onAnimationFinish={() => {
+            resetAnimationShow();
             animationEndedRef.current = true;
           }}
           style={{ width: 56, height: 56 }}
@@ -90,8 +95,6 @@ const TabIconWithAnimation = ({ focused, animationSource, Icon }) => {
 };
 export default function TabLayout() {
   const { isOnboardingCompleted } = useWorkout();
-  const animationEndedRef = useRef(false);
-  const [, forceUpdate] = useState({});
   if (!isOnboardingCompleted) {
     return <Redirect href="/(onboarding)/ScreenOne" />;
   }

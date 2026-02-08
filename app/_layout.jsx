@@ -4,6 +4,7 @@ import { WorkoutProvider } from "./contexts/WorkoutContext";
 import { useFonts } from "expo-font";
 import * as Notifications from "expo-notifications";
 import { useEffect } from "react";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function AppLayout() {
   const [fontsLoaded] = useFonts({
@@ -26,8 +27,10 @@ export default function AppLayout() {
     return () => subscription.remove();
   }, []);
   return (
-    <WorkoutProvider>
-      <Slot />
-    </WorkoutProvider>
+    <SafeAreaProvider>
+      <WorkoutProvider>
+        <Slot />
+      </WorkoutProvider>
+    </SafeAreaProvider>
   );
 }

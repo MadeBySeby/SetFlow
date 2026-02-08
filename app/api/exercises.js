@@ -80,9 +80,23 @@ export const getAllExercises = async () => {
     const response = await fetch(
       `https://exercisedb-api.vercel.app/api/v1/exercises`,
     );
-    return response.json();
+    const text = await response.text();
+    let json;
+    try {
+      json = JSON.parse(text);
+    } catch (parseError) {
+      console.error("Non-JSON response from exercises API:", text);
+      return { data: [] };
+    }
+
+    if (!response.ok) {
+      console.error("Server Error:", response.status, json);
+      return { data: [] };
+    }
+
+    return json;
   } catch (error) {
     console.error("Error fetching all exercises:", error);
-    return [];
+    return { data: [] };
   }
 };

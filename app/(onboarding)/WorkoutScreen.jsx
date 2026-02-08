@@ -171,7 +171,7 @@ const WorkoutScreen = ({
                     </View>
                   </Pressable>
                 );
-              }
+              },
             )}
           </ScrollView>
 
@@ -338,17 +338,17 @@ const WorkoutScreen = ({
             disabled={completedSets !== currentExercise[nextWorkoutNumber].sets}
             onPress={() => {
               Haptics.notificationAsync(
-                Haptics.NotificationFeedbackType.Success
+                Haptics.NotificationFeedbackType.Success,
               );
-
-              setExerciseForHistory((prev) => [
-                ...prev,
+              const finalHistory = [
+                ...exerciseForHistory,
                 currentExercise[nextWorkoutNumber],
-              ]);
+              ];
+              setExerciseForHistory(finalHistory);
 
-              !restartWorkoutValue
-                ? addWorkout(exerciseForHistory, selectedDate, type)
-                : null;
+              if (!restartWorkoutValue) {
+                addWorkout(finalHistory, selectedDate, type);
+              }
 
               setWorkoutModalVisible(false);
 
