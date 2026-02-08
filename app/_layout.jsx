@@ -1,9 +1,9 @@
 import "react-native-reanimated";
 import { Slot, useRouter } from "expo-router";
-import { WorkoutProvider, useWorkout } from "./contexts/WorkoutContext";
-import { useEffect, useState } from "react";
+import { WorkoutProvider } from "./contexts/WorkoutContext";
 import { useFonts } from "expo-font";
-import { View, ActivityIndicator } from "react-native";
+import * as Notifications from "expo-notifications";
+import { useEffect } from "react";
 
 export default function AppLayout() {
   const [fontsLoaded] = useFonts({
@@ -14,6 +14,17 @@ export default function AppLayout() {
     "Caveat-Regular": require("./assets/fonts/Caveat-Regular.ttf"),
   });
 
+  useEffect(() => {
+    const subscription = Notifications.addNotificationResponseReceivedListener(
+      (response) => {
+        console.log(
+          "Notification tapped:",
+          response.notification.request.content.data,
+        );
+      },
+    );
+    return () => subscription.remove();
+  }, []);
   return (
     <WorkoutProvider>
       <Slot />

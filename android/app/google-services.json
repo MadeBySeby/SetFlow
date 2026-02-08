@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "730250426343",
+    "project_id": "setflowpushnotif",
+    "storage_bucket": "setflowpushnotif.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:730250426343:android:d02907a472be845aafef42",
+        "android_client_info": {
+          "package_name": "ge.seby.setflowfitness"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDw8GMTeP3nH-RyfggGI8tz4Zka3zEcI1I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -5,12 +5,16 @@ export const searchExercises = async (query) => {
   console.log("searchExercises called with query1:", query);
   try {
     const response = await fetch(
-      `https://v2.exercisedb.dev/api/v1/exercises?name=${encodeURIComponent(
-        query
-      )}`
+      `https://exercisedbv2.ascendapi.com/api/v1/exercises?name=${encodeURIComponent(query)}`,
     );
+    if (!response.ok) {
+      const text = await response.text();
+      console.error("Server Error:", response.status, text);
+      return;
+    }
     const json = await response.json();
     console.log("kaka response status:", json);
+
     return json.data || [];
   } catch (error) {
     console.error("Error fetching exercises:", error);
@@ -22,8 +26,8 @@ export const searchOldExercises = async (query) => {
   try {
     const response = await fetch(
       `https://v1.exercisedb.dev/api/v1/exercises/search?search=${encodeURIComponent(
-        query
-      )}`
+        query,
+      )}`,
     );
     const json = await response.json();
     console.log("kaka response status:", json);
@@ -38,7 +42,7 @@ export async function getExerciseById(exerciseId) {
   try {
     console.log("Fetching exercise with ID:", exerciseId);
     const response = await fetch(
-      `https://v2.exercisedb.dev/api/v1/exercises/${exerciseId}`
+      `https://v2.exercisedb.dev/api/v1/exercises/${exerciseId}`,
     );
 
     if (!response.ok) {
@@ -56,7 +60,7 @@ export async function getExerciseById2(exerciseId) {
   try {
     console.log("Fetching exercise with ID:", exerciseId);
     const response = await fetch(
-      `https://exercisedb-api.vercel.app/api/v1/exercises/${exerciseId}`
+      `https://exercisedb-api.vercel.app/api/v1/exercises/${exerciseId}`,
     );
 
     if (!response.ok) {
@@ -74,7 +78,7 @@ export async function getExerciseById2(exerciseId) {
 export const getAllExercises = async () => {
   try {
     const response = await fetch(
-      `https://exercisedb-api.vercel.app/api/v1/exercises`
+      `https://exercisedb-api.vercel.app/api/v1/exercises`,
     );
     return response.json();
   } catch (error) {
