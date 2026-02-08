@@ -8,11 +8,13 @@ import WorkoutPreview from "../components/WorkoutPreview";
 import dayjs from "dayjs";
 import { useWorkout } from "../contexts/WorkoutContext";
 import { Redirect } from "expo-router";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const HomeScreen = () => {
   const today = dayjs();
   const [selectedDate, setSelectedDate] = useState(today);
   const { isOnboardingCompleted } = useWorkout();
+  const insets = useSafeAreaInsets();
   const date = new Date(selectedDate);
   const month = date.getMonth() + 1;
   const day = date.getDate();
@@ -25,12 +27,12 @@ const HomeScreen = () => {
   } = useWorkout();
   const selectedDateISO = useMemo(
     () => dayjs(selectedDate).format("YYYY-MM-DD"),
-    [selectedDate]
+    [selectedDate],
   );
   // console.log("selectedDateISO", workoutHistory);
 
   const isWorkoutDoneToday = workoutHistory.some(
-    (w) => w?.date === selectedDateISO && w?.type != "Programs"
+    (w) => w?.date === selectedDateISO && w?.type != "Programs",
   );
 
   // if (isWorkoutDoneToday) {
@@ -53,7 +55,7 @@ const HomeScreen = () => {
 
   return (
     <SafeScreen
-      excludeBottomSafeArea={true}
+      excludeBottomSafeArea={false}
       style={{ ...styles.Background, flex: 1 }}>
       <View
         style={{
@@ -65,8 +67,13 @@ const HomeScreen = () => {
         }}>
         <CalendarStrip
           scrollable
-          style={{ height: 100, paddingTop: 30, paddingBottom: 0 }}
-          calendarColor={"#101326ff"}
+          style={{
+            height: 100,
+            marginTop: -Math.min(22, insets.top / 3),
+            paddingTop: 0,
+            paddingBottom: 0,
+          }}
+          calendarColor={"transparent"}
           highlightDateNameStyle={{ color: "white" }}
           highlightDateNumberStyle={{ color: "white" }}
           dateNumberStyle={{ color: "white" }}
@@ -98,7 +105,14 @@ const HomeScreen = () => {
             dayOfTheWeek={dayOfTheWeek}
           />
         ) : (
-          <View style={{ alignItems: "center", marginTop: 50 }}>
+          <View
+            style={{
+              alignItems: "center",
+              flex: 1,
+              // justifyContent: "center",
+              flexDirection: "column",
+              marginTop: 0,
+            }}>
             <Text
               style={{
                 ...styles.defaultText,
@@ -107,26 +121,26 @@ const HomeScreen = () => {
                 paddingHorizontal: 10,
                 textAlign: "center",
               }}>
-              You have already completed your workout for today! Great job!
-              <Pressable>
-                <Text
-                  style={{
-                    ...styles.workoutGoalButton,
-                    width: 200,
-                    alignContent: "center",
-                    textAlign: "center",
-                    display: "flex",
-                    justifyContent: "center",
-                    marginTop: 20,
-                    fontSize: 16,
-                  }}
-                  onPress={() => {
-                    setRestartWorkoutValue(true);
-                  }}>
-                  Restart Workout
-                </Text>
-              </Pressable>
+              You have already completed your workout for today! Great job!👏
             </Text>
+            <Pressable>
+              <Text
+                style={{
+                  ...styles.workoutGoalButton,
+                  width: 200,
+                  // alignContent: "center",
+                  textAlign: "center",
+                  // display: "flex",
+                  // justifyContent: "center",
+                  marginTop: 20,
+                  fontSize: 16,
+                }}
+                onPress={() => {
+                  setRestartWorkoutValue(true);
+                }}>
+                Restart Workout
+              </Text>
+            </Pressable>
           </View>
         )}
       </View>

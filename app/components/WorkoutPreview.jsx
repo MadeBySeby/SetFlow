@@ -9,9 +9,9 @@ import {
 } from "react-native";
 import React, { useEffect, useState, useContext } from "react";
 import styles from "./style";
-import { getAllExercises } from "../api/exercises";
 import { Image } from "expo-image";
 import { router } from "expo-router";
+import dayjs from "dayjs";
 import { useWorkout } from "../contexts/WorkoutContext";
 import WorkoutScreen from "../(onboarding)/WorkoutScreen";
 import * as Haptics from "expo-haptics";
@@ -21,7 +21,6 @@ import LottieView from "lottie-react-native";
 const WorkoutPreview = ({ selectedDate, month, day, dayOfTheWeek }) => {
   // const RestingDefaultMascot =
   //   require("../assets/restingDefaultMascot.svg").default;
-  const [exercises, setExercises] = useState([]);
   const [workoutModalVisible, setWorkoutModalVisible] = useState(false);
   const [currentExercise, setCurrentExercise] = useState([]);
   const [timerForStart, setTimerForStart] = useState(3);
@@ -42,15 +41,13 @@ const WorkoutPreview = ({ selectedDate, month, day, dayOfTheWeek }) => {
   };
 
   let daysForWorkout = (UserProfile?.DailyWorkoutTime).map(
-    (day) => weekdayMap[day]
+    (day) => weekdayMap[day],
   );
   console.log("daysForWorkout", plan, UserProfile, hydrated);
 
   useEffect(() => {
     console.log("daysforworkout", daysForWorkout);
     console.log("dayOfTheWeek", dayOfTheWeek, daysForWorkout);
-    getAllExercises().then((data) => setExercises(data.data));
-    console.log("exercises fetched1", exercises);
   }, [month, day]);
 
   useEffect(() => {
@@ -76,9 +73,9 @@ const WorkoutPreview = ({ selectedDate, month, day, dayOfTheWeek }) => {
     setCurrentExercise(exercisesForDay);
 
     console.log("Workout Day:", currentDayKey, exercisesForDay);
-  }, [exercises, day, plan]);
+  }, [day, plan]);
   console.log("current exercise", currentExercise);
-  console.log("exercises in preview", exercises.length);
+  console.log("exercises in preview", currentExercise.length);
   const renderExercise = ({ item, index }) => {
     return (
       //   <AnimatedItem index={index}>
@@ -151,7 +148,7 @@ const WorkoutPreview = ({ selectedDate, month, day, dayOfTheWeek }) => {
     // </AnimatedItem>
     // </View>
   );
-  if (!hydrated || !plan || exercises.length < 1) {
+  if (!hydrated || !plan) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <LottieView
@@ -191,7 +188,7 @@ const WorkoutPreview = ({ selectedDate, month, day, dayOfTheWeek }) => {
         onRequestClose={() => setWorkoutModalVisible(false)}>
         <WorkoutScreen
           currentExercise={currentExercise}
-          selectedDate={`2025-${month}-${day}`}
+          selectedDate={dayjs(selectedDate).format("YYYY-MM-DD")}
           setWorkoutModalVisible={setWorkoutModalVisible}
           onClose={() => {
             setWorkoutModalVisible(false);
@@ -262,7 +259,7 @@ const workoutStyles = StyleSheet.create({
     backgroundColor: "#161c43ff",
     padding: 10,
     borderRadius: 15,
-    marginTop: 18,
+    marginTop: 12,
     marginBottom: 25,
     width: "100%",
     shadowColor: "#0e1330ff",

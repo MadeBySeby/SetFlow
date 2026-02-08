@@ -6,24 +6,30 @@
     "orientation": "portrait",
     "icon": "./assets/logo.png",
     "scheme": "setflow",
+    "splash": {
+      "image": "./assets/splashImage2.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#050A30"
+    },
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
       "splash": {
-        "image": "./assets/splashImage.png",
+        "image": "./assets/splashImage2.png",
         "resizeMode": "contain",
         "backgroundColor": "#ffffff"
       },
       "supportsTablet": true,
       "jsEngine": "hermes",
-      "bundleIdentifier": "ge.seby.setflowfitnesasas",
+      "bundleIdentifier": "ge.seby.setflowfitness",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
       }
     },
     "android": {
-      "package": "ge.seby.setflowfitness",
-      "versionCode": 4,
+      "googleServicesFile": "./android/app/google-services.json",
+      "package": "com.anonymous.SetFlow",
+      "versionCode": 5,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#050A30"
@@ -53,14 +59,21 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/splashImage.png",
+          "image": "./assets/splashImage2.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#050A30"
         }
       ],
       "expo-font",
-      "expo-web-browser"
+      "expo-web-browser",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/logo.png",
+          "color": "#ffffff"
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

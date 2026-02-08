@@ -21,7 +21,6 @@ import LottieView from "lottie-react-native";
 import Body from "react-native-body-highlighter";
 import AutoBody from "../components/AutoBody";
 const Workouts = () => {
-  const JumpingMascot = require("../assets/jumpingDefaultMascot.svg").default;
   const [query, setQuery] = useState("");
   const [highlighted, setHighlighted] = useState([]);
   const [results, setResults] = useState([]);
