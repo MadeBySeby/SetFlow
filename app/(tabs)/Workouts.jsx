@@ -14,7 +14,11 @@ import styles from "../components/style";
 import { router } from "expo-router";
 import AnimatedItem from "../animations/AnimatedItem";
 import { getAllExercises, searchExercises } from "../api/exercises";
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import {
+  EvilIcons,
+  Ionicons,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
 import PulseAnimations from "../animations/PulseAnimations";
 import { Image } from "expo-image";
 import LottieView from "lottie-react-native";
@@ -37,7 +41,7 @@ const Workouts = () => {
           } catch (e) {
             console.log("error in fetching search results", e);
           }
-        }, 300);
+        }, 400);
         return () => clearTimeout(timeout);
       }
     };
@@ -50,28 +54,56 @@ const Workouts = () => {
   }, [query]);
   return (
     <SafeScreen excludeBottomSafeArea={true} style={{ ...styles.Background }}>
-      <TextInput
-        style={{ ...styles.input, margin: 20, width: "90%", marginTop: 50 }}
-        placeholder="Search Exercises..."
-        placeholderTextColor="#999"
-        value={query}
-        onChangeText={setQuery}
-      />
+      <View
+        style={{
+          width: "90%",
+          marginTop: 50,
+          alignSelf: "center",
+          position: "relative",
+        }}>
+        <TextInput
+          style={{ ...styles.input, paddingRight: 36 }}
+          placeholder="Search Exercises..."
+          placeholderTextColor="#999"
+          value={query}
+          onChangeText={setQuery}
+        />
+        {query?.length ? (
+          <Pressable
+            onPress={() => setQuery("")}
+            hitSlop={10}
+            style={{
+              position: "absolute",
+              right: 12,
+              top: "50%",
+              transform: [{ translateY: -5 }],
+              justifyContent: "center",
+              alignItems: "center",
+            }}>
+            <Ionicons name="close-circle" size={20} color="#999" />
+          </Pressable>
+        ) : null}
+      </View>
 
       <Text style={{ ...styles.defaultText, alignSelf: "center" }}>
-        {results.data?.length ? `${results.data.length} results found` : ""}
+        {results?.data?.length ? `${results?.data?.length} results found` : ""}
       </Text>
-      {results.length < 1 && (
+      {results?.length < 1 && (
         <View
           style={{
-            marginTop: 50,
+            marginTop: 60,
             alignItems: "center",
             display: "flex",
             gap: 1,
             justifyContent: "center",
             flex: 1,
           }}>
-          <View style={{ flexDirection: "row", gap: 5 }}>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "center",
+              gap: 5,
+            }}>
             <Body
               onBodyPartPress={(e) => {
                 setQuery(e.slug);
@@ -103,10 +135,10 @@ const Workouts = () => {
           <Text
             style={{
               ...styles.defaultText,
-              fontSize: 20,
+              fontSize: 18,
               alignSelf: "center",
               color: "white",
-              opacity: results.data?.length ? 0 : 1,
+              opacity: results?.data?.length ? 0 : 1,
             }}>
             Click On the Body Parts To Search Exercises
           </Text>
@@ -120,12 +152,12 @@ const Workouts = () => {
               router.push({
                 pathname: "/ExerciseDetail",
                 params: {
-                  exerciseId: item.exerciseId,
+                  exerciseId: item?.exerciseId,
                 },
               });
             }}>
             <View
-              key={item.id}
+              key={item?.id}
               style={{
                 ...styles.workoutGoalButton,
                 margin: 10,

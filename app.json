@@ -2,7 +2,7 @@
   "expo": {
     "name": "SetFlow Fitness",
     "slug": "SetFlow",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/logo.png",
     "scheme": "setflow",
@@ -29,7 +29,7 @@
     "android": {
       "googleServicesFile": "./android/app/google-services.json",
       "package": "com.anonymous.SetFlow",
-      "versionCode": 5,
+      "versionCode": 6,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#050A30"

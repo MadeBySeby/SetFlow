@@ -5,7 +5,9 @@ export const searchExercises = async (query) => {
   console.log("searchExercises called with query1:", query);
   try {
     const response = await fetch(
-      `https://exercisedbv2.ascendapi.com/api/v1/exercises?name=${encodeURIComponent(query)}`,
+      `https://exercisedb-api.vercel.app/api/v1/exercises/search?q=${encodeURIComponent(
+        query,
+      )}`,
     );
     if (!response.ok) {
       const text = await response.text();
@@ -56,6 +58,7 @@ export async function getExerciseById(exerciseId) {
     return null;
   }
 }
+// es mushaobs
 export async function getExerciseById2(exerciseId) {
   try {
     console.log("Fetching exercise with ID:", exerciseId);
