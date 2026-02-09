@@ -18,6 +18,7 @@ import AnimatedItem from "../animations/AnimatedItem";
 import { Audio } from "expo-av";
 import DuolingoLikeMascotOnScale from "../components/Mascot";
 import ButtonAnimation from "../animations/ButtonAnimation";
+import PrimaryCTAButton from "../components/PrimaryCTAButton";
 const ScreenOne = () => {
   const { updateGoal, UserProfile } = useWorkout();
   const [selectedGoal, setSelectedGoal] = useState(null);
@@ -42,8 +43,8 @@ const ScreenOne = () => {
   return (
     <SafeScreen style={style.Background}>
       <AnimatedItem Screen={"ScreenOne"}>
-        <Text style={{ ...style.TitleText }}>
-          Select Your {"\n"} Workout Goal
+        <Text style={{ ...style.TitleText, textAlign: "center" }}>
+          Select Your{"\n"}Workout Goal
         </Text>
         <View
           style={{
@@ -70,8 +71,12 @@ const ScreenOne = () => {
                     color: `${isSelected ? "white" : "red"}`,
                     backgroundColor: isSelected ? "#47b977" : "transparent",
                     width: "80%",
+                    paddingVertical: 24,
+                    paddingHorizontal: 30,
                   }}>
-                  <Text style={style.defaultText}>{goal}</Text>
+                  <Text style={{ ...style.defaultText, fontSize: 20 }}>
+                    {goal}
+                  </Text>
                 </Pressable>
               </ButtonAnimation>
             );
@@ -79,24 +84,24 @@ const ScreenOne = () => {
         </View>
 
         {clicked && (
-          <Pressable
+          <PrimaryCTAButton
             style={{
-              ...style.workoutGoalButton,
-              width: 200,
-              position: "fixed",
-              top: "30%",
-              bottom: 0,
+              marginTop: 40,
               alignSelf: "center",
-              justifyContent: "center",
-
-              alignSelf: "center",
+              paddingHorizontal: 40,
+              shadowOpacity: 0,
+              shadowRadius: 0,
+              shadowOffset: { width: 0, height: 0 },
+              backgroundColor: "transparent",
             }}
+            label="Continue"
+            textColor="white"
+            borderColor="#47b977"
             onPress={() => {
               router.push("ScreenTwo");
               Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-            }}>
-            <Text style={style.defaultText}> Continue</Text>
-          </Pressable>
+            }}
+          />
         )}
       </AnimatedItem>
     </SafeScreen>

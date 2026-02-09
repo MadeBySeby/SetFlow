@@ -27,11 +27,14 @@ const About = () => {
     updateWeight,
     updatePlanDuration,
     updateEquipment,
+    setUserProfile,
   } = useWorkout();
 
   const [showModal, setShowModal] = useState(false);
   const [selectedField, setSelectedField] = useState(null);
   const [inputValue, setInputValue] = useState("");
+  const [tempPlanDays, setTempPlanDays] = useState([]);
+  const selectedDays = UserProfile?.DailyWorkoutTime || [];
 
   const safeInt = (value, fallback = 0) => {
     const parsed = parseInt(value, 10);
@@ -58,10 +61,31 @@ const About = () => {
     { label: "Gym Membership", value: "Gym Membership" },
     { label: "No Equipment", value: "No Equipment" },
   ];
+  const weekdays = [
+    { label: "Monday", value: "monday" },
+    { label: "Tuesday", value: "tuesday" },
+    { label: "Wednesday", value: "wednesday" },
+    { label: "Thursday", value: "thursday" },
+    { label: "Friday", value: "friday" },
+    { label: "Saturday", value: "saturday" },
+    { label: "Sunday", value: "sunday" },
+  ];
+  const weekdayValues = weekdays.map((day) => day.value);
+  const PLAN_DURATION_OPTIONS = [
+    { label: "Select Plan Duration", value: "" },
+    { label: "1 Day", value: "1" },
+    { label: "2 Days", value: "2" },
+    { label: "3 Days", value: "3" },
+    { label: "4 Days", value: "4" },
+    { label: "5 Days", value: "5" },
+    { label: "6 Days", value: "6" },
+    { label: "Every Day", value: "7" },
+  ];
 
   const getPickerOptions = (key) => {
     if (key === "level") return LEVEL_OPTIONS;
     if (key === "workoutGoal") return GOAL_OPTIONS;
+    if (key === "planDuration") return PLAN_DURATION_OPTIONS.slice(1);
     return undefined;
   };
 
@@ -148,6 +172,7 @@ const About = () => {
         ? ""
         : normalizePickerValue(field.value, field.key),
     );
+    setTempPlanDays(field?.key === "planDuration" ? [...selectedDays] : []);
     setShowModal(true);
   };
 
@@ -155,6 +180,7 @@ const About = () => {
     setShowModal(false);
     setSelectedField(null);
     setInputValue("");
+    setTempPlanDays([]);
   };
 
   const handleSaveField = () => {
@@ -162,23 +188,74 @@ const About = () => {
     const parsedValue = selectedField.parser
       ? selectedField.parser(inputValue, selectedField.value)
       : inputValue;
+    if (selectedField.key === "planDuration") {
+      const limit =
+        parsedValue === "7"
+          ? weekdayValues.length
+          : parseInt(parsedValue || "0", 10) || 0;
+      const normalizedDays =
+        parsedValue === "7" ? weekdayValues : tempPlanDays.slice(0, limit);
+      setUserProfile((prev) => ({
+        ...prev,
+        PlanDuration: parsedValue,
+        DailyWorkoutTime: normalizedDays,
+      }));
+      handleCloseModal();
+      return;
+    }
     selectedField.updater?.(parsedValue);
     handleCloseModal();
   };
 
+  const handleModalPlanDurationChange = (value) => {
+    setInputValue(value);
+    if (value === "7") {
+      setTempPlanDays(weekdayValues);
+      return;
+    }
+    if (!value) {
+      setTempPlanDays([]);
+      return;
+    }
+    const limit = parseInt(value || "0", 10) || 0;
+    setTempPlanDays((prev) => prev.filter((_, index) => index < limit));
+  };
+
+  const handleToggleTempDay = (dayValue) => {
+    if (inputValue === "7") return;
+    const limit = parseInt(inputValue || "0", 10) || 0;
+    if (!limit) {
+      alert("Select a plan duration first");
+      return;
+    }
+    setTempPlanDays((prev) => {
+      const exists = prev.includes(dayValue);
+      if (exists) {
+        return prev.filter((day) => day !== dayValue);
+      }
+      if (prev.length >= limit) {
+        alert(`You can only select up to ${limit} days`);
+        return prev;
+      }
+      return [...prev, dayValue];
+    });
+  };
+
   const footerComponent = () => (
-    <Pressable onPress={() => clearAllData()}>
-      <Text
-        style={{
-          ...styles.workoutGoalButton,
-          alignSelf: "center",
-          alignItems: "center",
-          textAlign: "center",
-          borderColor: "red",
-        }}>
-        Clear all data
-      </Text>
-    </Pressable>
+    <View style={aboutStyles.footer}>
+      <Pressable onPress={() => clearAllData()}>
+        <Text
+          style={{
+            ...styles.workoutGoalButton,
+            alignSelf: "center",
+            alignItems: "center",
+            textAlign: "center",
+            borderColor: "red",
+          }}>
+          Clear all data
+        </Text>
+      </Pressable>
+    </View>
   );
 
   return (
@@ -186,10 +263,10 @@ const About = () => {
       <Text style={styles.defaultText}>About you</Text>
       <View
         style={{
-          display: "flex",
+          flex: 1,
+          width: "100%",
           alignItems: "center",
-          justifyContent: "space-evenly",
-          height: "100%",
+          justifyContent: "flex-start",
         }}>
         <FlatList
           data={info}
@@ -213,7 +290,7 @@ const About = () => {
           )}
         />
       </View>
-      {selectedField && selectedField.key !== "planDuration" ? (
+      {selectedField ? (
         <Modal
           animationType="slide"
           transparent
@@ -251,41 +328,88 @@ const About = () => {
               </Text>
               {selectedField.key === "level" ||
               selectedField.key === "workoutGoal" ||
-              selectedField.key === "equipment" ? (
-                <Picker
-                  style={{ color: "#222", width: "100%" }}
-                  mode="dropdown"
-                  selectedValue={inputValue}
-                  onValueChange={setInputValue}>
-                  <Picker.Item
-                    label={
-                      selectedField.key === "level"
-                        ? "Select Fitness Level"
-                        : selectedField.key === "workoutGoal"
-                          ? "Select Workout Goal"
-                          : selectedField.key === "equipment"
-                            ? "Select Equipment"
-                            : "Select Workout Goal"
-                    }
-                    value=""
-                    color="#ccc"
-                  />
-                  {(selectedField.key === "level"
-                    ? LEVEL_OPTIONS
-                    : selectedField.key === "workoutGoal"
-                      ? GOAL_OPTIONS
-                      : selectedField.key === "equipment"
-                        ? Equipment
-                        : []
-                  ).map((option) => (
+              selectedField.key === "equipment" ||
+              selectedField.key === "planDuration" ? (
+                <>
+                  <Picker
+                    style={{ color: "#222", width: "100%" }}
+                    mode="dropdown"
+                    selectedValue={inputValue}
+                    onValueChange={
+                      selectedField.key === "planDuration"
+                        ? handleModalPlanDurationChange
+                        : setInputValue
+                    }>
                     <Picker.Item
-                      key={option.value}
-                      label={option.label}
-                      value={option.value}
-                      color="#111"
+                      label={
+                        selectedField.key === "level"
+                          ? "Select Fitness Level"
+                          : selectedField.key === "workoutGoal"
+                            ? "Select Workout Goal"
+                            : selectedField.key === "equipment"
+                              ? "Select Equipment"
+                              : "Select Plan Duration"
+                      }
+                      value=""
+                      color="#ccc"
                     />
-                  ))}
-                </Picker>
+                    {(selectedField.key === "level"
+                      ? LEVEL_OPTIONS
+                      : selectedField.key === "workoutGoal"
+                        ? GOAL_OPTIONS
+                        : selectedField.key === "equipment"
+                          ? Equipment
+                          : selectedField.key === "planDuration"
+                            ? PLAN_DURATION_OPTIONS.slice(1)
+                            : []
+                    ).map((option) => (
+                      <Picker.Item
+                        key={option.value}
+                        label={option.label}
+                        value={option.value}
+                        color="#111"
+                      />
+                    ))}
+                  </Picker>
+                  {selectedField.key === "planDuration" ? (
+                    <View style={aboutStyles.modalDayContainer}>
+                      <Text style={aboutStyles.modalDayTitle}>
+                        {inputValue === "7"
+                          ? "Every day will be scheduled automatically."
+                          : inputValue
+                            ? `Select up to ${
+                                parseInt(inputValue || "0", 10) || 0
+                              } days to train`
+                            : "Choose a plan duration to pick specific days."}
+                      </Text>
+                      {inputValue && inputValue !== "7" ? (
+                        <View style={aboutStyles.dayChipWrap}>
+                          {weekdays.map((day) => {
+                            const isSelected = tempPlanDays.includes(day.value);
+                            return (
+                              <Pressable
+                                key={day.value}
+                                onPress={() => handleToggleTempDay(day.value)}
+                                style={[
+                                  aboutStyles.dayChip,
+                                  isSelected && aboutStyles.dayChipSelected,
+                                ]}>
+                                <Text
+                                  style={[
+                                    aboutStyles.dayChipText,
+                                    isSelected &&
+                                      aboutStyles.dayChipTextSelected,
+                                  ]}>
+                                  {day.label}
+                                </Text>
+                              </Pressable>
+                            );
+                          })}
+                        </View>
+                      ) : null}
+                    </View>
+                  ) : null}
+                </>
               ) : (
                 <TextInput
                   value={inputValue}
@@ -347,3 +471,47 @@ const About = () => {
 };
 
 export default About;
+
+const aboutStyles = StyleSheet.create({
+  footer: {
+    width: "100%",
+    alignItems: "center",
+    paddingBottom: 40,
+  },
+  modalDayContainer: {
+    marginTop: 20,
+  },
+  modalDayTitle: {
+    fontSize: 14,
+    color: "#333",
+    marginBottom: 12,
+    fontWeight: "600",
+  },
+  dayChipWrap: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+  },
+  dayChip: {
+    borderWidth: 1,
+    borderColor: "#47b977",
+    borderRadius: 999,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    marginBottom: 12,
+    marginRight: 10,
+    flex: 1,
+    flexBasis: "30%",
+    alignItems: "center",
+  },
+  dayChipSelected: {
+    backgroundColor: "#47b977",
+  },
+  dayChipText: {
+    color: "#47b977",
+    fontFamily: "Nunito-Bold",
+  },
+  dayChipTextSelected: {
+    color: "#0B1026",
+  },
+});

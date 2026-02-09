@@ -6,18 +6,18 @@ export const PresetPlans = [
           week1: {
             day1: [
               {
-                name: "elbow lift - reverse push-up",
-                sets: 3,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
-                exerciseId: "wbUYILZ",
-              },
-              {
                 name: "bench dip on floor",
                 sets: 3,
                 reps: 12,
                 gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
                 exerciseId: "9RT8oQW",
+              },
+              {
+                name: "elbow lift - reverse push-up",
+                sets: 3,
+                reps: 12,
+                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
+                exerciseId: "wbUYILZ",
               },
               {
                 name: "scapula dips",
@@ -31,7 +31,7 @@ export const PresetPlans = [
               {
                 name: "close-grip push-up (on knees)",
                 sets: 3,
-                reps: 12,
+                reps: 10,
                 gif: "https://static.exercisedb.dev/media/v3vLFW0.gif",
                 exerciseId: "v3vLFW0",
               },
@@ -52,18 +52,18 @@ export const PresetPlans = [
             ],
             day3: [
               {
-                name: "elbow lift - reverse push-up",
-                sets: 3,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
-                exerciseId: "wbUYILZ",
-              },
-              {
                 name: "bench dip on floor",
                 sets: 3,
                 reps: 15,
                 gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
                 exerciseId: "9RT8oQW",
+              },
+              {
+                name: "elbow lift - reverse push-up",
+                sets: 3,
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
+                exerciseId: "wbUYILZ",
               },
               {
                 name: "scapula dips",
@@ -77,7 +77,7 @@ export const PresetPlans = [
               {
                 name: "close-grip push-up (on knees)",
                 sets: 3,
-                reps: 15,
+                reps: 12,
                 gif: "https://static.exercisedb.dev/media/v3vLFW0.gif",
                 exerciseId: "v3vLFW0",
               },
@@ -121,25 +121,25 @@ export const PresetPlans = [
             ],
             day6: [
               {
-                name: "scapula dips",
-                sets: 3,
-                reps: 20,
-                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
-                exerciseId: "7xeukSt",
-              },
-              {
                 name: "close-grip push-up (on knees)",
                 sets: 3,
-                reps: 12,
+                reps: 15,
                 gif: "https://static.exercisedb.dev/media/v3vLFW0.gif",
                 exerciseId: "v3vLFW0",
               },
               {
                 name: "elevator",
                 sets: 3,
-                reps: 12,
+                reps: 15,
                 gif: "https://static.exercisedb.dev/media/zYmNaoY.gif",
                 exerciseId: "zYmNaoY",
+              },
+              {
+                name: "scapula dips",
+                sets: 3,
+                reps: 20,
+                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
+                exerciseId: "7xeukSt",
               },
             ],
             day7: [
@@ -169,6 +169,13 @@ export const PresetPlans = [
           week2: {
             day1: [
               {
+                name: "bench dip on floor",
+                sets: 4,
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
+                exerciseId: "9RT8oQW",
+              },
+              {
                 name: "elbow lift - reverse push-up",
                 sets: 4,
                 reps: 15,
@@ -176,16 +183,9 @@ export const PresetPlans = [
                 exerciseId: "wbUYILZ",
               },
               {
-                name: "bench dip on floor",
-                sets: 4,
-                reps: 12,
-                gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
-                exerciseId: "9RT8oQW",
-              },
-              {
                 name: "scapula dips",
-                sets: 4,
-                reps: 15,
+                sets: 3,
+                reps: 20,
                 gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
                 exerciseId: "7xeukSt",
               },
@@ -201,7 +201,7 @@ export const PresetPlans = [
               {
                 name: "elevator",
                 sets: 4,
-                reps: 12,
+                reps: 15,
                 gif: "https://static.exercisedb.dev/media/zYmNaoY.gif",
                 exerciseId: "zYmNaoY",
               },
@@ -215,18 +215,18 @@ export const PresetPlans = [
             ],
             day3: [
               {
-                name: "elbow lift - reverse push-up",
-                sets: 4,
-                reps: 18,
-                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
-                exerciseId: "wbUYILZ",
-              },
-              {
                 name: "bench dip on floor",
                 sets: 4,
                 reps: 15,
                 gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
                 exerciseId: "9RT8oQW",
+              },
+              {
+                name: "elbow lift - reverse push-up",
+                sets: 4,
+                reps: 18,
+                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
+                exerciseId: "wbUYILZ",
               },
               {
                 name: "scapula dips",
@@ -284,13 +284,6 @@ export const PresetPlans = [
             ],
             day6: [
               {
-                name: "scapula dips",
-                sets: 4,
-                reps: 20,
-                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
-                exerciseId: "7xeukSt",
-              },
-              {
                 name: "close-grip push-up (on knees)",
                 sets: 4,
                 reps: 15,
@@ -303,6 +296,13 @@ export const PresetPlans = [
                 reps: 15,
                 gif: "https://static.exercisedb.dev/media/zYmNaoY.gif",
                 exerciseId: "zYmNaoY",
+              },
+              {
+                name: "scapula dips",
+                sets: 4,
+                reps: 20,
+                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
+                exerciseId: "7xeukSt",
               },
             ],
             day7: [
@@ -334,18 +334,18 @@ export const PresetPlans = [
           week1: {
             day1: [
               {
-                name: "elevator",
-                sets: 3,
-                reps: 10,
-                gif: "https://static.exercisedb.dev/media/zYmNaoY.gif",
-                exerciseId: "zYmNaoY",
-              },
-              {
                 name: "triceps dip (between benches)",
                 sets: 3,
                 reps: 8,
                 gif: "https://static.exercisedb.dev/media/Wgbn9qo.gif",
                 exerciseId: "Wgbn9qo",
+              },
+              {
+                name: "elevator",
+                sets: 3,
+                reps: 10,
+                gif: "https://static.exercisedb.dev/media/zYmNaoY.gif",
+                exerciseId: "zYmNaoY",
               },
               {
                 name: "scapula dips",
@@ -364,18 +364,18 @@ export const PresetPlans = [
                 exerciseId: "v3vLFW0",
               },
               {
-                name: "elbow lift - reverse push-up",
-                sets: 3,
-                reps: 10,
-                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
-                exerciseId: "wbUYILZ",
-              },
-              {
                 name: "bench dip on floor",
                 sets: 3,
                 reps: 10,
                 gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
                 exerciseId: "9RT8oQW",
+              },
+              {
+                name: "elbow lift - reverse push-up",
+                sets: 3,
+                reps: 10,
+                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
+                exerciseId: "wbUYILZ",
               },
             ],
             day3: [
@@ -403,18 +403,18 @@ export const PresetPlans = [
             ],
             day4: [
               {
-                name: "elbow lift - reverse push-up",
-                sets: 3,
-                reps: 10,
-                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
-                exerciseId: "wbUYILZ",
-              },
-              {
                 name: "close-grip push-up (on knees)",
                 sets: 3,
                 reps: 10,
                 gif: "https://static.exercisedb.dev/media/v3vLFW0.gif",
                 exerciseId: "v3vLFW0",
+              },
+              {
+                name: "elbow lift - reverse push-up",
+                sets: 3,
+                reps: 10,
+                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
+                exerciseId: "wbUYILZ",
               },
               {
                 name: "upper back stretch",
@@ -428,16 +428,9 @@ export const PresetPlans = [
               {
                 name: "triceps dip (between benches)",
                 sets: 3,
-                reps: 8,
+                reps: 10,
                 gif: "https://static.exercisedb.dev/media/Wgbn9qo.gif",
                 exerciseId: "Wgbn9qo",
-              },
-              {
-                name: "elevator",
-                sets: 3,
-                reps: 10,
-                gif: "https://static.exercisedb.dev/media/zYmNaoY.gif",
-                exerciseId: "zYmNaoY",
               },
               {
                 name: "bench dip on floor",
@@ -446,19 +439,19 @@ export const PresetPlans = [
                 gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
                 exerciseId: "9RT8oQW",
               },
+              {
+                name: "elevator",
+                sets: 3,
+                reps: 10,
+                gif: "https://static.exercisedb.dev/media/zYmNaoY.gif",
+                exerciseId: "zYmNaoY",
+              },
             ],
             day6: [
               {
-                name: "scapula dips",
-                sets: 3,
-                reps: 12,
-                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
-                exerciseId: "7xeukSt",
-              },
-              {
                 name: "close-grip push-up (on knees)",
                 sets: 3,
-                reps: 10,
+                reps: 12,
                 gif: "https://static.exercisedb.dev/media/v3vLFW0.gif",
                 exerciseId: "v3vLFW0",
               },
@@ -468,6 +461,13 @@ export const PresetPlans = [
                 reps: 10,
                 gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
                 exerciseId: "wbUYILZ",
+              },
+              {
+                name: "scapula dips",
+                sets: 3,
+                reps: 12,
+                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
+                exerciseId: "7xeukSt",
               },
             ],
             day7: [
@@ -497,6 +497,13 @@ export const PresetPlans = [
           week2: {
             day1: [
               {
+                name: "triceps dip (between benches)",
+                sets: 4,
+                reps: 10,
+                gif: "https://static.exercisedb.dev/media/Wgbn9qo.gif",
+                exerciseId: "Wgbn9qo",
+              },
+              {
                 name: "elevator",
                 sets: 4,
                 reps: 10,
@@ -504,16 +511,9 @@ export const PresetPlans = [
                 exerciseId: "zYmNaoY",
               },
               {
-                name: "triceps dip (between benches)",
-                sets: 4,
-                reps: 9,
-                gif: "https://static.exercisedb.dev/media/Wgbn9qo.gif",
-                exerciseId: "Wgbn9qo",
-              },
-              {
                 name: "scapula dips",
                 sets: 3,
-                reps: 12,
+                reps: 15,
                 gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
                 exerciseId: "7xeukSt",
               },
@@ -527,25 +527,25 @@ export const PresetPlans = [
                 exerciseId: "v3vLFW0",
               },
               {
+                name: "bench dip on floor",
+                sets: 4,
+                reps: 12,
+                gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
+                exerciseId: "9RT8oQW",
+              },
+              {
                 name: "elbow lift - reverse push-up",
                 sets: 4,
                 reps: 11,
                 gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
                 exerciseId: "wbUYILZ",
               },
-              {
-                name: "bench dip on floor",
-                sets: 3,
-                reps: 12,
-                gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
-                exerciseId: "9RT8oQW",
-              },
             ],
             day3: [
               {
                 name: "triceps dip (between benches)",
                 sets: 4,
-                reps: 10,
+                reps: 12,
                 gif: "https://static.exercisedb.dev/media/Wgbn9qo.gif",
                 exerciseId: "Wgbn9qo",
               },
@@ -566,18 +566,18 @@ export const PresetPlans = [
             ],
             day4: [
               {
-                name: "elbow lift - reverse push-up",
-                sets: 4,
-                reps: 12,
-                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
-                exerciseId: "wbUYILZ",
-              },
-              {
                 name: "close-grip push-up (on knees)",
                 sets: 4,
                 reps: 12,
                 gif: "https://static.exercisedb.dev/media/v3vLFW0.gif",
                 exerciseId: "v3vLFW0",
+              },
+              {
+                name: "elbow lift - reverse push-up",
+                sets: 4,
+                reps: 12,
+                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
+                exerciseId: "wbUYILZ",
               },
               {
                 name: "upper back stretch",
@@ -591,7 +591,7 @@ export const PresetPlans = [
               {
                 name: "triceps dip (between benches)",
                 sets: 4,
-                reps: 10,
+                reps: 12,
                 gif: "https://static.exercisedb.dev/media/Wgbn9qo.gif",
                 exerciseId: "Wgbn9qo",
               },
@@ -612,13 +612,6 @@ export const PresetPlans = [
             ],
             day6: [
               {
-                name: "scapula dips",
-                sets: 4,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
-                exerciseId: "7xeukSt",
-              },
-              {
                 name: "close-grip push-up (on knees)",
                 sets: 4,
                 reps: 12,
@@ -631,6 +624,13 @@ export const PresetPlans = [
                 reps: 12,
                 gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
                 exerciseId: "wbUYILZ",
+              },
+              {
+                name: "scapula dips",
+                sets: 4,
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
+                exerciseId: "7xeukSt",
               },
             ],
             day7: [
@@ -662,18 +662,18 @@ export const PresetPlans = [
           week1: {
             day1: [
               {
-                name: "elbow lift - reverse push-up",
-                sets: 2,
-                reps: 20,
-                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
-                exerciseId: "wbUYILZ",
-              },
-              {
                 name: "bench dip on floor",
                 sets: 2,
                 reps: 20,
                 gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
                 exerciseId: "9RT8oQW",
+              },
+              {
+                name: "elbow lift - reverse push-up",
+                sets: 2,
+                reps: 20,
+                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
+                exerciseId: "wbUYILZ",
               },
               {
                 name: "scapula dips",
@@ -708,18 +708,18 @@ export const PresetPlans = [
             ],
             day3: [
               {
-                name: "elbow lift - reverse push-up",
-                sets: 2,
-                reps: 25,
-                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
-                exerciseId: "wbUYILZ",
-              },
-              {
                 name: "triceps dip (between benches)",
                 sets: 2,
                 reps: 15,
                 gif: "https://static.exercisedb.dev/media/Wgbn9qo.gif",
                 exerciseId: "Wgbn9qo",
+              },
+              {
+                name: "elbow lift - reverse push-up",
+                sets: 2,
+                reps: 25,
+                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
+                exerciseId: "wbUYILZ",
               },
               {
                 name: "scapula dips",
@@ -777,13 +777,6 @@ export const PresetPlans = [
             ],
             day6: [
               {
-                name: "scapula dips",
-                sets: 2,
-                reps: 30,
-                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
-                exerciseId: "7xeukSt",
-              },
-              {
                 name: "triceps dip (between benches)",
                 sets: 2,
                 reps: 15,
@@ -796,6 +789,13 @@ export const PresetPlans = [
                 reps: 25,
                 gif: "https://static.exercisedb.dev/media/zYmNaoY.gif",
                 exerciseId: "zYmNaoY",
+              },
+              {
+                name: "scapula dips",
+                sets: 2,
+                reps: 30,
+                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
+                exerciseId: "7xeukSt",
               },
             ],
             day7: [
@@ -825,18 +825,18 @@ export const PresetPlans = [
           week2: {
             day1: [
               {
-                name: "elbow lift - reverse push-up",
-                sets: 3,
-                reps: 20,
-                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
-                exerciseId: "wbUYILZ",
-              },
-              {
                 name: "bench dip on floor",
                 sets: 3,
                 reps: 20,
                 gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
                 exerciseId: "9RT8oQW",
+              },
+              {
+                name: "elbow lift - reverse push-up",
+                sets: 3,
+                reps: 20,
+                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
+                exerciseId: "wbUYILZ",
               },
               {
                 name: "scapula dips",
@@ -871,18 +871,18 @@ export const PresetPlans = [
             ],
             day3: [
               {
-                name: "elbow lift - reverse push-up",
-                sets: 3,
-                reps: 25,
-                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
-                exerciseId: "wbUYILZ",
-              },
-              {
                 name: "triceps dip (between benches)",
                 sets: 3,
                 reps: 18,
                 gif: "https://static.exercisedb.dev/media/Wgbn9qo.gif",
                 exerciseId: "Wgbn9qo",
+              },
+              {
+                name: "elbow lift - reverse push-up",
+                sets: 3,
+                reps: 25,
+                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
+                exerciseId: "wbUYILZ",
               },
               {
                 name: "scapula dips",
@@ -940,13 +940,6 @@ export const PresetPlans = [
             ],
             day6: [
               {
-                name: "scapula dips",
-                sets: 3,
-                reps: 35,
-                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
-                exerciseId: "7xeukSt",
-              },
-              {
                 name: "triceps dip (between benches)",
                 sets: 3,
                 reps: 18,
@@ -959,6 +952,13 @@ export const PresetPlans = [
                 reps: 25,
                 gif: "https://static.exercisedb.dev/media/zYmNaoY.gif",
                 exerciseId: "zYmNaoY",
+              },
+              {
+                name: "scapula dips",
+                sets: 3,
+                reps: 35,
+                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
+                exerciseId: "7xeukSt",
               },
             ],
             day7: [
@@ -992,6 +992,13 @@ export const PresetPlans = [
           week1: {
             day1: [
               {
+                name: "dumbbell bent over row",
+                sets: 3,
+                reps: 12,
+                gif: "https://static.exercisedb.dev/media/BJ0Hz5L.gif",
+                exerciseId: "BJ0Hz5L",
+              },
+              {
                 name: "cable seated row",
                 sets: 3,
                 reps: 15,
@@ -1005,22 +1012,8 @@ export const PresetPlans = [
                 gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
                 exerciseId: "3ZflifB",
               },
-              {
-                name: "dumbbell bent over row",
-                sets: 3,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/BJ0Hz5L.gif",
-                exerciseId: "BJ0Hz5L",
-              },
             ],
             day2: [
-              {
-                name: "dumbbell kickback",
-                sets: 3,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
-                exerciseId: "W6PxUkg",
-              },
               {
                 name: "cable lat pulldown full range of motion",
                 sets: 3,
@@ -1035,8 +1028,22 @@ export const PresetPlans = [
                 gif: "https://static.exercisedb.dev/media/kont8Ut.gif",
                 exerciseId: "kont8Ut",
               },
+              {
+                name: "dumbbell kickback",
+                sets: 3,
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
+                exerciseId: "W6PxUkg",
+              },
             ],
             day3: [
+              {
+                name: "rope climb",
+                sets: 3,
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/yaAxcQr.gif",
+                exerciseId: "yaAxcQr",
+              },
               {
                 name: "cable seated row",
                 sets: 3,
@@ -1051,26 +1058,12 @@ export const PresetPlans = [
                 gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
                 exerciseId: "3ZflifB",
               },
-              {
-                name: "rope climb",
-                sets: 2,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/yaAxcQr.gif",
-                exerciseId: "yaAxcQr",
-              },
             ],
             day4: [
               {
-                name: "dumbbell kickback",
-                sets: 3,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
-                exerciseId: "W6PxUkg",
-              },
-              {
                 name: "barbell bent over row",
                 sets: 3,
-                reps: 15,
+                reps: 12,
                 gif: "https://static.exercisedb.dev/media/eZyBC3j.gif",
                 exerciseId: "eZyBC3j",
               },
@@ -1081,21 +1074,28 @@ export const PresetPlans = [
                 gif: "https://static.exercisedb.dev/media/2IxROQ1.gif",
                 exerciseId: "2IxROQ1",
               },
-            ],
-            day5: [
               {
-                name: "cable lat pulldown full range of motion",
+                name: "dumbbell kickback",
                 sets: 3,
                 reps: 15,
-                gif: "https://static.exercisedb.dev/media/LEprlgG.gif",
-                exerciseId: "LEprlgG",
+                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
+                exerciseId: "W6PxUkg",
               },
+            ],
+            day5: [
               {
                 name: "smith close-grip bench press",
                 sets: 3,
                 reps: 12,
                 gif: "https://static.exercisedb.dev/media/WcHl7ru.gif",
                 exerciseId: "WcHl7ru",
+              },
+              {
+                name: "cable lat pulldown full range of motion",
+                sets: 3,
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/LEprlgG.gif",
+                exerciseId: "LEprlgG",
               },
               {
                 name: "dumbbell bent over row",
@@ -1107,11 +1107,11 @@ export const PresetPlans = [
             ],
             day6: [
               {
-                name: "cable pushdown",
+                name: "barbell lying triceps extension",
                 sets: 3,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
-                exerciseId: "3ZflifB",
+                reps: 12,
+                gif: "https://static.exercisedb.dev/media/iZop9xO.gif",
+                exerciseId: "iZop9xO",
               },
               {
                 name: "cable seated row",
@@ -1121,11 +1121,11 @@ export const PresetPlans = [
                 exerciseId: "fUBheHs",
               },
               {
-                name: "barbell lying triceps extension",
+                name: "cable pushdown",
                 sets: 3,
-                reps: 12,
-                gif: "https://static.exercisedb.dev/media/iZop9xO.gif",
-                exerciseId: "iZop9xO",
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
+                exerciseId: "3ZflifB",
               },
             ],
             day7: [
@@ -1155,6 +1155,13 @@ export const PresetPlans = [
           week2: {
             day1: [
               {
+                name: "dumbbell bent over row",
+                sets: 4,
+                reps: 12,
+                gif: "https://static.exercisedb.dev/media/BJ0Hz5L.gif",
+                exerciseId: "BJ0Hz5L",
+              },
+              {
                 name: "cable seated row",
                 sets: 4,
                 reps: 15,
@@ -1168,22 +1175,8 @@ export const PresetPlans = [
                 gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
                 exerciseId: "3ZflifB",
               },
-              {
-                name: "dumbbell bent over row",
-                sets: 4,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/BJ0Hz5L.gif",
-                exerciseId: "BJ0Hz5L",
-              },
             ],
             day2: [
-              {
-                name: "dumbbell kickback",
-                sets: 4,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
-                exerciseId: "W6PxUkg",
-              },
               {
                 name: "cable lat pulldown full range of motion",
                 sets: 4,
@@ -1198,8 +1191,22 @@ export const PresetPlans = [
                 gif: "https://static.exercisedb.dev/media/kont8Ut.gif",
                 exerciseId: "kont8Ut",
               },
+              {
+                name: "dumbbell kickback",
+                sets: 4,
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
+                exerciseId: "W6PxUkg",
+              },
             ],
             day3: [
+              {
+                name: "rope climb",
+                sets: 3,
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/yaAxcQr.gif",
+                exerciseId: "yaAxcQr",
+              },
               {
                 name: "cable seated row",
                 sets: 4,
@@ -1214,26 +1221,12 @@ export const PresetPlans = [
                 gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
                 exerciseId: "3ZflifB",
               },
-              {
-                name: "rope climb",
-                sets: 3,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/yaAxcQr.gif",
-                exerciseId: "yaAxcQr",
-              },
             ],
             day4: [
               {
-                name: "dumbbell kickback",
-                sets: 4,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
-                exerciseId: "W6PxUkg",
-              },
-              {
                 name: "barbell bent over row",
                 sets: 4,
-                reps: 15,
+                reps: 12,
                 gif: "https://static.exercisedb.dev/media/eZyBC3j.gif",
                 exerciseId: "eZyBC3j",
               },
@@ -1244,21 +1237,28 @@ export const PresetPlans = [
                 gif: "https://static.exercisedb.dev/media/2IxROQ1.gif",
                 exerciseId: "2IxROQ1",
               },
-            ],
-            day5: [
               {
-                name: "cable lat pulldown full range of motion",
+                name: "dumbbell kickback",
                 sets: 4,
                 reps: 15,
-                gif: "https://static.exercisedb.dev/media/LEprlgG.gif",
-                exerciseId: "LEprlgG",
+                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
+                exerciseId: "W6PxUkg",
               },
+            ],
+            day5: [
               {
                 name: "smith close-grip bench press",
                 sets: 4,
                 reps: 12,
                 gif: "https://static.exercisedb.dev/media/WcHl7ru.gif",
                 exerciseId: "WcHl7ru",
+              },
+              {
+                name: "cable lat pulldown full range of motion",
+                sets: 4,
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/LEprlgG.gif",
+                exerciseId: "LEprlgG",
               },
               {
                 name: "dumbbell bent over row",
@@ -1270,11 +1270,11 @@ export const PresetPlans = [
             ],
             day6: [
               {
-                name: "cable pushdown",
+                name: "barbell lying triceps extension",
                 sets: 4,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
-                exerciseId: "3ZflifB",
+                reps: 12,
+                gif: "https://static.exercisedb.dev/media/iZop9xO.gif",
+                exerciseId: "iZop9xO",
               },
               {
                 name: "cable seated row",
@@ -1284,11 +1284,11 @@ export const PresetPlans = [
                 exerciseId: "fUBheHs",
               },
               {
-                name: "barbell lying triceps extension",
+                name: "cable pushdown",
                 sets: 4,
-                reps: 12,
-                gif: "https://static.exercisedb.dev/media/iZop9xO.gif",
-                exerciseId: "iZop9xO",
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
+                exerciseId: "3ZflifB",
               },
             ],
             day7: [
@@ -1322,39 +1322,39 @@ export const PresetPlans = [
               {
                 name: "barbell bent over row",
                 sets: 3,
-                reps: 10,
+                reps: 8,
                 gif: "https://static.exercisedb.dev/media/eZyBC3j.gif",
                 exerciseId: "eZyBC3j",
               },
               {
                 name: "smith close-grip bench press",
                 sets: 3,
-                reps: 10,
+                reps: 8,
                 gif: "https://static.exercisedb.dev/media/WcHl7ru.gif",
                 exerciseId: "WcHl7ru",
               },
               {
                 name: "cable seated row",
                 sets: 3,
-                reps: 12,
+                reps: 10,
                 gif: "https://static.exercisedb.dev/media/fUBheHs.gif",
                 exerciseId: "fUBheHs",
               },
             ],
             day2: [
               {
-                name: "barbell lying triceps extension",
-                sets: 3,
-                reps: 10,
-                gif: "https://static.exercisedb.dev/media/iZop9xO.gif",
-                exerciseId: "iZop9xO",
-              },
-              {
                 name: "dumbbell bent over row",
                 sets: 3,
                 reps: 10,
                 gif: "https://static.exercisedb.dev/media/BJ0Hz5L.gif",
                 exerciseId: "BJ0Hz5L",
+              },
+              {
+                name: "barbell lying triceps extension",
+                sets: 3,
+                reps: 10,
+                gif: "https://static.exercisedb.dev/media/iZop9xO.gif",
+                exerciseId: "iZop9xO",
               },
               {
                 name: "cable pushdown",
@@ -1373,18 +1373,18 @@ export const PresetPlans = [
                 exerciseId: "LEprlgG",
               },
               {
-                name: "dumbbell kickback",
-                sets: 3,
-                reps: 12,
-                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
-                exerciseId: "W6PxUkg",
-              },
-              {
                 name: "barbell bent over row",
                 sets: 3,
                 reps: 10,
                 gif: "https://static.exercisedb.dev/media/eZyBC3j.gif",
                 exerciseId: "eZyBC3j",
+              },
+              {
+                name: "dumbbell kickback",
+                sets: 3,
+                reps: 12,
+                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
+                exerciseId: "W6PxUkg",
               },
             ],
             day4: [
@@ -1442,18 +1442,18 @@ export const PresetPlans = [
                 exerciseId: "LEprlgG",
               },
               {
-                name: "dumbbell seated triceps extension",
-                sets: 3,
-                reps: 10,
-                gif: "https://static.exercisedb.dev/media/kont8Ut.gif",
-                exerciseId: "kont8Ut",
-              },
-              {
                 name: "rope climb",
-                sets: 2,
+                sets: 3,
                 reps: 10,
                 gif: "https://static.exercisedb.dev/media/yaAxcQr.gif",
                 exerciseId: "yaAxcQr",
+              },
+              {
+                name: "dumbbell seated triceps extension",
+                sets: 3,
+                reps: 12,
+                gif: "https://static.exercisedb.dev/media/kont8Ut.gif",
+                exerciseId: "kont8Ut",
               },
             ],
             day7: [
@@ -1483,23 +1483,23 @@ export const PresetPlans = [
           week2: {
             day1: [
               {
-                name: "barbell bent over row",
-                sets: 4,
-                reps: 10,
-                gif: "https://static.exercisedb.dev/media/eZyBC3j.gif",
-                exerciseId: "eZyBC3j",
-              },
-              {
                 name: "smith close-grip bench press",
                 sets: 4,
-                reps: 10,
+                reps: 8,
                 gif: "https://static.exercisedb.dev/media/WcHl7ru.gif",
                 exerciseId: "WcHl7ru",
               },
               {
+                name: "barbell bent over row",
+                sets: 4,
+                reps: 8,
+                gif: "https://static.exercisedb.dev/media/eZyBC3j.gif",
+                exerciseId: "eZyBC3j",
+              },
+              {
                 name: "cable seated row",
-                sets: 3,
-                reps: 12,
+                sets: 4,
+                reps: 10,
                 gif: "https://static.exercisedb.dev/media/fUBheHs.gif",
                 exerciseId: "fUBheHs",
               },
@@ -1508,7 +1508,7 @@ export const PresetPlans = [
               {
                 name: "barbell lying triceps extension",
                 sets: 4,
-                reps: 10,
+                reps: 8,
                 gif: "https://static.exercisedb.dev/media/iZop9xO.gif",
                 exerciseId: "iZop9xO",
               },
@@ -1521,7 +1521,7 @@ export const PresetPlans = [
               },
               {
                 name: "cable pushdown",
-                sets: 3,
+                sets: 4,
                 reps: 12,
                 gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
                 exerciseId: "3ZflifB",
@@ -1536,18 +1536,18 @@ export const PresetPlans = [
                 exerciseId: "LEprlgG",
               },
               {
+                name: "barbell bent over row",
+                sets: 4,
+                reps: 10,
+                gif: "https://static.exercisedb.dev/media/eZyBC3j.gif",
+                exerciseId: "eZyBC3j",
+              },
+              {
                 name: "dumbbell kickback",
                 sets: 4,
                 reps: 12,
                 gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
                 exerciseId: "W6PxUkg",
-              },
-              {
-                name: "barbell bent over row",
-                sets: 3,
-                reps: 10,
-                gif: "https://static.exercisedb.dev/media/eZyBC3j.gif",
-                exerciseId: "eZyBC3j",
               },
             ],
             day4: [
@@ -1567,7 +1567,7 @@ export const PresetPlans = [
               },
               {
                 name: "cable rope overhead triceps extension",
-                sets: 3,
+                sets: 4,
                 reps: 12,
                 gif: "https://static.exercisedb.dev/media/2IxROQ1.gif",
                 exerciseId: "2IxROQ1",
@@ -1605,18 +1605,18 @@ export const PresetPlans = [
                 exerciseId: "LEprlgG",
               },
               {
-                name: "dumbbell seated triceps extension",
-                sets: 4,
-                reps: 10,
-                gif: "https://static.exercisedb.dev/media/kont8Ut.gif",
-                exerciseId: "kont8Ut",
-              },
-              {
                 name: "rope climb",
                 sets: 3,
                 reps: 10,
                 gif: "https://static.exercisedb.dev/media/yaAxcQr.gif",
                 exerciseId: "yaAxcQr",
+              },
+              {
+                name: "dumbbell seated triceps extension",
+                sets: 4,
+                reps: 10,
+                gif: "https://static.exercisedb.dev/media/kont8Ut.gif",
+                exerciseId: "kont8Ut",
               },
             ],
             day7: [
@@ -1648,6 +1648,13 @@ export const PresetPlans = [
           week1: {
             day1: [
               {
+                name: "dumbbell bent over row",
+                sets: 2,
+                reps: 20,
+                gif: "https://static.exercisedb.dev/media/BJ0Hz5L.gif",
+                exerciseId: "BJ0Hz5L",
+              },
+              {
                 name: "cable seated row",
                 sets: 2,
                 reps: 20,
@@ -1661,22 +1668,8 @@ export const PresetPlans = [
                 gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
                 exerciseId: "3ZflifB",
               },
-              {
-                name: "dumbbell bent over row",
-                sets: 2,
-                reps: 20,
-                gif: "https://static.exercisedb.dev/media/BJ0Hz5L.gif",
-                exerciseId: "BJ0Hz5L",
-              },
             ],
             day2: [
-              {
-                name: "dumbbell kickback",
-                sets: 2,
-                reps: 20,
-                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
-                exerciseId: "W6PxUkg",
-              },
               {
                 name: "cable lat pulldown full range of motion",
                 sets: 2,
@@ -1691,8 +1684,22 @@ export const PresetPlans = [
                 gif: "https://static.exercisedb.dev/media/kont8Ut.gif",
                 exerciseId: "kont8Ut",
               },
+              {
+                name: "dumbbell kickback",
+                sets: 2,
+                reps: 20,
+                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
+                exerciseId: "W6PxUkg",
+              },
             ],
             day3: [
+              {
+                name: "rope climb",
+                sets: 2,
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/yaAxcQr.gif",
+                exerciseId: "yaAxcQr",
+              },
               {
                 name: "cable seated row",
                 sets: 2,
@@ -1707,22 +1714,8 @@ export const PresetPlans = [
                 gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
                 exerciseId: "3ZflifB",
               },
-              {
-                name: "rope climb",
-                sets: 2,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/yaAxcQr.gif",
-                exerciseId: "yaAxcQr",
-              },
             ],
             day4: [
-              {
-                name: "dumbbell kickback",
-                sets: 2,
-                reps: 20,
-                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
-                exerciseId: "W6PxUkg",
-              },
               {
                 name: "barbell bent over row",
                 sets: 2,
@@ -1737,21 +1730,28 @@ export const PresetPlans = [
                 gif: "https://static.exercisedb.dev/media/2IxROQ1.gif",
                 exerciseId: "2IxROQ1",
               },
-            ],
-            day5: [
               {
-                name: "cable lat pulldown full range of motion",
+                name: "dumbbell kickback",
                 sets: 2,
                 reps: 20,
-                gif: "https://static.exercisedb.dev/media/LEprlgG.gif",
-                exerciseId: "LEprlgG",
+                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
+                exerciseId: "W6PxUkg",
               },
+            ],
+            day5: [
               {
                 name: "smith close-grip bench press",
                 sets: 2,
                 reps: 20,
                 gif: "https://static.exercisedb.dev/media/WcHl7ru.gif",
                 exerciseId: "WcHl7ru",
+              },
+              {
+                name: "cable lat pulldown full range of motion",
+                sets: 2,
+                reps: 20,
+                gif: "https://static.exercisedb.dev/media/LEprlgG.gif",
+                exerciseId: "LEprlgG",
               },
               {
                 name: "dumbbell bent over row",
@@ -1763,11 +1763,11 @@ export const PresetPlans = [
             ],
             day6: [
               {
-                name: "cable pushdown",
+                name: "barbell lying triceps extension",
                 sets: 2,
                 reps: 20,
-                gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
-                exerciseId: "3ZflifB",
+                gif: "https://static.exercisedb.dev/media/iZop9xO.gif",
+                exerciseId: "iZop9xO",
               },
               {
                 name: "cable seated row",
@@ -1777,11 +1777,11 @@ export const PresetPlans = [
                 exerciseId: "fUBheHs",
               },
               {
-                name: "barbell lying triceps extension",
+                name: "cable pushdown",
                 sets: 2,
                 reps: 20,
-                gif: "https://static.exercisedb.dev/media/iZop9xO.gif",
-                exerciseId: "iZop9xO",
+                gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
+                exerciseId: "3ZflifB",
               },
             ],
             day7: [
@@ -1811,6 +1811,13 @@ export const PresetPlans = [
           week2: {
             day1: [
               {
+                name: "dumbbell bent over row",
+                sets: 3,
+                reps: 20,
+                gif: "https://static.exercisedb.dev/media/BJ0Hz5L.gif",
+                exerciseId: "BJ0Hz5L",
+              },
+              {
                 name: "cable seated row",
                 sets: 3,
                 reps: 20,
@@ -1824,22 +1831,8 @@ export const PresetPlans = [
                 gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
                 exerciseId: "3ZflifB",
               },
-              {
-                name: "dumbbell bent over row",
-                sets: 3,
-                reps: 20,
-                gif: "https://static.exercisedb.dev/media/BJ0Hz5L.gif",
-                exerciseId: "BJ0Hz5L",
-              },
             ],
             day2: [
-              {
-                name: "dumbbell kickback",
-                sets: 3,
-                reps: 20,
-                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
-                exerciseId: "W6PxUkg",
-              },
               {
                 name: "cable lat pulldown full range of motion",
                 sets: 3,
@@ -1854,8 +1847,22 @@ export const PresetPlans = [
                 gif: "https://static.exercisedb.dev/media/kont8Ut.gif",
                 exerciseId: "kont8Ut",
               },
+              {
+                name: "dumbbell kickback",
+                sets: 3,
+                reps: 20,
+                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
+                exerciseId: "W6PxUkg",
+              },
             ],
             day3: [
+              {
+                name: "rope climb",
+                sets: 3,
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/yaAxcQr.gif",
+                exerciseId: "yaAxcQr",
+              },
               {
                 name: "cable seated row",
                 sets: 3,
@@ -1870,22 +1877,8 @@ export const PresetPlans = [
                 gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
                 exerciseId: "3ZflifB",
               },
-              {
-                name: "rope climb",
-                sets: 3,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/yaAxcQr.gif",
-                exerciseId: "yaAxcQr",
-              },
             ],
             day4: [
-              {
-                name: "dumbbell kickback",
-                sets: 3,
-                reps: 20,
-                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
-                exerciseId: "W6PxUkg",
-              },
               {
                 name: "barbell bent over row",
                 sets: 3,
@@ -1900,21 +1893,28 @@ export const PresetPlans = [
                 gif: "https://static.exercisedb.dev/media/2IxROQ1.gif",
                 exerciseId: "2IxROQ1",
               },
-            ],
-            day5: [
               {
-                name: "cable lat pulldown full range of motion",
+                name: "dumbbell kickback",
                 sets: 3,
                 reps: 20,
-                gif: "https://static.exercisedb.dev/media/LEprlgG.gif",
-                exerciseId: "LEprlgG",
+                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
+                exerciseId: "W6PxUkg",
               },
+            ],
+            day5: [
               {
                 name: "smith close-grip bench press",
                 sets: 3,
                 reps: 20,
                 gif: "https://static.exercisedb.dev/media/WcHl7ru.gif",
                 exerciseId: "WcHl7ru",
+              },
+              {
+                name: "cable lat pulldown full range of motion",
+                sets: 3,
+                reps: 20,
+                gif: "https://static.exercisedb.dev/media/LEprlgG.gif",
+                exerciseId: "LEprlgG",
               },
               {
                 name: "dumbbell bent over row",
@@ -1926,11 +1926,11 @@ export const PresetPlans = [
             ],
             day6: [
               {
-                name: "cable pushdown",
+                name: "barbell lying triceps extension",
                 sets: 3,
                 reps: 20,
-                gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
-                exerciseId: "3ZflifB",
+                gif: "https://static.exercisedb.dev/media/iZop9xO.gif",
+                exerciseId: "iZop9xO",
               },
               {
                 name: "cable seated row",
@@ -1940,11 +1940,11 @@ export const PresetPlans = [
                 exerciseId: "fUBheHs",
               },
               {
-                name: "barbell lying triceps extension",
+                name: "cable pushdown",
                 sets: 3,
                 reps: 20,
-                gif: "https://static.exercisedb.dev/media/iZop9xO.gif",
-                exerciseId: "iZop9xO",
+                gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
+                exerciseId: "3ZflifB",
               },
             ],
             day7: [
@@ -2056,18 +2056,18 @@ export const PresetPlans = [
                 exerciseId: "soIB2rj",
               },
               {
-                name: "elbow lift - reverse push-up",
-                sets: 3,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
-                exerciseId: "wbUYILZ",
-              },
-              {
                 name: "close-grip push-up (on knees)",
                 sets: 3,
                 reps: 15,
                 gif: "https://static.exercisedb.dev/media/v3vLFW0.gif",
                 exerciseId: "v3vLFW0",
+              },
+              {
+                name: "elbow lift - reverse push-up",
+                sets: 3,
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
+                exerciseId: "wbUYILZ",
               },
             ],
             day5: [
@@ -2102,18 +2102,18 @@ export const PresetPlans = [
                 exerciseId: "soIB2rj",
               },
               {
-                name: "elevator",
-                sets: 3,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/zYmNaoY.gif",
-                exerciseId: "zYmNaoY",
-              },
-              {
                 name: "bench dip on floor",
                 sets: 3,
                 reps: 15,
                 gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
                 exerciseId: "9RT8oQW",
+              },
+              {
+                name: "elevator",
+                sets: 3,
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/zYmNaoY.gif",
+                exerciseId: "zYmNaoY",
               },
             ],
             day7: [
@@ -2173,18 +2173,18 @@ export const PresetPlans = [
                 exerciseId: "soIB2rj",
               },
               {
-                name: "elbow lift - reverse push-up",
-                sets: 4,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
-                exerciseId: "wbUYILZ",
-              },
-              {
                 name: "bench dip on floor",
                 sets: 4,
                 reps: 15,
                 gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
                 exerciseId: "9RT8oQW",
+              },
+              {
+                name: "elbow lift - reverse push-up",
+                sets: 4,
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
+                exerciseId: "wbUYILZ",
               },
             ],
             day3: [
@@ -2219,18 +2219,18 @@ export const PresetPlans = [
                 exerciseId: "soIB2rj",
               },
               {
-                name: "elbow lift - reverse push-up",
-                sets: 4,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
-                exerciseId: "wbUYILZ",
-              },
-              {
                 name: "close-grip push-up (on knees)",
                 sets: 4,
                 reps: 15,
                 gif: "https://static.exercisedb.dev/media/v3vLFW0.gif",
                 exerciseId: "v3vLFW0",
+              },
+              {
+                name: "elbow lift - reverse push-up",
+                sets: 4,
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
+                exerciseId: "wbUYILZ",
               },
             ],
             day5: [
@@ -2265,18 +2265,18 @@ export const PresetPlans = [
                 exerciseId: "soIB2rj",
               },
               {
-                name: "elevator",
-                sets: 4,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/zYmNaoY.gif",
-                exerciseId: "zYmNaoY",
-              },
-              {
                 name: "bench dip on floor",
                 sets: 4,
                 reps: 15,
                 gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
                 exerciseId: "9RT8oQW",
+              },
+              {
+                name: "elevator",
+                sets: 4,
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/zYmNaoY.gif",
+                exerciseId: "zYmNaoY",
               },
             ],
             day7: [
@@ -2310,7 +2310,7 @@ export const PresetPlans = [
               {
                 name: "inverted row",
                 sets: 3,
-                reps: 10,
+                reps: 8,
                 gif: "https://static.exercisedb.dev/media/bZGHsAZ.gif",
                 exerciseId: "bZGHsAZ",
               },
@@ -2338,25 +2338,25 @@ export const PresetPlans = [
                 exerciseId: "soIB2rj",
               },
               {
+                name: "bench dip on floor",
+                sets: 3,
+                reps: 10,
+                gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
+                exerciseId: "9RT8oQW",
+              },
+              {
                 name: "scapula dips",
                 sets: 3,
                 reps: 12,
                 gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
                 exerciseId: "7xeukSt",
               },
-              {
-                name: "bench dip on floor",
-                sets: 3,
-                reps: 12,
-                gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
-                exerciseId: "9RT8oQW",
-              },
             ],
             day3: [
               {
                 name: "inverted row bent knees",
                 sets: 3,
-                reps: 12,
+                reps: 10,
                 gif: "https://static.exercisedb.dev/media/VPPtusI.gif",
                 exerciseId: "VPPtusI",
               },
@@ -2384,25 +2384,25 @@ export const PresetPlans = [
                 exerciseId: "soIB2rj",
               },
               {
-                name: "scapula dips",
-                sets: 3,
-                reps: 12,
-                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
-                exerciseId: "7xeukSt",
-              },
-              {
                 name: "close-grip push-up (on knees)",
                 sets: 3,
                 reps: 10,
                 gif: "https://static.exercisedb.dev/media/v3vLFW0.gif",
                 exerciseId: "v3vLFW0",
               },
+              {
+                name: "scapula dips",
+                sets: 3,
+                reps: 12,
+                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
+                exerciseId: "7xeukSt",
+              },
             ],
             day5: [
               {
                 name: "inverted row",
                 sets: 3,
-                reps: 10,
+                reps: 8,
                 gif: "https://static.exercisedb.dev/media/bZGHsAZ.gif",
                 exerciseId: "bZGHsAZ",
               },
@@ -2430,18 +2430,18 @@ export const PresetPlans = [
                 exerciseId: "soIB2rj",
               },
               {
+                name: "bench dip on floor",
+                sets: 3,
+                reps: 10,
+                gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
+                exerciseId: "9RT8oQW",
+              },
+              {
                 name: "scapula dips",
                 sets: 3,
                 reps: 12,
                 gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
                 exerciseId: "7xeukSt",
-              },
-              {
-                name: "bench dip on floor",
-                sets: 3,
-                reps: 12,
-                gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
-                exerciseId: "9RT8oQW",
               },
             ],
             day7: [
@@ -2473,7 +2473,7 @@ export const PresetPlans = [
               {
                 name: "inverted row",
                 sets: 4,
-                reps: 10,
+                reps: 8,
                 gif: "https://static.exercisedb.dev/media/bZGHsAZ.gif",
                 exerciseId: "bZGHsAZ",
               },
@@ -2501,25 +2501,25 @@ export const PresetPlans = [
                 exerciseId: "soIB2rj",
               },
               {
+                name: "bench dip on floor",
+                sets: 4,
+                reps: 10,
+                gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
+                exerciseId: "9RT8oQW",
+              },
+              {
                 name: "scapula dips",
                 sets: 4,
                 reps: 12,
                 gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
                 exerciseId: "7xeukSt",
               },
-              {
-                name: "bench dip on floor",
-                sets: 4,
-                reps: 12,
-                gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
-                exerciseId: "9RT8oQW",
-              },
             ],
             day3: [
               {
                 name: "inverted row bent knees",
                 sets: 4,
-                reps: 12,
+                reps: 10,
                 gif: "https://static.exercisedb.dev/media/VPPtusI.gif",
                 exerciseId: "VPPtusI",
               },
@@ -2547,25 +2547,25 @@ export const PresetPlans = [
                 exerciseId: "soIB2rj",
               },
               {
-                name: "scapula dips",
-                sets: 4,
-                reps: 12,
-                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
-                exerciseId: "7xeukSt",
-              },
-              {
                 name: "close-grip push-up (on knees)",
                 sets: 4,
                 reps: 10,
                 gif: "https://static.exercisedb.dev/media/v3vLFW0.gif",
                 exerciseId: "v3vLFW0",
               },
+              {
+                name: "scapula dips",
+                sets: 4,
+                reps: 12,
+                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
+                exerciseId: "7xeukSt",
+              },
             ],
             day5: [
               {
                 name: "inverted row",
                 sets: 4,
-                reps: 10,
+                reps: 8,
                 gif: "https://static.exercisedb.dev/media/bZGHsAZ.gif",
                 exerciseId: "bZGHsAZ",
               },
@@ -2593,18 +2593,18 @@ export const PresetPlans = [
                 exerciseId: "soIB2rj",
               },
               {
+                name: "bench dip on floor",
+                sets: 4,
+                reps: 10,
+                gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
+                exerciseId: "9RT8oQW",
+              },
+              {
                 name: "scapula dips",
                 sets: 4,
                 reps: 12,
                 gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
                 exerciseId: "7xeukSt",
-              },
-              {
-                name: "bench dip on floor",
-                sets: 4,
-                reps: 12,
-                gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
-                exerciseId: "9RT8oQW",
               },
             ],
             day7: [
@@ -2666,18 +2666,18 @@ export const PresetPlans = [
                 exerciseId: "soIB2rj",
               },
               {
-                name: "elbow lift - reverse push-up",
-                sets: 2,
-                reps: 20,
-                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
-                exerciseId: "wbUYILZ",
-              },
-              {
                 name: "bench dip on floor",
                 sets: 2,
                 reps: 25,
                 gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
                 exerciseId: "9RT8oQW",
+              },
+              {
+                name: "elbow lift - reverse push-up",
+                sets: 2,
+                reps: 20,
+                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
+                exerciseId: "wbUYILZ",
               },
             ],
             day3: [
@@ -2712,18 +2712,18 @@ export const PresetPlans = [
                 exerciseId: "soIB2rj",
               },
               {
-                name: "scapula dips",
-                sets: 2,
-                reps: 30,
-                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
-                exerciseId: "7xeukSt",
-              },
-              {
                 name: "close-grip push-up (on knees)",
                 sets: 2,
                 reps: 20,
                 gif: "https://static.exercisedb.dev/media/v3vLFW0.gif",
                 exerciseId: "v3vLFW0",
+              },
+              {
+                name: "scapula dips",
+                sets: 2,
+                reps: 30,
+                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
+                exerciseId: "7xeukSt",
               },
             ],
             day5: [
@@ -2758,18 +2758,18 @@ export const PresetPlans = [
                 exerciseId: "soIB2rj",
               },
               {
-                name: "elbow lift - reverse push-up",
-                sets: 2,
-                reps: 25,
-                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
-                exerciseId: "wbUYILZ",
-              },
-              {
                 name: "bench dip on floor",
                 sets: 2,
                 reps: 25,
                 gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
                 exerciseId: "9RT8oQW",
+              },
+              {
+                name: "elbow lift - reverse push-up",
+                sets: 2,
+                reps: 25,
+                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
+                exerciseId: "wbUYILZ",
               },
             ],
             day7: [
@@ -2829,18 +2829,18 @@ export const PresetPlans = [
                 exerciseId: "soIB2rj",
               },
               {
-                name: "elbow lift - reverse push-up",
-                sets: 3,
-                reps: 20,
-                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
-                exerciseId: "wbUYILZ",
-              },
-              {
                 name: "bench dip on floor",
                 sets: 3,
                 reps: 25,
                 gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
                 exerciseId: "9RT8oQW",
+              },
+              {
+                name: "elbow lift - reverse push-up",
+                sets: 3,
+                reps: 20,
+                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
+                exerciseId: "wbUYILZ",
               },
             ],
             day3: [
@@ -2875,18 +2875,18 @@ export const PresetPlans = [
                 exerciseId: "soIB2rj",
               },
               {
-                name: "scapula dips",
-                sets: 3,
-                reps: 30,
-                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
-                exerciseId: "7xeukSt",
-              },
-              {
                 name: "close-grip push-up (on knees)",
                 sets: 3,
                 reps: 20,
                 gif: "https://static.exercisedb.dev/media/v3vLFW0.gif",
                 exerciseId: "v3vLFW0",
+              },
+              {
+                name: "scapula dips",
+                sets: 3,
+                reps: 30,
+                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
+                exerciseId: "7xeukSt",
               },
             ],
             day5: [
@@ -2921,18 +2921,18 @@ export const PresetPlans = [
                 exerciseId: "soIB2rj",
               },
               {
-                name: "elbow lift - reverse push-up",
-                sets: 3,
-                reps: 25,
-                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
-                exerciseId: "wbUYILZ",
-              },
-              {
                 name: "bench dip on floor",
                 sets: 3,
                 reps: 25,
                 gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
                 exerciseId: "9RT8oQW",
+              },
+              {
+                name: "elbow lift - reverse push-up",
+                sets: 3,
+                reps: 25,
+                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
+                exerciseId: "wbUYILZ",
               },
             ],
             day7: [
@@ -2973,18 +2973,18 @@ export const PresetPlans = [
                 exerciseId: "eZyBC3j",
               },
               {
+                name: "cable seated row",
+                sets: 3,
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/fUBheHs.gif",
+                exerciseId: "fUBheHs",
+              },
+              {
                 name: "cable pushdown",
                 sets: 3,
                 reps: 15,
                 gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
                 exerciseId: "3ZflifB",
-              },
-              {
-                name: "dumbbell bent over row",
-                sets: 3,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/BJ0Hz5L.gif",
-                exerciseId: "BJ0Hz5L",
               },
             ],
             day2: [
@@ -2996,18 +2996,18 @@ export const PresetPlans = [
                 exerciseId: "uxJcFUU",
               },
               {
-                name: "cable seated row",
-                sets: 3,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/fUBheHs.gif",
-                exerciseId: "fUBheHs",
-              },
-              {
                 name: "rope climb",
                 sets: 2,
                 reps: 15,
                 gif: "https://static.exercisedb.dev/media/yaAxcQr.gif",
                 exerciseId: "yaAxcQr",
+              },
+              {
+                name: "dumbbell bent over row",
+                sets: 3,
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/BJ0Hz5L.gif",
+                exerciseId: "BJ0Hz5L",
               },
             ],
             day3: [
@@ -3035,18 +3035,18 @@ export const PresetPlans = [
             ],
             day4: [
               {
-                name: "cable rope overhead triceps extension",
-                sets: 3,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/2IxROQ1.gif",
-                exerciseId: "2IxROQ1",
-              },
-              {
                 name: "smith bent over row",
                 sets: 3,
                 reps: 15,
                 gif: "https://static.exercisedb.dev/media/ZX9UZmj.gif",
                 exerciseId: "ZX9UZmj",
+              },
+              {
+                name: "cable rope overhead triceps extension",
+                sets: 3,
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/2IxROQ1.gif",
+                exerciseId: "2IxROQ1",
               },
               {
                 name: "dumbbell kickback",
@@ -3136,18 +3136,18 @@ export const PresetPlans = [
                 exerciseId: "eZyBC3j",
               },
               {
+                name: "cable seated row",
+                sets: 4,
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/fUBheHs.gif",
+                exerciseId: "fUBheHs",
+              },
+              {
                 name: "cable pushdown",
                 sets: 4,
                 reps: 15,
                 gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
                 exerciseId: "3ZflifB",
-              },
-              {
-                name: "dumbbell bent over row",
-                sets: 4,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/BJ0Hz5L.gif",
-                exerciseId: "BJ0Hz5L",
               },
             ],
             day2: [
@@ -3159,18 +3159,18 @@ export const PresetPlans = [
                 exerciseId: "uxJcFUU",
               },
               {
-                name: "cable seated row",
-                sets: 4,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/fUBheHs.gif",
-                exerciseId: "fUBheHs",
-              },
-              {
                 name: "rope climb",
                 sets: 3,
                 reps: 15,
                 gif: "https://static.exercisedb.dev/media/yaAxcQr.gif",
                 exerciseId: "yaAxcQr",
+              },
+              {
+                name: "dumbbell bent over row",
+                sets: 4,
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/BJ0Hz5L.gif",
+                exerciseId: "BJ0Hz5L",
               },
             ],
             day3: [
@@ -3198,18 +3198,18 @@ export const PresetPlans = [
             ],
             day4: [
               {
-                name: "cable rope overhead triceps extension",
-                sets: 4,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/2IxROQ1.gif",
-                exerciseId: "2IxROQ1",
-              },
-              {
                 name: "smith bent over row",
                 sets: 4,
                 reps: 15,
                 gif: "https://static.exercisedb.dev/media/ZX9UZmj.gif",
                 exerciseId: "ZX9UZmj",
+              },
+              {
+                name: "cable rope overhead triceps extension",
+                sets: 4,
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/2IxROQ1.gif",
+                exerciseId: "2IxROQ1",
               },
               {
                 name: "dumbbell kickback",
@@ -3317,9 +3317,16 @@ export const PresetPlans = [
             ],
             day2: [
               {
+                name: "dumbbell one arm row",
+                sets: 3,
+                reps: 10,
+                gif: "https://static.exercisedb.dev/media/C0MA9bC.gif",
+                exerciseId: "C0MA9bC",
+              },
+              {
                 name: "barbell lying triceps extension",
                 sets: 3,
-                reps: 8,
+                reps: 10,
                 gif: "https://static.exercisedb.dev/media/iZop9xO.gif",
                 exerciseId: "iZop9xO",
               },
@@ -3329,13 +3336,6 @@ export const PresetPlans = [
                 reps: 10,
                 gif: "https://static.exercisedb.dev/media/fUBheHs.gif",
                 exerciseId: "fUBheHs",
-              },
-              {
-                name: "dumbbell one arm row",
-                sets: 3,
-                reps: 10,
-                gif: "https://static.exercisedb.dev/media/C0MA9bC.gif",
-                exerciseId: "C0MA9bC",
               },
             ],
             day3: [
@@ -3356,25 +3356,25 @@ export const PresetPlans = [
               {
                 name: "rope climb",
                 sets: 2,
-                reps: 8,
+                reps: 12,
                 gif: "https://static.exercisedb.dev/media/yaAxcQr.gif",
                 exerciseId: "yaAxcQr",
               },
             ],
             day4: [
               {
-                name: "barbell standing overhead triceps extension",
-                sets: 3,
-                reps: 10,
-                gif: "https://static.exercisedb.dev/media/dZl9Q27.gif",
-                exerciseId: "dZl9Q27",
-              },
-              {
                 name: "smith bent over row",
                 sets: 3,
                 reps: 10,
                 gif: "https://static.exercisedb.dev/media/ZX9UZmj.gif",
                 exerciseId: "ZX9UZmj",
+              },
+              {
+                name: "barbell standing overhead triceps extension",
+                sets: 3,
+                reps: 10,
+                gif: "https://static.exercisedb.dev/media/dZl9Q27.gif",
+                exerciseId: "dZl9Q27",
               },
               {
                 name: "dumbbell kickback",
@@ -3402,32 +3402,32 @@ export const PresetPlans = [
               {
                 name: "barbell bent over row",
                 sets: 3,
-                reps: 8,
+                reps: 10,
                 gif: "https://static.exercisedb.dev/media/eZyBC3j.gif",
                 exerciseId: "eZyBC3j",
               },
             ],
             day6: [
               {
+                name: "dumbbell one arm row",
+                sets: 3,
+                reps: 10,
+                gif: "https://static.exercisedb.dev/media/C0MA9bC.gif",
+                exerciseId: "C0MA9bC",
+              },
+              {
                 name: "barbell lying triceps extension",
                 sets: 3,
-                reps: 8,
+                reps: 10,
                 gif: "https://static.exercisedb.dev/media/iZop9xO.gif",
                 exerciseId: "iZop9xO",
               },
               {
                 name: "cable seated row",
                 sets: 3,
-                reps: 10,
+                reps: 12,
                 gif: "https://static.exercisedb.dev/media/fUBheHs.gif",
                 exerciseId: "fUBheHs",
-              },
-              {
-                name: "dumbbell one arm row",
-                sets: 3,
-                reps: 10,
-                gif: "https://static.exercisedb.dev/media/C0MA9bC.gif",
-                exerciseId: "C0MA9bC",
               },
             ],
             day7: [
@@ -3448,7 +3448,7 @@ export const PresetPlans = [
               {
                 name: "cable pushdown",
                 sets: 3,
-                reps: 12,
+                reps: 15,
                 gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
                 exerciseId: "3ZflifB",
               },
@@ -3480,9 +3480,16 @@ export const PresetPlans = [
             ],
             day2: [
               {
+                name: "dumbbell one arm row",
+                sets: 4,
+                reps: 10,
+                gif: "https://static.exercisedb.dev/media/C0MA9bC.gif",
+                exerciseId: "C0MA9bC",
+              },
+              {
                 name: "barbell lying triceps extension",
                 sets: 4,
-                reps: 8,
+                reps: 10,
                 gif: "https://static.exercisedb.dev/media/iZop9xO.gif",
                 exerciseId: "iZop9xO",
               },
@@ -3492,13 +3499,6 @@ export const PresetPlans = [
                 reps: 10,
                 gif: "https://static.exercisedb.dev/media/fUBheHs.gif",
                 exerciseId: "fUBheHs",
-              },
-              {
-                name: "dumbbell one arm row",
-                sets: 4,
-                reps: 10,
-                gif: "https://static.exercisedb.dev/media/C0MA9bC.gif",
-                exerciseId: "C0MA9bC",
               },
             ],
             day3: [
@@ -3519,25 +3519,25 @@ export const PresetPlans = [
               {
                 name: "rope climb",
                 sets: 3,
-                reps: 8,
+                reps: 12,
                 gif: "https://static.exercisedb.dev/media/yaAxcQr.gif",
                 exerciseId: "yaAxcQr",
               },
             ],
             day4: [
               {
-                name: "barbell standing overhead triceps extension",
-                sets: 4,
-                reps: 10,
-                gif: "https://static.exercisedb.dev/media/dZl9Q27.gif",
-                exerciseId: "dZl9Q27",
-              },
-              {
                 name: "smith bent over row",
                 sets: 4,
                 reps: 10,
                 gif: "https://static.exercisedb.dev/media/ZX9UZmj.gif",
                 exerciseId: "ZX9UZmj",
+              },
+              {
+                name: "barbell standing overhead triceps extension",
+                sets: 4,
+                reps: 10,
+                gif: "https://static.exercisedb.dev/media/dZl9Q27.gif",
+                exerciseId: "dZl9Q27",
               },
               {
                 name: "dumbbell kickback",
@@ -3565,32 +3565,32 @@ export const PresetPlans = [
               {
                 name: "barbell bent over row",
                 sets: 4,
-                reps: 8,
+                reps: 10,
                 gif: "https://static.exercisedb.dev/media/eZyBC3j.gif",
                 exerciseId: "eZyBC3j",
               },
             ],
             day6: [
               {
+                name: "dumbbell one arm row",
+                sets: 4,
+                reps: 10,
+                gif: "https://static.exercisedb.dev/media/C0MA9bC.gif",
+                exerciseId: "C0MA9bC",
+              },
+              {
                 name: "barbell lying triceps extension",
                 sets: 4,
-                reps: 8,
+                reps: 10,
                 gif: "https://static.exercisedb.dev/media/iZop9xO.gif",
                 exerciseId: "iZop9xO",
               },
               {
                 name: "cable seated row",
                 sets: 4,
-                reps: 10,
+                reps: 12,
                 gif: "https://static.exercisedb.dev/media/fUBheHs.gif",
                 exerciseId: "fUBheHs",
-              },
-              {
-                name: "dumbbell one arm row",
-                sets: 4,
-                reps: 10,
-                gif: "https://static.exercisedb.dev/media/C0MA9bC.gif",
-                exerciseId: "C0MA9bC",
               },
             ],
             day7: [
@@ -3611,7 +3611,7 @@ export const PresetPlans = [
               {
                 name: "cable pushdown",
                 sets: 3,
-                reps: 12,
+                reps: 15,
                 gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
                 exerciseId: "3ZflifB",
               },
@@ -3645,13 +3645,6 @@ export const PresetPlans = [
             ],
             day2: [
               {
-                name: "dumbbell kickback",
-                sets: 2,
-                reps: 25,
-                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
-                exerciseId: "W6PxUkg",
-              },
-              {
                 name: "cable lat pulldown full range of motion",
                 sets: 2,
                 reps: 25,
@@ -3665,8 +3658,22 @@ export const PresetPlans = [
                 gif: "https://static.exercisedb.dev/media/kont8Ut.gif",
                 exerciseId: "kont8Ut",
               },
+              {
+                name: "dumbbell kickback",
+                sets: 2,
+                reps: 25,
+                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
+                exerciseId: "W6PxUkg",
+              },
             ],
             day3: [
+              {
+                name: "rope climb",
+                sets: 2,
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/yaAxcQr.gif",
+                exerciseId: "yaAxcQr",
+              },
               {
                 name: "cable seated row",
                 sets: 2,
@@ -3681,22 +3688,8 @@ export const PresetPlans = [
                 gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
                 exerciseId: "3ZflifB",
               },
-              {
-                name: "rope climb",
-                sets: 2,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/yaAxcQr.gif",
-                exerciseId: "yaAxcQr",
-              },
             ],
             day4: [
-              {
-                name: "dumbbell kickback",
-                sets: 2,
-                reps: 25,
-                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
-                exerciseId: "W6PxUkg",
-              },
               {
                 name: "barbell bent over row",
                 sets: 2,
@@ -3711,21 +3704,28 @@ export const PresetPlans = [
                 gif: "https://static.exercisedb.dev/media/2IxROQ1.gif",
                 exerciseId: "2IxROQ1",
               },
-            ],
-            day5: [
               {
-                name: "cable lat pulldown full range of motion",
+                name: "dumbbell kickback",
                 sets: 2,
                 reps: 25,
-                gif: "https://static.exercisedb.dev/media/LEprlgG.gif",
-                exerciseId: "LEprlgG",
+                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
+                exerciseId: "W6PxUkg",
               },
+            ],
+            day5: [
               {
                 name: "smith close-grip bench press",
                 sets: 2,
                 reps: 20,
                 gif: "https://static.exercisedb.dev/media/WcHl7ru.gif",
                 exerciseId: "WcHl7ru",
+              },
+              {
+                name: "cable lat pulldown full range of motion",
+                sets: 2,
+                reps: 25,
+                gif: "https://static.exercisedb.dev/media/LEprlgG.gif",
+                exerciseId: "LEprlgG",
               },
               {
                 name: "dumbbell bent over row",
@@ -3737,11 +3737,11 @@ export const PresetPlans = [
             ],
             day6: [
               {
-                name: "cable pushdown",
+                name: "barbell lying triceps extension",
                 sets: 2,
-                reps: 25,
-                gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
-                exerciseId: "3ZflifB",
+                reps: 20,
+                gif: "https://static.exercisedb.dev/media/iZop9xO.gif",
+                exerciseId: "iZop9xO",
               },
               {
                 name: "cable seated row",
@@ -3751,11 +3751,11 @@ export const PresetPlans = [
                 exerciseId: "fUBheHs",
               },
               {
-                name: "barbell lying triceps extension",
+                name: "cable pushdown",
                 sets: 2,
-                reps: 20,
-                gif: "https://static.exercisedb.dev/media/iZop9xO.gif",
-                exerciseId: "iZop9xO",
+                reps: 25,
+                gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
+                exerciseId: "3ZflifB",
               },
             ],
             day7: [
@@ -3808,13 +3808,6 @@ export const PresetPlans = [
             ],
             day2: [
               {
-                name: "dumbbell kickback",
-                sets: 3,
-                reps: 25,
-                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
-                exerciseId: "W6PxUkg",
-              },
-              {
                 name: "cable lat pulldown full range of motion",
                 sets: 3,
                 reps: 25,
@@ -3828,8 +3821,22 @@ export const PresetPlans = [
                 gif: "https://static.exercisedb.dev/media/kont8Ut.gif",
                 exerciseId: "kont8Ut",
               },
+              {
+                name: "dumbbell kickback",
+                sets: 3,
+                reps: 25,
+                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
+                exerciseId: "W6PxUkg",
+              },
             ],
             day3: [
+              {
+                name: "rope climb",
+                sets: 3,
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/yaAxcQr.gif",
+                exerciseId: "yaAxcQr",
+              },
               {
                 name: "cable seated row",
                 sets: 3,
@@ -3844,22 +3851,8 @@ export const PresetPlans = [
                 gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
                 exerciseId: "3ZflifB",
               },
-              {
-                name: "rope climb",
-                sets: 3,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/yaAxcQr.gif",
-                exerciseId: "yaAxcQr",
-              },
             ],
             day4: [
-              {
-                name: "dumbbell kickback",
-                sets: 3,
-                reps: 25,
-                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
-                exerciseId: "W6PxUkg",
-              },
               {
                 name: "barbell bent over row",
                 sets: 3,
@@ -3874,21 +3867,28 @@ export const PresetPlans = [
                 gif: "https://static.exercisedb.dev/media/2IxROQ1.gif",
                 exerciseId: "2IxROQ1",
               },
-            ],
-            day5: [
               {
-                name: "cable lat pulldown full range of motion",
+                name: "dumbbell kickback",
                 sets: 3,
                 reps: 25,
-                gif: "https://static.exercisedb.dev/media/LEprlgG.gif",
-                exerciseId: "LEprlgG",
+                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
+                exerciseId: "W6PxUkg",
               },
+            ],
+            day5: [
               {
                 name: "smith close-grip bench press",
                 sets: 3,
                 reps: 20,
                 gif: "https://static.exercisedb.dev/media/WcHl7ru.gif",
                 exerciseId: "WcHl7ru",
+              },
+              {
+                name: "cable lat pulldown full range of motion",
+                sets: 3,
+                reps: 25,
+                gif: "https://static.exercisedb.dev/media/LEprlgG.gif",
+                exerciseId: "LEprlgG",
               },
               {
                 name: "dumbbell bent over row",
@@ -3900,11 +3900,11 @@ export const PresetPlans = [
             ],
             day6: [
               {
-                name: "cable pushdown",
+                name: "barbell lying triceps extension",
                 sets: 3,
-                reps: 25,
-                gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
-                exerciseId: "3ZflifB",
+                reps: 20,
+                gif: "https://static.exercisedb.dev/media/iZop9xO.gif",
+                exerciseId: "iZop9xO",
               },
               {
                 name: "cable seated row",
@@ -3914,11 +3914,11 @@ export const PresetPlans = [
                 exerciseId: "fUBheHs",
               },
               {
-                name: "barbell lying triceps extension",
+                name: "cable pushdown",
                 sets: 3,
-                reps: 20,
-                gif: "https://static.exercisedb.dev/media/iZop9xO.gif",
-                exerciseId: "iZop9xO",
+                reps: 25,
+                gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
+                exerciseId: "3ZflifB",
               },
             ],
             day7: [
@@ -3984,27 +3984,27 @@ export const PresetPlans = [
                 exerciseId: "Wgbn9qo",
               },
               {
-                name: "scapula dips",
-                sets: 4,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
-                exerciseId: "7xeukSt",
-              },
-              {
                 name: "bench dip on floor",
                 sets: 4,
                 reps: 15,
                 gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
                 exerciseId: "9RT8oQW",
               },
+              {
+                name: "scapula dips",
+                sets: 4,
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
+                exerciseId: "7xeukSt",
+              },
             ],
             day3: [
               {
-                name: "elbow lift - reverse push-up",
+                name: "inverted row",
                 sets: 4,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
-                exerciseId: "wbUYILZ",
+                reps: 12,
+                gif: "https://static.exercisedb.dev/media/bZGHsAZ.gif",
+                exerciseId: "bZGHsAZ",
               },
               {
                 name: "close-grip push-up (on knees)",
@@ -4014,11 +4014,11 @@ export const PresetPlans = [
                 exerciseId: "v3vLFW0",
               },
               {
-                name: "inverted row",
+                name: "elbow lift - reverse push-up",
                 sets: 4,
-                reps: 12,
-                gif: "https://static.exercisedb.dev/media/bZGHsAZ.gif",
-                exerciseId: "bZGHsAZ",
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
+                exerciseId: "wbUYILZ",
               },
             ],
             day4: [
@@ -4030,18 +4030,18 @@ export const PresetPlans = [
                 exerciseId: "soIB2rj",
               },
               {
-                name: "elevator",
-                sets: 4,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/zYmNaoY.gif",
-                exerciseId: "zYmNaoY",
-              },
-              {
                 name: "triceps dip (between benches)",
                 sets: 4,
                 reps: 15,
                 gif: "https://static.exercisedb.dev/media/Wgbn9qo.gif",
                 exerciseId: "Wgbn9qo",
+              },
+              {
+                name: "elevator",
+                sets: 4,
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/zYmNaoY.gif",
+                exerciseId: "zYmNaoY",
               },
             ],
             day5: [
@@ -4076,18 +4076,18 @@ export const PresetPlans = [
                 exerciseId: "soIB2rj",
               },
               {
-                name: "elbow lift - reverse push-up",
-                sets: 4,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
-                exerciseId: "wbUYILZ",
-              },
-              {
                 name: "close-grip push-up (on knees)",
                 sets: 4,
                 reps: 15,
                 gif: "https://static.exercisedb.dev/media/v3vLFW0.gif",
                 exerciseId: "v3vLFW0",
+              },
+              {
+                name: "elbow lift - reverse push-up",
+                sets: 4,
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
+                exerciseId: "wbUYILZ",
               },
             ],
             day7: [
@@ -4147,27 +4147,27 @@ export const PresetPlans = [
                 exerciseId: "Wgbn9qo",
               },
               {
-                name: "scapula dips",
-                sets: 4,
-                reps: 18,
-                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
-                exerciseId: "7xeukSt",
-              },
-              {
                 name: "bench dip on floor",
                 sets: 4,
                 reps: 18,
                 gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
                 exerciseId: "9RT8oQW",
               },
+              {
+                name: "scapula dips",
+                sets: 4,
+                reps: 18,
+                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
+                exerciseId: "7xeukSt",
+              },
             ],
             day3: [
               {
-                name: "elbow lift - reverse push-up",
+                name: "inverted row",
                 sets: 4,
-                reps: 18,
-                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
-                exerciseId: "wbUYILZ",
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/bZGHsAZ.gif",
+                exerciseId: "bZGHsAZ",
               },
               {
                 name: "close-grip push-up (on knees)",
@@ -4177,11 +4177,11 @@ export const PresetPlans = [
                 exerciseId: "v3vLFW0",
               },
               {
-                name: "inverted row",
+                name: "elbow lift - reverse push-up",
                 sets: 4,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/bZGHsAZ.gif",
-                exerciseId: "bZGHsAZ",
+                reps: 18,
+                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
+                exerciseId: "wbUYILZ",
               },
             ],
             day4: [
@@ -4193,18 +4193,18 @@ export const PresetPlans = [
                 exerciseId: "soIB2rj",
               },
               {
-                name: "elevator",
-                sets: 4,
-                reps: 18,
-                gif: "https://static.exercisedb.dev/media/zYmNaoY.gif",
-                exerciseId: "zYmNaoY",
-              },
-              {
                 name: "triceps dip (between benches)",
                 sets: 4,
                 reps: 18,
                 gif: "https://static.exercisedb.dev/media/Wgbn9qo.gif",
                 exerciseId: "Wgbn9qo",
+              },
+              {
+                name: "elevator",
+                sets: 4,
+                reps: 18,
+                gif: "https://static.exercisedb.dev/media/zYmNaoY.gif",
+                exerciseId: "zYmNaoY",
               },
             ],
             day5: [
@@ -4239,18 +4239,18 @@ export const PresetPlans = [
                 exerciseId: "soIB2rj",
               },
               {
-                name: "elbow lift - reverse push-up",
-                sets: 4,
-                reps: 18,
-                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
-                exerciseId: "wbUYILZ",
-              },
-              {
                 name: "close-grip push-up (on knees)",
                 sets: 4,
                 reps: 18,
                 gif: "https://static.exercisedb.dev/media/v3vLFW0.gif",
                 exerciseId: "v3vLFW0",
+              },
+              {
+                name: "elbow lift - reverse push-up",
+                sets: 4,
+                reps: 18,
+                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
+                exerciseId: "wbUYILZ",
               },
             ],
             day7: [
@@ -4312,18 +4312,18 @@ export const PresetPlans = [
                 exerciseId: "Wgbn9qo",
               },
               {
-                name: "scapula dips",
-                sets: 3,
-                reps: 12,
-                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
-                exerciseId: "7xeukSt",
-              },
-              {
                 name: "close-grip push-up (on knees)",
                 sets: 3,
                 reps: 10,
                 gif: "https://static.exercisedb.dev/media/v3vLFW0.gif",
                 exerciseId: "v3vLFW0",
+              },
+              {
+                name: "scapula dips",
+                sets: 3,
+                reps: 12,
+                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
+                exerciseId: "7xeukSt",
               },
             ],
             day3: [
@@ -4335,18 +4335,18 @@ export const PresetPlans = [
                 exerciseId: "VPPtusI",
               },
               {
-                name: "bench dip on floor",
-                sets: 3,
-                reps: 10,
-                gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
-                exerciseId: "9RT8oQW",
-              },
-              {
                 name: "elevator",
                 sets: 3,
                 reps: 10,
                 gif: "https://static.exercisedb.dev/media/zYmNaoY.gif",
                 exerciseId: "zYmNaoY",
+              },
+              {
+                name: "bench dip on floor",
+                sets: 3,
+                reps: 10,
+                gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
+                exerciseId: "9RT8oQW",
               },
             ],
             day4: [
@@ -4358,18 +4358,18 @@ export const PresetPlans = [
                 exerciseId: "soIB2rj",
               },
               {
-                name: "elbow lift - reverse push-up",
-                sets: 3,
-                reps: 10,
-                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
-                exerciseId: "wbUYILZ",
-              },
-              {
                 name: "inverted row",
                 sets: 3,
                 reps: 10,
                 gif: "https://static.exercisedb.dev/media/bZGHsAZ.gif",
                 exerciseId: "bZGHsAZ",
+              },
+              {
+                name: "elbow lift - reverse push-up",
+                sets: 3,
+                reps: 10,
+                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
+                exerciseId: "wbUYILZ",
               },
             ],
             day5: [
@@ -4381,18 +4381,18 @@ export const PresetPlans = [
                 exerciseId: "Wgbn9qo",
               },
               {
-                name: "scapula dips",
-                sets: 3,
-                reps: 12,
-                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
-                exerciseId: "7xeukSt",
-              },
-              {
                 name: "close-grip push-up (on knees)",
                 sets: 3,
                 reps: 10,
                 gif: "https://static.exercisedb.dev/media/v3vLFW0.gif",
                 exerciseId: "v3vLFW0",
+              },
+              {
+                name: "scapula dips",
+                sets: 3,
+                reps: 12,
+                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
+                exerciseId: "7xeukSt",
               },
             ],
             day6: [
@@ -4404,18 +4404,18 @@ export const PresetPlans = [
                 exerciseId: "VPPtusI",
               },
               {
-                name: "bench dip on floor",
-                sets: 3,
-                reps: 10,
-                gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
-                exerciseId: "9RT8oQW",
-              },
-              {
                 name: "elevator",
                 sets: 3,
                 reps: 10,
                 gif: "https://static.exercisedb.dev/media/zYmNaoY.gif",
                 exerciseId: "zYmNaoY",
+              },
+              {
+                name: "bench dip on floor",
+                sets: 3,
+                reps: 10,
+                gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
+                exerciseId: "9RT8oQW",
               },
             ],
             day7: [
@@ -4475,18 +4475,18 @@ export const PresetPlans = [
                 exerciseId: "Wgbn9qo",
               },
               {
-                name: "scapula dips",
-                sets: 4,
-                reps: 12,
-                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
-                exerciseId: "7xeukSt",
-              },
-              {
                 name: "close-grip push-up (on knees)",
                 sets: 4,
                 reps: 12,
                 gif: "https://static.exercisedb.dev/media/v3vLFW0.gif",
                 exerciseId: "v3vLFW0",
+              },
+              {
+                name: "scapula dips",
+                sets: 4,
+                reps: 12,
+                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
+                exerciseId: "7xeukSt",
               },
             ],
             day3: [
@@ -4498,18 +4498,18 @@ export const PresetPlans = [
                 exerciseId: "VPPtusI",
               },
               {
-                name: "bench dip on floor",
-                sets: 4,
-                reps: 12,
-                gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
-                exerciseId: "9RT8oQW",
-              },
-              {
                 name: "elevator",
                 sets: 4,
                 reps: 12,
                 gif: "https://static.exercisedb.dev/media/zYmNaoY.gif",
                 exerciseId: "zYmNaoY",
+              },
+              {
+                name: "bench dip on floor",
+                sets: 4,
+                reps: 12,
+                gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
+                exerciseId: "9RT8oQW",
               },
             ],
             day4: [
@@ -4521,18 +4521,18 @@ export const PresetPlans = [
                 exerciseId: "soIB2rj",
               },
               {
-                name: "elbow lift - reverse push-up",
-                sets: 4,
-                reps: 12,
-                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
-                exerciseId: "wbUYILZ",
-              },
-              {
                 name: "inverted row",
                 sets: 4,
                 reps: 12,
                 gif: "https://static.exercisedb.dev/media/bZGHsAZ.gif",
                 exerciseId: "bZGHsAZ",
+              },
+              {
+                name: "elbow lift - reverse push-up",
+                sets: 4,
+                reps: 12,
+                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
+                exerciseId: "wbUYILZ",
               },
             ],
             day5: [
@@ -4544,18 +4544,18 @@ export const PresetPlans = [
                 exerciseId: "Wgbn9qo",
               },
               {
-                name: "scapula dips",
-                sets: 4,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
-                exerciseId: "7xeukSt",
-              },
-              {
                 name: "close-grip push-up (on knees)",
                 sets: 4,
                 reps: 12,
                 gif: "https://static.exercisedb.dev/media/v3vLFW0.gif",
                 exerciseId: "v3vLFW0",
+              },
+              {
+                name: "scapula dips",
+                sets: 4,
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
+                exerciseId: "7xeukSt",
               },
             ],
             day6: [
@@ -4567,18 +4567,18 @@ export const PresetPlans = [
                 exerciseId: "VPPtusI",
               },
               {
-                name: "bench dip on floor",
-                sets: 4,
-                reps: 12,
-                gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
-                exerciseId: "9RT8oQW",
-              },
-              {
                 name: "elevator",
                 sets: 4,
                 reps: 12,
                 gif: "https://static.exercisedb.dev/media/zYmNaoY.gif",
                 exerciseId: "zYmNaoY",
+              },
+              {
+                name: "bench dip on floor",
+                sets: 4,
+                reps: 12,
+                gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
+                exerciseId: "9RT8oQW",
               },
             ],
             day7: [
@@ -4640,27 +4640,27 @@ export const PresetPlans = [
                 exerciseId: "Wgbn9qo",
               },
               {
-                name: "scapula dips",
-                sets: 3,
-                reps: 20,
-                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
-                exerciseId: "7xeukSt",
-              },
-              {
                 name: "bench dip on floor",
                 sets: 3,
                 reps: 20,
                 gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
                 exerciseId: "9RT8oQW",
               },
+              {
+                name: "scapula dips",
+                sets: 3,
+                reps: 20,
+                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
+                exerciseId: "7xeukSt",
+              },
             ],
             day3: [
               {
-                name: "elbow lift - reverse push-up",
+                name: "inverted row",
                 sets: 3,
-                reps: 20,
-                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
-                exerciseId: "wbUYILZ",
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/bZGHsAZ.gif",
+                exerciseId: "bZGHsAZ",
               },
               {
                 name: "close-grip push-up (on knees)",
@@ -4670,11 +4670,11 @@ export const PresetPlans = [
                 exerciseId: "v3vLFW0",
               },
               {
-                name: "inverted row",
+                name: "elbow lift - reverse push-up",
                 sets: 3,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/bZGHsAZ.gif",
-                exerciseId: "bZGHsAZ",
+                reps: 20,
+                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
+                exerciseId: "wbUYILZ",
               },
             ],
             day4: [
@@ -4686,18 +4686,18 @@ export const PresetPlans = [
                 exerciseId: "soIB2rj",
               },
               {
-                name: "elevator",
-                sets: 3,
-                reps: 20,
-                gif: "https://static.exercisedb.dev/media/zYmNaoY.gif",
-                exerciseId: "zYmNaoY",
-              },
-              {
                 name: "triceps dip (between benches)",
                 sets: 3,
                 reps: 15,
                 gif: "https://static.exercisedb.dev/media/Wgbn9qo.gif",
                 exerciseId: "Wgbn9qo",
+              },
+              {
+                name: "elevator",
+                sets: 3,
+                reps: 20,
+                gif: "https://static.exercisedb.dev/media/zYmNaoY.gif",
+                exerciseId: "zYmNaoY",
               },
             ],
             day5: [
@@ -4732,18 +4732,18 @@ export const PresetPlans = [
                 exerciseId: "soIB2rj",
               },
               {
-                name: "elbow lift - reverse push-up",
-                sets: 3,
-                reps: 20,
-                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
-                exerciseId: "wbUYILZ",
-              },
-              {
                 name: "close-grip push-up (on knees)",
                 sets: 3,
                 reps: 20,
                 gif: "https://static.exercisedb.dev/media/v3vLFW0.gif",
                 exerciseId: "v3vLFW0",
+              },
+              {
+                name: "elbow lift - reverse push-up",
+                sets: 3,
+                reps: 20,
+                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
+                exerciseId: "wbUYILZ",
               },
             ],
             day7: [
@@ -4803,27 +4803,27 @@ export const PresetPlans = [
                 exerciseId: "Wgbn9qo",
               },
               {
-                name: "scapula dips",
-                sets: 3,
-                reps: 25,
-                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
-                exerciseId: "7xeukSt",
-              },
-              {
                 name: "bench dip on floor",
                 sets: 3,
                 reps: 25,
                 gif: "https://static.exercisedb.dev/media/9RT8oQW.gif",
                 exerciseId: "9RT8oQW",
               },
+              {
+                name: "scapula dips",
+                sets: 3,
+                reps: 25,
+                gif: "https://static.exercisedb.dev/media/7xeukSt.gif",
+                exerciseId: "7xeukSt",
+              },
             ],
             day3: [
               {
-                name: "elbow lift - reverse push-up",
+                name: "inverted row",
                 sets: 3,
-                reps: 25,
-                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
-                exerciseId: "wbUYILZ",
+                reps: 20,
+                gif: "https://static.exercisedb.dev/media/bZGHsAZ.gif",
+                exerciseId: "bZGHsAZ",
               },
               {
                 name: "close-grip push-up (on knees)",
@@ -4833,11 +4833,11 @@ export const PresetPlans = [
                 exerciseId: "v3vLFW0",
               },
               {
-                name: "inverted row",
+                name: "elbow lift - reverse push-up",
                 sets: 3,
-                reps: 20,
-                gif: "https://static.exercisedb.dev/media/bZGHsAZ.gif",
-                exerciseId: "bZGHsAZ",
+                reps: 25,
+                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
+                exerciseId: "wbUYILZ",
               },
             ],
             day4: [
@@ -4849,18 +4849,18 @@ export const PresetPlans = [
                 exerciseId: "soIB2rj",
               },
               {
-                name: "elevator",
-                sets: 3,
-                reps: 25,
-                gif: "https://static.exercisedb.dev/media/zYmNaoY.gif",
-                exerciseId: "zYmNaoY",
-              },
-              {
                 name: "triceps dip (between benches)",
                 sets: 3,
                 reps: 20,
                 gif: "https://static.exercisedb.dev/media/Wgbn9qo.gif",
                 exerciseId: "Wgbn9qo",
+              },
+              {
+                name: "elevator",
+                sets: 3,
+                reps: 25,
+                gif: "https://static.exercisedb.dev/media/zYmNaoY.gif",
+                exerciseId: "zYmNaoY",
               },
             ],
             day5: [
@@ -4895,18 +4895,18 @@ export const PresetPlans = [
                 exerciseId: "soIB2rj",
               },
               {
-                name: "elbow lift - reverse push-up",
-                sets: 3,
-                reps: 25,
-                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
-                exerciseId: "wbUYILZ",
-              },
-              {
                 name: "close-grip push-up (on knees)",
                 sets: 3,
                 reps: 25,
                 gif: "https://static.exercisedb.dev/media/v3vLFW0.gif",
                 exerciseId: "v3vLFW0",
+              },
+              {
+                name: "elbow lift - reverse push-up",
+                sets: 3,
+                reps: 25,
+                gif: "https://static.exercisedb.dev/media/wbUYILZ.gif",
+                exerciseId: "wbUYILZ",
               },
             ],
             day7: [
@@ -4940,6 +4940,13 @@ export const PresetPlans = [
           week1: {
             day1: [
               {
+                name: "pull-up",
+                sets: 3,
+                reps: 8,
+                gif: "https://static.exercisedb.dev/media/lBDjFxJ.gif",
+                exerciseId: "lBDjFxJ",
+              },
+              {
                 name: "cable seated row",
                 sets: 4,
                 reps: 15,
@@ -4953,21 +4960,14 @@ export const PresetPlans = [
                 gif: "https://static.exercisedb.dev/media/iZop9xO.gif",
                 exerciseId: "iZop9xO",
               },
-              {
-                name: "pull-up",
-                sets: 3,
-                reps: 8,
-                gif: "https://static.exercisedb.dev/media/lBDjFxJ.gif",
-                exerciseId: "lBDjFxJ",
-              },
             ],
             day2: [
               {
-                name: "dumbbell kickback",
+                name: "smith close-grip bench press",
                 sets: 4,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
-                exerciseId: "W6PxUkg",
+                reps: 12,
+                gif: "https://static.exercisedb.dev/media/WcHl7ru.gif",
+                exerciseId: "WcHl7ru",
               },
               {
                 name: "cable lat pulldown full range of motion",
@@ -4977,20 +4977,20 @@ export const PresetPlans = [
                 exerciseId: "LEprlgG",
               },
               {
-                name: "smith close-grip bench press",
+                name: "dumbbell kickback",
                 sets: 4,
-                reps: 12,
-                gif: "https://static.exercisedb.dev/media/WcHl7ru.gif",
-                exerciseId: "WcHl7ru",
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
+                exerciseId: "W6PxUkg",
               },
             ],
             day3: [
               {
-                name: "cable pushdown",
-                sets: 4,
+                name: "rope climb",
+                sets: 3,
                 reps: 15,
-                gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
-                exerciseId: "3ZflifB",
+                gif: "https://static.exercisedb.dev/media/yaAxcQr.gif",
+                exerciseId: "yaAxcQr",
               },
               {
                 name: "dumbbell bent over row",
@@ -5000,11 +5000,11 @@ export const PresetPlans = [
                 exerciseId: "BJ0Hz5L",
               },
               {
-                name: "rope climb",
-                sets: 3,
+                name: "cable pushdown",
+                sets: 4,
                 reps: 15,
-                gif: "https://static.exercisedb.dev/media/yaAxcQr.gif",
-                exerciseId: "yaAxcQr",
+                gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
+                exerciseId: "3ZflifB",
               },
             ],
             day4: [
@@ -5032,6 +5032,13 @@ export const PresetPlans = [
             ],
             day5: [
               {
+                name: "pull-up",
+                sets: 3,
+                reps: 8,
+                gif: "https://static.exercisedb.dev/media/lBDjFxJ.gif",
+                exerciseId: "lBDjFxJ",
+              },
+              {
                 name: "cable seated row",
                 sets: 4,
                 reps: 15,
@@ -5045,21 +5052,14 @@ export const PresetPlans = [
                 gif: "https://static.exercisedb.dev/media/iZop9xO.gif",
                 exerciseId: "iZop9xO",
               },
-              {
-                name: "pull-up",
-                sets: 3,
-                reps: 8,
-                gif: "https://static.exercisedb.dev/media/lBDjFxJ.gif",
-                exerciseId: "lBDjFxJ",
-              },
             ],
             day6: [
               {
-                name: "dumbbell kickback",
+                name: "smith close-grip bench press",
                 sets: 4,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
-                exerciseId: "W6PxUkg",
+                reps: 12,
+                gif: "https://static.exercisedb.dev/media/WcHl7ru.gif",
+                exerciseId: "WcHl7ru",
               },
               {
                 name: "cable lat pulldown full range of motion",
@@ -5069,11 +5069,11 @@ export const PresetPlans = [
                 exerciseId: "LEprlgG",
               },
               {
-                name: "smith close-grip bench press",
+                name: "dumbbell kickback",
                 sets: 4,
-                reps: 12,
-                gif: "https://static.exercisedb.dev/media/WcHl7ru.gif",
-                exerciseId: "WcHl7ru",
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
+                exerciseId: "W6PxUkg",
               },
             ],
             day7: [
@@ -5103,6 +5103,13 @@ export const PresetPlans = [
           week2: {
             day1: [
               {
+                name: "pull-up",
+                sets: 3,
+                reps: 10,
+                gif: "https://static.exercisedb.dev/media/lBDjFxJ.gif",
+                exerciseId: "lBDjFxJ",
+              },
+              {
                 name: "cable seated row",
                 sets: 5,
                 reps: 15,
@@ -5116,21 +5123,14 @@ export const PresetPlans = [
                 gif: "https://static.exercisedb.dev/media/iZop9xO.gif",
                 exerciseId: "iZop9xO",
               },
-              {
-                name: "pull-up",
-                sets: 3,
-                reps: 10,
-                gif: "https://static.exercisedb.dev/media/lBDjFxJ.gif",
-                exerciseId: "lBDjFxJ",
-              },
             ],
             day2: [
               {
-                name: "dumbbell kickback",
+                name: "smith close-grip bench press",
                 sets: 5,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
-                exerciseId: "W6PxUkg",
+                reps: 12,
+                gif: "https://static.exercisedb.dev/media/WcHl7ru.gif",
+                exerciseId: "WcHl7ru",
               },
               {
                 name: "cable lat pulldown full range of motion",
@@ -5140,20 +5140,20 @@ export const PresetPlans = [
                 exerciseId: "LEprlgG",
               },
               {
-                name: "smith close-grip bench press",
+                name: "dumbbell kickback",
                 sets: 5,
-                reps: 12,
-                gif: "https://static.exercisedb.dev/media/WcHl7ru.gif",
-                exerciseId: "WcHl7ru",
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
+                exerciseId: "W6PxUkg",
               },
             ],
             day3: [
               {
-                name: "cable pushdown",
-                sets: 5,
+                name: "rope climb",
+                sets: 3,
                 reps: 15,
-                gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
-                exerciseId: "3ZflifB",
+                gif: "https://static.exercisedb.dev/media/yaAxcQr.gif",
+                exerciseId: "yaAxcQr",
               },
               {
                 name: "dumbbell bent over row",
@@ -5163,11 +5163,11 @@ export const PresetPlans = [
                 exerciseId: "BJ0Hz5L",
               },
               {
-                name: "rope climb",
-                sets: 3,
+                name: "cable pushdown",
+                sets: 5,
                 reps: 15,
-                gif: "https://static.exercisedb.dev/media/yaAxcQr.gif",
-                exerciseId: "yaAxcQr",
+                gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
+                exerciseId: "3ZflifB",
               },
             ],
             day4: [
@@ -5195,6 +5195,13 @@ export const PresetPlans = [
             ],
             day5: [
               {
+                name: "pull-up",
+                sets: 3,
+                reps: 10,
+                gif: "https://static.exercisedb.dev/media/lBDjFxJ.gif",
+                exerciseId: "lBDjFxJ",
+              },
+              {
                 name: "cable seated row",
                 sets: 5,
                 reps: 15,
@@ -5208,21 +5215,14 @@ export const PresetPlans = [
                 gif: "https://static.exercisedb.dev/media/iZop9xO.gif",
                 exerciseId: "iZop9xO",
               },
-              {
-                name: "pull-up",
-                sets: 3,
-                reps: 10,
-                gif: "https://static.exercisedb.dev/media/lBDjFxJ.gif",
-                exerciseId: "lBDjFxJ",
-              },
             ],
             day6: [
               {
-                name: "dumbbell kickback",
+                name: "smith close-grip bench press",
                 sets: 5,
-                reps: 15,
-                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
-                exerciseId: "W6PxUkg",
+                reps: 12,
+                gif: "https://static.exercisedb.dev/media/WcHl7ru.gif",
+                exerciseId: "WcHl7ru",
               },
               {
                 name: "cable lat pulldown full range of motion",
@@ -5232,11 +5232,11 @@ export const PresetPlans = [
                 exerciseId: "LEprlgG",
               },
               {
-                name: "smith close-grip bench press",
+                name: "dumbbell kickback",
                 sets: 5,
-                reps: 12,
-                gif: "https://static.exercisedb.dev/media/WcHl7ru.gif",
-                exerciseId: "WcHl7ru",
+                reps: 15,
+                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
+                exerciseId: "W6PxUkg",
               },
             ],
             day7: [
@@ -5275,34 +5275,34 @@ export const PresetPlans = [
                 exerciseId: "lBDjFxJ",
               },
               {
-                name: "barbell lying triceps extension",
-                sets: 3,
-                reps: 8,
-                gif: "https://static.exercisedb.dev/media/iZop9xO.gif",
-                exerciseId: "iZop9xO",
-              },
-              {
                 name: "cable seated row",
                 sets: 3,
                 reps: 10,
                 gif: "https://static.exercisedb.dev/media/fUBheHs.gif",
                 exerciseId: "fUBheHs",
               },
+              {
+                name: "barbell lying triceps extension",
+                sets: 3,
+                reps: 8,
+                gif: "https://static.exercisedb.dev/media/iZop9xO.gif",
+                exerciseId: "iZop9xO",
+              },
             ],
             day2: [
-              {
-                name: "dumbbell one arm row",
-                sets: 3,
-                reps: 10,
-                gif: "https://static.exercisedb.dev/media/C0MA9bC.gif",
-                exerciseId: "C0MA9bC",
-              },
               {
                 name: "smith close-grip bench press",
                 sets: 3,
                 reps: 8,
                 gif: "https://static.exercisedb.dev/media/WcHl7ru.gif",
                 exerciseId: "WcHl7ru",
+              },
+              {
+                name: "dumbbell one arm row",
+                sets: 3,
+                reps: 10,
+                gif: "https://static.exercisedb.dev/media/C0MA9bC.gif",
+                exerciseId: "C0MA9bC",
               },
               {
                 name: "cable lat pulldown full range of motion",
@@ -5367,34 +5367,34 @@ export const PresetPlans = [
                 exerciseId: "lBDjFxJ",
               },
               {
-                name: "barbell lying triceps extension",
-                sets: 3,
-                reps: 8,
-                gif: "https://static.exercisedb.dev/media/iZop9xO.gif",
-                exerciseId: "iZop9xO",
-              },
-              {
                 name: "cable seated row",
                 sets: 3,
                 reps: 10,
                 gif: "https://static.exercisedb.dev/media/fUBheHs.gif",
                 exerciseId: "fUBheHs",
               },
+              {
+                name: "barbell lying triceps extension",
+                sets: 3,
+                reps: 8,
+                gif: "https://static.exercisedb.dev/media/iZop9xO.gif",
+                exerciseId: "iZop9xO",
+              },
             ],
             day6: [
-              {
-                name: "dumbbell one arm row",
-                sets: 3,
-                reps: 10,
-                gif: "https://static.exercisedb.dev/media/C0MA9bC.gif",
-                exerciseId: "C0MA9bC",
-              },
               {
                 name: "smith close-grip bench press",
                 sets: 3,
                 reps: 8,
                 gif: "https://static.exercisedb.dev/media/WcHl7ru.gif",
                 exerciseId: "WcHl7ru",
+              },
+              {
+                name: "dumbbell one arm row",
+                sets: 3,
+                reps: 10,
+                gif: "https://static.exercisedb.dev/media/C0MA9bC.gif",
+                exerciseId: "C0MA9bC",
               },
               {
                 name: "cable lat pulldown full range of motion",
@@ -5438,34 +5438,34 @@ export const PresetPlans = [
                 exerciseId: "lBDjFxJ",
               },
               {
-                name: "barbell lying triceps extension",
-                sets: 4,
-                reps: 8,
-                gif: "https://static.exercisedb.dev/media/iZop9xO.gif",
-                exerciseId: "iZop9xO",
-              },
-              {
                 name: "cable seated row",
                 sets: 4,
                 reps: 10,
                 gif: "https://static.exercisedb.dev/media/fUBheHs.gif",
                 exerciseId: "fUBheHs",
               },
+              {
+                name: "barbell lying triceps extension",
+                sets: 4,
+                reps: 8,
+                gif: "https://static.exercisedb.dev/media/iZop9xO.gif",
+                exerciseId: "iZop9xO",
+              },
             ],
             day2: [
-              {
-                name: "dumbbell one arm row",
-                sets: 4,
-                reps: 10,
-                gif: "https://static.exercisedb.dev/media/C0MA9bC.gif",
-                exerciseId: "C0MA9bC",
-              },
               {
                 name: "smith close-grip bench press",
                 sets: 4,
                 reps: 8,
                 gif: "https://static.exercisedb.dev/media/WcHl7ru.gif",
                 exerciseId: "WcHl7ru",
+              },
+              {
+                name: "dumbbell one arm row",
+                sets: 4,
+                reps: 10,
+                gif: "https://static.exercisedb.dev/media/C0MA9bC.gif",
+                exerciseId: "C0MA9bC",
               },
               {
                 name: "cable lat pulldown full range of motion",
@@ -5530,34 +5530,34 @@ export const PresetPlans = [
                 exerciseId: "lBDjFxJ",
               },
               {
-                name: "barbell lying triceps extension",
-                sets: 4,
-                reps: 8,
-                gif: "https://static.exercisedb.dev/media/iZop9xO.gif",
-                exerciseId: "iZop9xO",
-              },
-              {
                 name: "cable seated row",
                 sets: 4,
                 reps: 10,
                 gif: "https://static.exercisedb.dev/media/fUBheHs.gif",
                 exerciseId: "fUBheHs",
               },
+              {
+                name: "barbell lying triceps extension",
+                sets: 4,
+                reps: 8,
+                gif: "https://static.exercisedb.dev/media/iZop9xO.gif",
+                exerciseId: "iZop9xO",
+              },
             ],
             day6: [
-              {
-                name: "dumbbell one arm row",
-                sets: 4,
-                reps: 10,
-                gif: "https://static.exercisedb.dev/media/C0MA9bC.gif",
-                exerciseId: "C0MA9bC",
-              },
               {
                 name: "smith close-grip bench press",
                 sets: 4,
                 reps: 8,
                 gif: "https://static.exercisedb.dev/media/WcHl7ru.gif",
                 exerciseId: "WcHl7ru",
+              },
+              {
+                name: "dumbbell one arm row",
+                sets: 4,
+                reps: 10,
+                gif: "https://static.exercisedb.dev/media/C0MA9bC.gif",
+                exerciseId: "C0MA9bC",
               },
               {
                 name: "cable lat pulldown full range of motion",
@@ -5603,18 +5603,18 @@ export const PresetPlans = [
                 exerciseId: "lBDjFxJ",
               },
               {
-                name: "cable pushdown",
-                sets: 2,
-                reps: 20,
-                gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
-                exerciseId: "3ZflifB",
-              },
-              {
                 name: "cable seated row",
                 sets: 2,
                 reps: 20,
                 gif: "https://static.exercisedb.dev/media/fUBheHs.gif",
                 exerciseId: "fUBheHs",
+              },
+              {
+                name: "cable pushdown",
+                sets: 2,
+                reps: 20,
+                gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
+                exerciseId: "3ZflifB",
               },
             ],
             day2: [
@@ -5626,18 +5626,18 @@ export const PresetPlans = [
                 exerciseId: "BJ0Hz5L",
               },
               {
-                name: "dumbbell kickback",
-                sets: 2,
-                reps: 20,
-                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
-                exerciseId: "W6PxUkg",
-              },
-              {
                 name: "cable lat pulldown full range of motion",
                 sets: 2,
                 reps: 20,
                 gif: "https://static.exercisedb.dev/media/LEprlgG.gif",
                 exerciseId: "LEprlgG",
+              },
+              {
+                name: "dumbbell kickback",
+                sets: 2,
+                reps: 20,
+                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
+                exerciseId: "W6PxUkg",
               },
             ],
             day3: [
@@ -5695,18 +5695,18 @@ export const PresetPlans = [
                 exerciseId: "lBDjFxJ",
               },
               {
-                name: "cable pushdown",
-                sets: 2,
-                reps: 20,
-                gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
-                exerciseId: "3ZflifB",
-              },
-              {
                 name: "cable seated row",
                 sets: 2,
                 reps: 20,
                 gif: "https://static.exercisedb.dev/media/fUBheHs.gif",
                 exerciseId: "fUBheHs",
+              },
+              {
+                name: "cable pushdown",
+                sets: 2,
+                reps: 20,
+                gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
+                exerciseId: "3ZflifB",
               },
             ],
             day6: [
@@ -5718,18 +5718,18 @@ export const PresetPlans = [
                 exerciseId: "BJ0Hz5L",
               },
               {
-                name: "dumbbell kickback",
-                sets: 2,
-                reps: 20,
-                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
-                exerciseId: "W6PxUkg",
-              },
-              {
                 name: "cable lat pulldown full range of motion",
                 sets: 2,
                 reps: 20,
                 gif: "https://static.exercisedb.dev/media/LEprlgG.gif",
                 exerciseId: "LEprlgG",
+              },
+              {
+                name: "dumbbell kickback",
+                sets: 2,
+                reps: 20,
+                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
+                exerciseId: "W6PxUkg",
               },
             ],
             day7: [
@@ -5766,18 +5766,18 @@ export const PresetPlans = [
                 exerciseId: "lBDjFxJ",
               },
               {
-                name: "cable pushdown",
-                sets: 3,
-                reps: 20,
-                gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
-                exerciseId: "3ZflifB",
-              },
-              {
                 name: "cable seated row",
                 sets: 3,
                 reps: 20,
                 gif: "https://static.exercisedb.dev/media/fUBheHs.gif",
                 exerciseId: "fUBheHs",
+              },
+              {
+                name: "cable pushdown",
+                sets: 3,
+                reps: 20,
+                gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
+                exerciseId: "3ZflifB",
               },
             ],
             day2: [
@@ -5789,18 +5789,18 @@ export const PresetPlans = [
                 exerciseId: "BJ0Hz5L",
               },
               {
-                name: "dumbbell kickback",
-                sets: 3,
-                reps: 20,
-                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
-                exerciseId: "W6PxUkg",
-              },
-              {
                 name: "cable lat pulldown full range of motion",
                 sets: 3,
                 reps: 20,
                 gif: "https://static.exercisedb.dev/media/LEprlgG.gif",
                 exerciseId: "LEprlgG",
+              },
+              {
+                name: "dumbbell kickback",
+                sets: 3,
+                reps: 20,
+                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
+                exerciseId: "W6PxUkg",
               },
             ],
             day3: [
@@ -5858,18 +5858,18 @@ export const PresetPlans = [
                 exerciseId: "lBDjFxJ",
               },
               {
-                name: "cable pushdown",
-                sets: 3,
-                reps: 20,
-                gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
-                exerciseId: "3ZflifB",
-              },
-              {
                 name: "cable seated row",
                 sets: 3,
                 reps: 20,
                 gif: "https://static.exercisedb.dev/media/fUBheHs.gif",
                 exerciseId: "fUBheHs",
+              },
+              {
+                name: "cable pushdown",
+                sets: 3,
+                reps: 20,
+                gif: "https://static.exercisedb.dev/media/3ZflifB.gif",
+                exerciseId: "3ZflifB",
               },
             ],
             day6: [
@@ -5881,18 +5881,18 @@ export const PresetPlans = [
                 exerciseId: "BJ0Hz5L",
               },
               {
-                name: "dumbbell kickback",
-                sets: 3,
-                reps: 20,
-                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
-                exerciseId: "W6PxUkg",
-              },
-              {
                 name: "cable lat pulldown full range of motion",
                 sets: 3,
                 reps: 20,
                 gif: "https://static.exercisedb.dev/media/LEprlgG.gif",
                 exerciseId: "LEprlgG",
+              },
+              {
+                name: "dumbbell kickback",
+                sets: 3,
+                reps: 20,
+                gif: "https://static.exercisedb.dev/media/W6PxUkg.gif",
+                exerciseId: "W6PxUkg",
               },
             ],
             day7: [

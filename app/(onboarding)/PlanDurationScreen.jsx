@@ -19,6 +19,7 @@ import Animated, {
   ZoomInEasyDown,
   ZoomOut,
 } from "react-native-reanimated";
+import PrimaryCTAButton from "../components/PrimaryCTAButton";
 const PlanDurationScreen = () => {
   const {
     UserProfile,
@@ -37,6 +38,8 @@ const PlanDurationScreen = () => {
     { label: "Saturday", value: "saturday" },
     { label: "Sunday", value: "sunday" },
   ];
+  const weekdayValues = weekdays.map((day) => day.value);
+  const pickerTextColor = style?.defaultText?.color ?? "#ffffff";
 
   const handleSubmit = () => {
     router.push("PersonalDetailsScreen");
@@ -60,26 +63,34 @@ const PlanDurationScreen = () => {
         </Text>
 
         <Picker
-          style={{ color: "#47b977", width: "80%", textAlign: "center" }}
-          dropdownIconColor="white"
+          style={{ color: pickerTextColor, width: "80%", textAlign: "center" }}
+          dropdownIconColor={pickerTextColor}
+          itemStyle={{ color: pickerTextColor }}
           mode="dropdown"
           selectedValue={PlanDuration}
           onValueChange={(itemValue) => {
             updatePlanDuration(itemValue);
-            clearDailyWorkoutTime();
+            if (itemValue === "7") {
+              setUserProfile((prev) => ({
+                ...prev,
+                DailyWorkoutTime: weekdayValues,
+              }));
+            } else {
+              clearDailyWorkoutTime();
+            }
             Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
           }}>
-          <Picker.Item label="Select Days" value="" />
-          <Picker.Item label="1 Day" value="1" />
-          <Picker.Item label="2 Days" value="2" />
-          <Picker.Item label="3 Days" value="3" />
-          <Picker.Item label="4 Days" value="4" />
-          <Picker.Item label="5 Days" value="5" />
-          <Picker.Item label="6 Days" value="6" />
-          <Picker.Item label="Every Day" value="7" />
+          <Picker.Item label="Select Days" value="" color={pickerTextColor} />
+          <Picker.Item label="1 Day" value="1" color={pickerTextColor} />
+          <Picker.Item label="2 Days" value="2" color={pickerTextColor} />
+          <Picker.Item label="3 Days" value="3" color={pickerTextColor} />
+          <Picker.Item label="4 Days" value="4" color={pickerTextColor} />
+          <Picker.Item label="5 Days" value="5" color={pickerTextColor} />
+          <Picker.Item label="6 Days" value="6" color={pickerTextColor} />
+          <Picker.Item label="Every Day" value="7" color={pickerTextColor} />
         </Picker>
 
-        {PlanDuration && (
+        {PlanDuration && PlanDuration !== "7" && (
           <Animated.Text
             entering={ZoomInEasyDown.duration(200)}
             style={{ ...style.defaultText, marginTop: 50 }}>
@@ -95,13 +106,15 @@ const PlanDurationScreen = () => {
             padding: 10,
           }}>
           {weekdays.map((day) => {
-            const isSelected = DailyWorkoutTime.includes(day.value);
-            PlanDuration === 7 ? (isSelected = true) : null;
+            const isEveryDay = PlanDuration === "7";
+            const isSelected =
+              isEveryDay || DailyWorkoutTime.includes(day.value);
             return (
               <ButtonAnimation clicked={isSelected} key={day.value}>
                 <Pressable
                   key={day.value}
                   onPress={() => {
+                    if (isEveryDay) return;
                     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Rigid);
 
                     if (isSelected) {
@@ -130,14 +143,11 @@ const PlanDurationScreen = () => {
         </View>
 
         {PlanDuration && DailyWorkoutTime?.find((day) => day) && (
-          <Pressable
-            style={{
-              ...style.workoutGoalButton,
-              marginTop: 50,
-            }}
-            onPress={handleSubmit}>
-            <Text style={style.defaultText}>Submit</Text>
-          </Pressable>
+          <PrimaryCTAButton
+            style={{ alignSelf: "center", marginTop: 50 }}
+            label="Continue"
+            onPress={handleSubmit}
+          />
         )}
       </AnimatedItem>
     </SafeScreen>
