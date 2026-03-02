@@ -1,9 +1,10 @@
 import { Redirect, Tabs, useSegments } from "expo-router";
-
+import LottieView from "lottie-react-native/src";
+import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import Svg, { Path } from "react-native-svg";
 import { useWorkout } from "../contexts/WorkoutContext";
-import LottieView from "lottie-react-native/src";
-import { useState, useRef, useEffect } from "react";
+import i18n from "../i18n";
 
 const HomeIcon = ({ color, size }) => (
   <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
@@ -95,12 +96,14 @@ const TabIconWithAnimation = ({ focused, animationSource, Icon }) => {
 };
 export default function TabLayout() {
   const { isOnboardingCompleted } = useWorkout();
+  const { t } = useTranslation();
   if (!isOnboardingCompleted) {
     return <Redirect href="/(onboarding)/ScreenOne" />;
   }
 
   return (
     <Tabs
+      key={i18n.language}
       screenOptions={{
         tabBarActiveTintColor: "#47b977",
         tabBarInactiveTintColor: "gray",
@@ -116,9 +119,8 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Home",
+          title: t("home"),
           tabBarIcon: ({ color, size }) => (
-            // <Ionicons name="home" size={size} color={color} />
             <HomeIcon color={color} size={size} />
           ),
         }}
@@ -126,7 +128,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="Programs"
         options={{
-          title: "Programs",
+          title: t("programs"),
           tabBarIcon: ({ focused }) => (
             <TabIconWithAnimation
               focused={focused}
@@ -140,9 +142,8 @@ export default function TabLayout() {
       <Tabs.Screen
         name="Workouts"
         options={{
-          title: "Workouts",
+          title: t("workouts"),
           tabBarIcon: ({ color, size }) => (
-            // <Ionicons name="search" size={size} color={color} />
             <SearchIcon color={color} size={size} />
           ),
         }}
@@ -150,9 +151,8 @@ export default function TabLayout() {
       <Tabs.Screen
         name="WorkoutsHistory"
         options={{
-          title: "History",
+          title: t("history"),
           tabBarIcon: ({ color, size }) => (
-            // <MaterialCommunityIcons name="history" size={size} color={color} />
             <HistoryIcon color={color} size={size} />
           ),
         }}
@@ -160,13 +160,8 @@ export default function TabLayout() {
       <Tabs.Screen
         name="about"
         options={{
-          title: "About",
+          title: t("about"),
           tabBarIcon: ({ color, size }) => (
-            // <MaterialCommunityIcons
-            //   name="information-outline"
-            //   size={size}
-            //   color={color}
-            // />
             <InfoIcon color={color} size={size} />
           ),
         }}

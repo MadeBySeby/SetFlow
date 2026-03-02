@@ -1,20 +1,20 @@
+import { Ionicons } from "@expo/vector-icons";
+import { Picker } from "@react-native-picker/picker";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   FlatList,
   Modal,
   Pressable,
-  ScrollView,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useState } from "react";
 import SafeScreen from "../components/SafeScreen";
 import styles from "../components/style";
 import { useWorkout } from "../contexts/WorkoutContext";
-import { Ionicons } from "@expo/vector-icons";
-import { Picker } from "@react-native-picker/picker";
 
 const About = () => {
   const {
@@ -27,8 +27,10 @@ const About = () => {
     updateWeight,
     updatePlanDuration,
     updateEquipment,
+    updateLanguage,
     setUserProfile,
   } = useWorkout();
+  const { t } = useTranslation();
 
   const [showModal, setShowModal] = useState(false);
   const [selectedField, setSelectedField] = useState(null);
@@ -47,45 +49,49 @@ const About = () => {
   };
 
   const LEVEL_OPTIONS = [
-    { label: "Beginner", value: "beginner" },
-    { label: "Intermediate", value: "intermediate" },
-    { label: "Advanced", value: "advanced" },
+    { label: t("beginner"), value: "beginner" },
+    { label: t("intermediate"), value: "intermediate" },
+    { label: t("advanced"), value: "advanced" },
   ];
-
   const GOAL_OPTIONS = [
-    { label: "Lose Weight", value: "weightLoss" },
-    { label: "Build Muscle", value: "muscleGain" },
-    { label: "Endurance", value: "endurance" },
+    { label: t("weightLoss"), value: "weightLoss" },
+    { label: t("muscleGain"), value: "muscleGain" },
+    { label: t("endurance"), value: "endurance" },
   ];
   const Equipment = [
-    { label: "Gym Membership", value: "Gym Membership" },
-    { label: "No Equipment", value: "No Equipment" },
+    { label: t("gymMembership"), value: "Gym Membership" },
+    { label: t("noEquipment"), value: "No Equipment" },
+  ];
+  const LANGUAGE_OPTIONS = [
+    { label: t("english"), value: "en" },
+    { label: t("georgian"), value: "ka" },
   ];
   const weekdays = [
-    { label: "Monday", value: "monday" },
-    { label: "Tuesday", value: "tuesday" },
-    { label: "Wednesday", value: "wednesday" },
-    { label: "Thursday", value: "thursday" },
-    { label: "Friday", value: "friday" },
-    { label: "Saturday", value: "saturday" },
-    { label: "Sunday", value: "sunday" },
+    { label: t("monday"), value: "monday" },
+    { label: t("tuesday"), value: "tuesday" },
+    { label: t("wednesday"), value: "wednesday" },
+    { label: t("thursday"), value: "thursday" },
+    { label: t("friday"), value: "friday" },
+    { label: t("saturday"), value: "saturday" },
+    { label: t("sunday"), value: "sunday" },
   ];
   const weekdayValues = weekdays.map((day) => day.value);
   const PLAN_DURATION_OPTIONS = [
-    { label: "Select Plan Duration", value: "" },
-    { label: "1 Day", value: "1" },
-    { label: "2 Days", value: "2" },
-    { label: "3 Days", value: "3" },
-    { label: "4 Days", value: "4" },
-    { label: "5 Days", value: "5" },
-    { label: "6 Days", value: "6" },
-    { label: "Every Day", value: "7" },
+    { label: t("pickDays"), value: "" },
+    { label: `1 ${t("day")}`, value: "1" },
+    { label: `2 ${t("days")}`, value: "2" },
+    { label: `3 ${t("days")}`, value: "3" },
+    { label: `4 ${t("days")}`, value: "4" },
+    { label: `5 ${t("days")}`, value: "5" },
+    { label: `6 ${t("days")}`, value: "6" },
+    { label: t("everyDay"), value: "7" },
   ];
 
   const getPickerOptions = (key) => {
     if (key === "level") return LEVEL_OPTIONS;
     if (key === "workoutGoal") return GOAL_OPTIONS;
     if (key === "planDuration") return PLAN_DURATION_OPTIONS.slice(1);
+    if (key === "language") return LANGUAGE_OPTIONS;
     return undefined;
   };
 
@@ -112,54 +118,61 @@ const About = () => {
   const info = [
     {
       key: "workoutGoal",
-      label: "Workout Goal",
+      label: t("workoutGoalLabel"),
       value: UserProfile?.workoutGoal ?? "",
       updater: updateGoal,
       parser: (val) => val?.trim?.() ?? "",
     },
     {
       key: "age",
-      label: "Age",
+      label: t("ageLabel"),
       value: UserProfile?.age ?? "",
       updater: updateAge,
       keyboardType: "number-pad",
-      parser: (val, previous) => safeInt(val, previous ?? 0),
+      parser: (val, prev) => safeInt(val, prev ?? 0),
     },
     {
       key: "height",
-      label: "Height",
+      label: t("heightLabel"),
       value: UserProfile?.height ?? "",
       updater: updateHeight,
       keyboardType: "numeric",
-      parser: (val, previous) => safeFloat(val, previous ?? 0),
+      parser: (val, prev) => safeFloat(val, prev ?? 0),
     },
     {
       key: "weight",
-      label: "Weight",
+      label: t("weightLabel"),
       value: UserProfile?.weight ?? "",
       updater: updateWeight,
       keyboardType: "numeric",
-      parser: (val, previous) => safeFloat(val, previous ?? 0),
+      parser: (val, prev) => safeFloat(val, prev ?? 0),
     },
     {
       key: "level",
-      label: "Fitness Level",
+      label: t("fitnessLevel"),
       value: UserProfile?.level ?? "",
       updater: updateLevel,
       parser: (val) => val?.trim?.() ?? "",
     },
     {
       key: "planDuration",
-      label: "Plan Duration",
+      label: t("planDuration"),
       value: UserProfile?.PlanDuration ?? "",
       updater: updatePlanDuration,
       parser: (val) => val?.trim?.() ?? "",
     },
     {
       key: "equipment",
-      label: "Equipment",
+      label: t("equipmentLabel"),
       value: UserProfile?.equipment ?? "",
       updater: updateEquipment,
+      parser: (val) => val?.trim?.() ?? "",
+    },
+    {
+      key: "language",
+      label: t("language"),
+      value: UserProfile?.language ?? "en",
+      updater: updateLanguage,
       parser: (val) => val?.trim?.() ?? "",
     },
   ];
@@ -252,7 +265,7 @@ const About = () => {
             textAlign: "center",
             borderColor: "red",
           }}>
-          Clear all data
+          {t("clearAllData")}
         </Text>
       </Pressable>
     </View>
@@ -260,7 +273,7 @@ const About = () => {
 
   return (
     <SafeScreen style={{ ...styles.Background, flex: 1 }}>
-      <Text style={styles.defaultText}>About you</Text>
+      <Text style={styles.defaultText}>{t("aboutYou")}</Text>
       <View
         style={{
           flex: 1,
@@ -324,11 +337,12 @@ const About = () => {
                   marginBottom: 16,
                   textAlign: "center",
                 }}>
-                Update {selectedField.label}
+                {t("update")} {selectedField.label}
               </Text>
               {selectedField.key === "level" ||
               selectedField.key === "workoutGoal" ||
               selectedField.key === "equipment" ||
+              selectedField.key === "language" ||
               selectedField.key === "planDuration" ? (
                 <>
                   <Picker
@@ -348,7 +362,9 @@ const About = () => {
                             ? "Select Workout Goal"
                             : selectedField.key === "equipment"
                               ? "Select Equipment"
-                              : "Select Plan Duration"
+                              : selectedField.key === "language"
+                                ? "Select Language"
+                                : "Select Plan Duration"
                       }
                       value=""
                       color="#ccc"
@@ -359,9 +375,11 @@ const About = () => {
                         ? GOAL_OPTIONS
                         : selectedField.key === "equipment"
                           ? Equipment
-                          : selectedField.key === "planDuration"
-                            ? PLAN_DURATION_OPTIONS.slice(1)
-                            : []
+                          : selectedField.key === "language"
+                            ? LANGUAGE_OPTIONS
+                            : selectedField.key === "planDuration"
+                              ? PLAN_DURATION_OPTIONS.slice(1)
+                              : []
                     ).map((option) => (
                       <Picker.Item
                         key={option.value}
@@ -444,7 +462,7 @@ const About = () => {
                     alignItems: "center",
                   }}>
                   <Text style={{ color: "#333", fontWeight: "600" }}>
-                    Cancel
+                    {t("cancel")}
                   </Text>
                 </Pressable>
                 <Pressable
@@ -458,7 +476,7 @@ const About = () => {
                     alignItems: "center",
                   }}>
                   <Text style={{ color: "white", fontWeight: "600" }}>
-                    Save
+                    {t("save")}
                   </Text>
                 </Pressable>
               </View>

@@ -1,31 +1,25 @@
 import {
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  KeyboardAvoidingView,
-  Platform,
   Keyboard,
-  TouchableWithoutFeedback,
+  KeyboardAvoidingView,
   LayoutAnimation,
-  Vibration,
+  Platform,
+  Pressable,
+  Text,
+  TouchableWithoutFeedback,
+  UIManager,
+  View,
 } from "react-native";
-import { UIManager } from "react-native";
 
 import * as Haptics from "expo-haptics";
-import React, { useState } from "react";
-import SafeScreen from "../components/SafeScreen";
-import { useWorkout } from "../contexts/WorkoutContext";
 import { router } from "expo-router";
-
-import style from "../components/style";
-import AnimatedItem from "../animations/AnimatedItem";
-import iconSet from "@expo/vector-icons/build/Fontisto";
-import { Ionicons } from "@expo/vector-icons";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import GymMembershipIcon from "../../icons/GymMembershipIcon";
-import AtHomeEquipmentIcon from "../../icons/AtHomeEquipmentIcon";
 import NoEquipmentIcon from "../../icons/NoEquipmentIcon";
+import AnimatedItem from "../animations/AnimatedItem";
+import SafeScreen from "../components/SafeScreen";
+import style from "../components/style";
+import { useWorkout } from "../contexts/WorkoutContext";
 
 if (
   Platform.OS === "android" &&
@@ -33,47 +27,48 @@ if (
 ) {
   UIManager.setLayoutAnimationEnabledExperimental(true);
 }
+
 const ScreenTwo = () => {
   const [showHomeEquipment, setShowHomeEquipment] = useState(false);
+  const { updateEquipment } = useWorkout();
+  const { t } = useTranslation();
+  const [selectedOption, setSelectedOption] = useState(null);
+  const { push } = router;
 
   const toggleHomeEquipment = () => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setShowHomeEquipment(!showHomeEquipment);
   };
 
-  const { updateEquipment } = useWorkout();
-  const [inputValue, setInputValue] = useState("");
-  const [selectedOption, setSelectedOption] = useState(null);
-  const [addedEquipment, setAddedEquipment] = useState(false);
-  const equipmentOptions = ["Gym Membership", "No Equipment"];
-  const { push } = router;
+  // Map translation keys to equipment values stored in context
+  const equipmentOptions = [
+    { key: "gymMembership", value: "Gym Membership" },
+    { key: "noEquipment", value: "No Equipment" },
+  ];
+
   const handleOnPress = (option) => {
-    setSelectedOption(option);
-    updateEquipment(option);
-    if (option === "At Home Equipment") {
-      setAddedEquipment((prev) => !prev);
-    } else {
-      push("PlanDurationScreen");
-    }
+    setSelectedOption(option.value);
+    updateEquipment(option.value);
+    push("PlanDurationScreen");
     toggleHomeEquipment();
-    // Vibration.vibrate(50);
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
   };
-  function getIcon(option) {
-    switch (option) {
+
+  function getIcon(value) {
+    switch (value) {
       case "Gym Membership":
         return (
-          <GymMembershipIcon isActive={selectedOption === option} size={40} />
+          <GymMembershipIcon isActive={selectedOption === value} size={40} />
         );
-
       case "No Equipment":
         return (
-          <NoEquipmentIcon isActive={selectedOption === option} size={40} />
+          <NoEquipmentIcon isActive={selectedOption === value} size={40} />
         );
       default:
         return null;
     }
   }
+
   return (
     <SafeScreen style={style.Background}>
       <KeyboardAvoidingView
@@ -82,27 +77,23 @@ const ScreenTwo = () => {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={{ alignItems: "center" }}>
             <AnimatedItem Screen={"ScreenTwo"}>
-              <Text style={style.TitleText}>
-                Select Your {"\n"} Available Equipment
-              </Text>
-              {equipmentOptions.map((option) => {
-                return (
-                  <Pressable
-                    style={{ ...style.workoutGoalButton, marginTop: 40 }}
-                    key={option}
-                    onPress={() => handleOnPress(option)}>
-                    <View
-                      style={{
-                        flexDirection: "row",
-                        alignItems: "center",
-                        gap: 8,
-                      }}>
-                      <Text style={style.defaultText}>{option}</Text>
-                      {getIcon(option)}
-                    </View>
-                  </Pressable>
-                );
-              })}
+              <Text style={style.TitleText}>{t("selectEquipment")}</Text>
+              {equipmentOptions.map((option) => (
+                <Pressable
+                  style={{ ...style.workoutGoalButton, marginTop: 40 }}
+                  key={option.value}
+                  onPress={() => handleOnPress(option)}>
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      alignItems: "center",
+                      gap: 8,
+                    }}>
+                    <Text style={style.defaultText}>{t(option.key)}</Text>
+                    {getIcon(option.value)}
+                  </View>
+                </Pressable>
+              ))}
             </AnimatedItem>
           </View>
         </TouchableWithoutFeedback>

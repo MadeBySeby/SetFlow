@@ -1,25 +1,23 @@
-import {
-  View,
-  Text,
-  ScrollView,
-  FlatList,
-  ActivityIndicator,
-  Pressable,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
-import React, { useEffect, useState } from "react";
-import styles from "./components/style";
-import { router, useLocalSearchParams } from "expo-router";
-import { getExerciseById } from "./api/exercises";
-import { getExerciseById2 } from "./api/exercises";
-import { Image } from "expo-image";
-import { Video } from "expo-av";
-import LottieView from "lottie-react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { Image } from "expo-image";
+import { router, useLocalSearchParams } from "expo-router";
+import LottieView from "lottie-react-native";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import {
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { getExerciseById2 } from "./api/exercises";
 import SafeScreen from "./components/SafeScreen";
+import styles from "./components/style";
 
 const ExerciseDetail = ({ id, field = "details", onClose }) => {
+  const { i18n } = useTranslation();
   const route = useLocalSearchParams();
   console.log("route in ExerciseDetail", route);
   const exerciseId = route?.exerciseId || id;
@@ -77,18 +75,113 @@ const ExerciseDetail = ({ id, field = "details", onClose }) => {
             </TouchableOpacity>
           </>
         ) : (
-          <>
-            {/* Header */}
-            <View style={detailStyles.header}>
-              <Pressable onPress={handleGoBack} style={detailStyles.backButton}>
-                <Ionicons name="arrow-back-circle" size={32} color="#47b977" />
-              </Pressable>
-              <Text style={detailStyles.exerciseName}>{exercise.name}</Text>
-            </View>
+          (() => {
+            let translatedName = exercise.name;
+            let translatedTarget = exercise.targetMuscles?.[0] || "N/A";
+            let translatedEquipment = exercise.equipments || "N/A";
+            let translatedInstructions = [...(exercise.instructions || [])];
 
-            {/* Media Section */}
-            <View style={detailStyles.mediaContainer}>
-              {/* {field != "WorkoutScreen" ? (
+            if (i18n.language === "ka") {
+              const engToKa = {
+                "push-up": "აზიდვები",
+                squat: "ჩაჯდომები",
+                lunge: "ნაბიჯები წინ",
+                plank: "პლანკა",
+                crunch: "პრესის ვარჯიში",
+                "pull-up": "აწევა ძელზე",
+                row: "ამოწევა",
+                curl: "მოხრა",
+                press: "აწევა ზემოთ",
+                extension: "გაშლა",
+                fly: "განზე გაშლა",
+                raise: "აწევა",
+                dip: "ორძელზე აზიდვა",
+                deadlift: "მკვდარი წევა",
+                dumbbell: "ჰანტელით",
+                barbell: "შტანგით",
+                cable: "ბლოკზე",
+                machine: "ტრენაჟორზე",
+                bodyweight: "საკუთარი წონით",
+                seated: "მჯდომარე",
+                standing: "მდგომარე",
+                lying: "მწოლიარე",
+                incline: "დახრილზე",
+                decline: "უარყოფით დახრილზე",
+                "close-grip": "ვიწრო მოჭიდებით",
+                "wide-grip": "ფართო მოჭიდებით",
+                "reverse-grip": "უკუმოჭიდებით",
+                "one arm": "ცალი ხელით",
+                chest: "მკერდის",
+                back: "ზურგის",
+                shoulder: "მხრის",
+                leg: "ფეხის",
+                arm: "ხელის",
+                triceps: "ტრიცეპსის",
+                biceps: "ბიცეპსის",
+                calf: "წვივის",
+                abdominal: "პრესის",
+                kneeling: "მუხლებზე მდგომი",
+                "front lever": "წინა ლევერი",
+                "muscle-up": "მასლაპი",
+                // specific parts
+                cardio: "კარდიო",
+                neck: "კისერი",
+                waist: "წელი",
+                "lower legs": "ქვედა კიდურები",
+                "upper legs": "ზედა კიდურები",
+                "upper arms": "ზედა მკლავები",
+                "lower arms": "ქვედა მკლავები",
+              };
+
+              const transliterate = (str) => {
+                let s = str.toLowerCase();
+                for (const [eng, ka] of Object.entries(engToKa)) {
+                  if (s.includes(eng)) {
+                    s = s.replace(new RegExp(eng, "g"), ka);
+                  }
+                }
+                return s.charAt(0).toUpperCase() + s.slice(1);
+              };
+
+              translatedName = transliterate(exercise.name);
+              translatedTarget = transliterate(
+                exercise.targetMuscles?.[0] || "",
+              );
+              translatedEquipment = transliterate(exercise.equipments || "");
+              // Since instructions can be complex, doing lightweight keyword replacement
+              translatedInstructions = translatedInstructions.map((ins) => {
+                let s = ins;
+                for (const [eng, ka] of Object.entries(engToKa)) {
+                  s = s.replace(new RegExp(eng, "gi"), ka);
+                }
+                return s;
+              });
+            }
+
+            return (
+              <>
+                {/* Header */}
+                <View style={detailStyles.header}>
+                  <Pressable
+                    onPress={handleGoBack}
+                    style={detailStyles.backButton}>
+                    <Ionicons
+                      name="arrow-back-circle"
+                      size={32}
+                      color="#47b977"
+                    />
+                  </Pressable>
+                  <Text
+                    style={detailStyles.exerciseName}
+                    adjustsFontSizeToFit
+                    numberOfLines={2}>
+                    {translatedName}
+                  </Text>
+                </View>
+
+                {/* Media Section */}
+                <View style={detailStyles.mediaContainer}>
+                  {/* {field != "WorkoutScreen" ? (
                 <Video
                   source={{ uri: exercise.videoUrl }}
                   style={detailStyles.media}
@@ -104,47 +197,53 @@ const ExerciseDetail = ({ id, field = "details", onClose }) => {
                   transition={300}
                 />
               )} */}
-              <Image
-                source={{ uri: exercise.gifUrl }}
-                style={detailStyles.media}
-                contentFit="contain"
-                transition={300}
-              />
-            </View>
+                  <Image
+                    source={{ uri: exercise.gifUrl }}
+                    style={detailStyles.media}
+                    contentFit="contain"
+                    transition={300}
+                  />
+                </View>
 
-            {/* Info Pills */}
-            <View style={detailStyles.infoPills}>
-              <View style={detailStyles.infoPill}>
-                <Text style={detailStyles.infoPillLabel}>Target Muscle</Text>
-                <Text style={detailStyles.infoPillValue}>
-                  {exercise.targetMuscles?.[0] || "N/A"}
-                </Text>
-              </View>
-              <View style={detailStyles.infoPill}>
-                <Text style={detailStyles.infoPillLabel}>Equipment</Text>
-                <Text style={detailStyles.infoPillValue}>
-                  {exercise.equipments || "N/A"}
-                </Text>
-              </View>
-            </View>
-
-            {/* Instructions */}
-            <View style={detailStyles.instructionsContainer}>
-              <Text style={detailStyles.instructionsTitle}>Instructions</Text>
-              {exercise.instructions?.map((item, index) => (
-                <View key={index} style={detailStyles.instructionItem}>
-                  <View style={detailStyles.instructionNumber}>
-                    <Text style={detailStyles.instructionNumberText}>
-                      {index + 1}
+                {/* Info Pills */}
+                <View style={detailStyles.infoPills}>
+                  <View style={detailStyles.infoPill}>
+                    <Text style={detailStyles.infoPillLabel}>
+                      Target Muscle
+                    </Text>
+                    <Text style={detailStyles.infoPillValue}>
+                      {translatedTarget}
                     </Text>
                   </View>
-                  <Text style={detailStyles.instructionText}>
-                    {item.replace(/^Step:\d+\s*/, "")}
-                  </Text>
+                  <View style={detailStyles.infoPill}>
+                    <Text style={detailStyles.infoPillLabel}>Equipment</Text>
+                    <Text style={detailStyles.infoPillValue}>
+                      {translatedEquipment}
+                    </Text>
+                  </View>
                 </View>
-              ))}
-            </View>
-          </>
+
+                {/* Instructions */}
+                <View style={detailStyles.instructionsContainer}>
+                  <Text style={detailStyles.instructionsTitle}>
+                    Instructions
+                  </Text>
+                  {translatedInstructions?.map((item, index) => (
+                    <View key={index} style={detailStyles.instructionItem}>
+                      <View style={detailStyles.instructionNumber}>
+                        <Text style={detailStyles.instructionNumberText}>
+                          {index + 1}
+                        </Text>
+                      </View>
+                      <Text style={detailStyles.instructionText}>
+                        {item.replace(/^Step:\d+\s*/, "")}
+                      </Text>
+                    </View>
+                  ))}
+                </View>
+              </>
+            );
+          })()
         )}
       </ScrollView>
     </SafeScreen>

@@ -1,3 +1,10 @@
+import { Ionicons } from "@expo/vector-icons";
+import { BlurView } from "expo-blur";
+import * as Haptics from "expo-haptics";
+import { Image } from "expo-image";
+import LottieView from "lottie-react-native";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Modal,
   Pressable,
@@ -7,19 +14,12 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useState, useContext } from "react";
-import styles from "../components/style";
-import SafeScreen from "../components/SafeScreen";
-import { Ionicons } from "@expo/vector-icons";
-import { Image } from "expo-image";
-import { BlurView } from "expo-blur";
-import TimerComponent from "../components/TimerComponent";
-import ExerciseDetail from "../ExerciseDetail";
-import LottieView from "lottie-react-native";
-import * as Haptics from "expo-haptics";
-import { useWorkout } from "../contexts/WorkoutContext";
 import * as Progress from "react-native-progress";
-import { Sound } from "expo-av/build/Audio";
+import SafeScreen from "../components/SafeScreen";
+import styles from "../components/style";
+import TimerComponent from "../components/TimerComponent";
+import { useWorkout } from "../contexts/WorkoutContext";
+import ExerciseDetail from "../ExerciseDetail";
 const WorkoutScreen = ({
   selectedDate,
   setWorkoutModalVisible,
@@ -34,8 +34,14 @@ const WorkoutScreen = ({
   const [animationShow, setAnimationShow] = useState(false);
   const [phase, setPhase] = useState("idle");
   const [timeLeft, setTimeLeft] = useState(0);
-  const { addWorkout, setRestartWorkoutValue, restartWorkoutValue } =
-    useWorkout();
+  const {
+    addWorkout,
+    setRestartWorkoutValue,
+    restartWorkoutValue,
+    UserProfile,
+  } = useWorkout();
+  const { t } = useTranslation();
+  const language = UserProfile?.language || "en";
   const [exerciseForHistory, setExerciseForHistory] = useState([]);
   const handleSetComplete = (setNumber) => {
     if (setNumber === completedSets + 1) {
@@ -51,7 +57,10 @@ const WorkoutScreen = ({
           display: "flex",
         }}>
         <Text style={{ ...styles.defaultText }}>
-          Workout {nextWorkoutNumber + 1} of {currentExercise.length}
+          {t("workout", {
+            current: nextWorkoutNumber + 1,
+            total: currentExercise.length,
+          })}
         </Text>
         <View>
           <Pressable
@@ -98,8 +107,22 @@ const WorkoutScreen = ({
               contentFit="cover"
               transition={100}
             />
-            <Text style={{ ...styles.defaultText, marginTop: 10 }}>
-              Reps: {currentExercise[nextWorkoutNumber].reps}
+            <Text style={workoutStyles.exerciseDetails}>
+              {t("reps")}: {currentExercise[nextWorkoutNumber].reps}
+              {currentExercise[nextWorkoutNumber].weight
+                ? `  |  ${t("weight")}: ${currentExercise[nextWorkoutNumber].weight}`
+                : ""}
+            </Text>
+            <Text
+              style={{
+                ...styles.defaultText,
+                opacity: 0.7,
+                marginTop: 4,
+                textTransform: "capitalize",
+              }}>
+              {language === "ka" && currentExercise[nextWorkoutNumber].name_ka
+                ? currentExercise[nextWorkoutNumber].name_ka
+                : currentExercise[nextWorkoutNumber].name}
             </Text>
           </TouchableOpacity>
           <Modal
@@ -373,5 +396,15 @@ const WorkoutScreen = ({
     </SafeScreen>
   );
 };
+
+const workoutStyles = StyleSheet.create({
+  exerciseDetails: {
+    ...styles.defaultText,
+    marginTop: 10,
+    fontSize: 18,
+    fontWeight: "600",
+    color: "#47b977",
+  },
+});
 
 export default WorkoutScreen;

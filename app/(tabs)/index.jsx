@@ -1,20 +1,20 @@
+import dayjs from "dayjs";
+import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Pressable, Text, View } from "react-native";
-import React, { useMemo, useState } from "react";
+import CalendarStrip from "react-native-calendar-strip";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import SafeScreen from "../components/SafeScreen";
 import styles from "../components/style";
-
-import CalendarStrip from "react-native-calendar-strip";
 import WorkoutPreview from "../components/WorkoutPreview";
-import dayjs from "dayjs";
 import { useWorkout } from "../contexts/WorkoutContext";
-import { Redirect } from "expo-router";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const HomeScreen = () => {
   const today = dayjs();
   const [selectedDate, setSelectedDate] = useState(today);
   const { isOnboardingCompleted } = useWorkout();
   const insets = useSafeAreaInsets();
+  const { t } = useTranslation();
   const date = new Date(selectedDate);
   const month = date.getMonth() + 1;
   const day = date.getDate();
@@ -121,24 +121,21 @@ const HomeScreen = () => {
                 paddingHorizontal: 10,
                 textAlign: "center",
               }}>
-              You have already completed your workout for today! Great job!👏
+              {t("workoutDoneToday")}
             </Text>
             <Pressable>
               <Text
                 style={{
                   ...styles.workoutGoalButton,
                   width: 200,
-                  // alignContent: "center",
                   textAlign: "center",
-                  // display: "flex",
-                  // justifyContent: "center",
                   marginTop: 20,
                   fontSize: 16,
                 }}
                 onPress={() => {
                   setRestartWorkoutValue(true);
                 }}>
-                Restart Workout
+                {t("restartWorkout")}
               </Text>
             </Pressable>
           </View>

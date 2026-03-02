@@ -1,25 +1,24 @@
+import { Ionicons } from "@expo/vector-icons";
+import { Image } from "expo-image";
+import { useTranslation } from "react-i18next";
 import {
+  Dimensions,
   FlatList,
   Pressable,
   StyleSheet,
   Text,
   View,
-  Dimensions,
 } from "react-native";
-import React from "react";
-import { useWorkout } from "../contexts/WorkoutContext";
-import styles from "../components/style";
-import SafeScreen from "../components/SafeScreen";
-import { Image } from "expo-image";
 import NoWorkoutsLoggedYetDefaultMascot from "../assets/noWorkoutsLoggedYetDefault.svg";
-import { Ionicons } from "@expo/vector-icons";
+import SafeScreen from "../components/SafeScreen";
+import styles from "../components/style";
+import { useWorkout } from "../contexts/WorkoutContext";
 
 const { width } = Dimensions.get("window");
 
 const WorkoutsHistory = () => {
   const { workoutHistory, clearWorkoutData } = useWorkout();
-
-  // Sort history by date (newest first)
+  const { t } = useTranslation();
   const sortedHistory = [...workoutHistory].reverse();
 
   const renderWorkoutItem = ({ item }) => {
@@ -31,7 +30,7 @@ const WorkoutsHistory = () => {
           </View>
           <View style={historyStyles.exerciseBadge}>
             <Text style={historyStyles.badgeText}>
-              {item.data?.length || 0} Exercises
+              {item.data?.length || 0} {t("exercises")}
             </Text>
           </View>
         </View>
@@ -63,7 +62,7 @@ const WorkoutsHistory = () => {
     <SafeScreen style={styles.Background}>
       <View style={historyStyles.container}>
         <Text style={[styles.TitleText, { marginBottom: 20 }]}>
-          Workout History
+          {t("workoutHistory")}
         </Text>
 
         <FlatList
@@ -80,11 +79,11 @@ const WorkoutsHistory = () => {
                   styles.defaultText,
                   { color: "#47b977", marginTop: 20 },
                 ]}>
-                No workouts logged yet.
+                {t("noWorkoutsYet")}
               </Text>
               <Text
                 style={[styles.defaultText, { fontSize: 14, opacity: 0.6 }]}>
-                Finish a workout to see it here!
+                {t("finishToSeeHere")}
               </Text>
             </View>
           }
@@ -94,7 +93,9 @@ const WorkoutsHistory = () => {
                 style={historyStyles.clearButton}
                 onPress={clearWorkoutData}>
                 <Ionicons name="trash-outline" size={20} color="white" />
-                <Text style={historyStyles.clearButtonText}>Clear History</Text>
+                <Text style={historyStyles.clearButtonText}>
+                  {t("clearHistory")}
+                </Text>
               </Pressable>
             ) : null
           }

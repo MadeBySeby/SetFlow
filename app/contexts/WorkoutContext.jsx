@@ -1,6 +1,8 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
 import AsyncStorge from "@react-native-async-storage/async-storage";
-import { filterPlanByDays, PresetPlans } from "../api/PreSetPlans";
+import { Widget } from "expo-widgets";
+import { createContext, useContext, useEffect, useState } from "react";
+import { fetchPresetPlan } from "../api/presetPlansApi";
+import i18n from "../i18n";
 
 export const WorkoutContext = createContext();
 
@@ -14,6 +16,7 @@ export const WorkoutProvider = ({ children }) => {
     PlanDuration: null,
     equipment: [],
     level: null,
+    language: "en",
   });
   const [workoutHistory, setWorkoutHistory] = useState([]);
   const [isOnboardingCompleted, setIsOnboardingCompleted] = useState(false);
@@ -29,9 +32,15 @@ export const WorkoutProvider = ({ children }) => {
         const historyData = await AsyncStorge.getItem("WorkoutHistory");
         const planData = await AsyncStorge.getItem("userPlan");
         const onboardingStatus = await AsyncStorge.getItem(
-          "OnboardingCompleted"
+          "OnboardingCompleted",
         );
-        if (profileData) setUserProfile(JSON.parse(profileData));
+        if (profileData) {
+          const parsed = JSON.parse(profileData);
+          setUserProfile(parsed);
+          if (parsed.language) {
+            i18n.changeLanguage(parsed.language);
+          }
+        }
         if (historyData) setWorkoutHistory(JSON.parse(historyData));
         if (planData) setPlan(JSON.parse(planData));
         if (onboardingStatus === "true") setIsOnboardingCompleted(true);
@@ -53,54 +62,98 @@ export const WorkoutProvider = ({ children }) => {
     if (hydrated) {
       AsyncStorge.setItem("WorkoutHistory", JSON.stringify(workoutHistory));
       console.log("WorkoutHistory updated", workoutHistory);
+
+      // Sync data to the FlowWidget
+      try {
+        const todayStr = new Date().toISOString().split("T")[0];
+        const todaysWorkouts = workoutHistory.filter(
+          (w) => w.date === todayStr,
+        );
+
+        // Map to a lightweight structure to prevent hitting memory limits
+        const widgetData = todaysWorkouts.map((w) => ({
+          type: w.type,
+          exercises: Array.isArray(w.data)
+            ? w.data.map((ex) => ex.name || "Exercise").join(", ")
+            : "Workout",
+        }));
+
+        const widget = new Widget("FlowWidget");
+        widget.updateSnapshot({ workouts: widgetData });
+        console.log("FlowWidget snapshot updated", widgetData);
+      } catch (err) {
+        console.warn("Failed to update FlowWidget", err);
+      }
     }
   }, [workoutHistory]);
   useEffect(() => {
     if (hydrated) {
       AsyncStorge.setItem(
         "OnboardingCompleted",
-        isOnboardingCompleted ? "true" : "false"
+        isOnboardingCompleted ? "true" : "false",
       );
       console.log("Onboarding status updated", isOnboardingCompleted);
     }
   }, [isOnboardingCompleted]);
   useEffect(() => {
     if (!hydrated) return;
+    const equipmentKey = (UserProfile.equipment || "")
+      .toString()
+      .split(" ")
+      .join("");
     if (
       !UserProfile.level ||
       !UserProfile.workoutGoal ||
-      !UserProfile.PlanDuration
+      !UserProfile.PlanDuration ||
+      !equipmentKey
     )
       return;
-    console.log(
-      "Generating plan for:",
-      UserProfile.equipment.split(" ").join(""),
-      PresetPlans[0]?.[UserProfile.level]?.["NoEquipment"]?.[
-        UserProfile.workoutGoal
-      ]
-    );
-    let planFromPreset =
-      PresetPlans[0]?.[UserProfile.level]?.[
-        UserProfile.equipment.split(" ").join("")
-      ]?.[UserProfile.workoutGoal] || [];
-    planFromPreset = filterPlanByDays(
-      planFromPreset,
-      parseInt(UserProfile.PlanDuration) || 0
-    );
-    console.log("Filtered Plan:", planFromPreset);
-    if (planFromPreset) {
-      setPlan(planFromPreset);
-      AsyncStorge.setItem("userPlan", JSON.stringify(planFromPreset));
-    } else {
-      console.warn(
-        "No plan found for:",
-        UserProfile.level,
-        UserProfile.workoutGoal
-      );
-      setPlan([]);
-      AsyncStorge.removeItem("userPlan");
-    }
-  }, [UserProfile.level, UserProfile.workoutGoal, hydrated]);
+
+    const loadPlan = async () => {
+      try {
+        const rows = await fetchPresetPlan(
+          UserProfile.level,
+          UserProfile.equipment,
+          UserProfile.workoutGoal,
+        );
+
+        // Filter to only the number of weeks that match PlanDuration
+        const duration = parseInt(UserProfile.PlanDuration) || 0;
+        // Each week object has `duration` days; slice to requested weeks
+        const filtered =
+          duration > 0
+            ? rows.slice(0, Math.ceil((duration * 4) / 7) || rows.length)
+            : rows;
+
+        if (filtered && filtered.length > 0) {
+          setPlan(filtered);
+          AsyncStorge.setItem("userPlan", JSON.stringify(filtered));
+        } else {
+          console.warn(
+            "No plan found in Supabase for:",
+            UserProfile.level,
+            UserProfile.workoutGoal,
+          );
+          setPlan([]);
+          AsyncStorge.removeItem("userPlan");
+        }
+      } catch (err) {
+        console.error(
+          "Failed to load plan from Supabase, using cached plan.",
+          err,
+        );
+        // If fetch fails, keep whatever is in AsyncStorage (already loaded on hydrate)
+      }
+    };
+
+    loadPlan();
+  }, [
+    UserProfile.level,
+    UserProfile.workoutGoal,
+    UserProfile.PlanDuration,
+    UserProfile.equipment,
+    hydrated,
+  ]);
 
   const clearWorkoutData = async () => {
     try {
@@ -184,6 +237,10 @@ export const WorkoutProvider = ({ children }) => {
     },
     clearWorkoutData,
     updateLevel: (level) => setUserProfile((prev) => ({ ...prev, level })),
+    updateLanguage: (lang) => {
+      setUserProfile((prev) => ({ ...prev, language: lang }));
+      i18n.changeLanguage(lang);
+    },
     clearAllData,
     restartWorkoutValue,
     setRestartWorkoutValue,

@@ -2,7 +2,7 @@
   "expo": {
     "name": "SetFlow Fitness",
     "slug": "SetFlow",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "orientation": "portrait",
     "icon": "./assets/logo.png",
     "scheme": "setflow",
@@ -17,7 +17,7 @@
       "splash": {
         "image": "./assets/splashImage2.png",
         "resizeMode": "contain",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#050A30"
       },
       "supportsTablet": true,
       "jsEngine": "hermes",
@@ -29,7 +29,7 @@
     "android": {
       "googleServicesFile": "./android/app/google-services.json",
       "package": "com.anonymous.SetFlow",
-      "versionCode": 6,
+      "versionCode": 7,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#050A30"
@@ -72,6 +72,20 @@
         {
           "icon": "./assets/logo.png",
           "color": "#ffffff"
+        }
+      ],
+      "expo-localization",
+      [
+        "expo-widgets",
+        {
+          "widgets": [
+            {
+              "name": "FlowWidget",
+              "displayName": "SetFlow",
+              "description": "SetFlow Fitness widget",
+              "supportedFamilies": ["systemSmall", "systemMedium"]
+            }
+          ]
         }
       ]
     ],

@@ -1,10 +1,11 @@
-import "react-native-reanimated";
-import { Slot, useRouter } from "expo-router";
-import { WorkoutProvider } from "./contexts/WorkoutContext";
 import { useFonts } from "expo-font";
 import * as Notifications from "expo-notifications";
+import { Slot } from "expo-router";
 import { useEffect } from "react";
+import "react-native-reanimated";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { WorkoutProvider } from "./contexts/WorkoutContext";
+import "./i18n";
 
 export default function AppLayout() {
   const [fontsLoaded] = useFonts({

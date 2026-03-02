@@ -1,50 +1,72 @@
-import {
-  Pressable,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import React, { useEffect, useState } from "react";
-import { router } from "expo-router";
-import SafeScreen from "../components/SafeScreen";
-import { useWorkout } from "../contexts/WorkoutContext";
 import * as Haptics from "expo-haptics";
-import svg, { Path } from "react-native-svg";
-import style from "../components/style";
-import { Button } from "@react-navigation/elements";
-import BoardingButtons from "../components/BoardingButtons";
+import { router } from "expo-router";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Pressable, Text, TouchableOpacity, View } from "react-native";
 import AnimatedItem from "../animations/AnimatedItem";
-import { Audio } from "expo-av";
-import DuolingoLikeMascotOnScale from "../components/Mascot";
 import ButtonAnimation from "../animations/ButtonAnimation";
 import PrimaryCTAButton from "../components/PrimaryCTAButton";
+import SafeScreen from "../components/SafeScreen";
+import style from "../components/style";
+import { useWorkout } from "../contexts/WorkoutContext";
+
 const ScreenOne = () => {
-  const { updateGoal, UserProfile } = useWorkout();
+  const { updateGoal, updateLanguage, UserProfile } = useWorkout();
+  const { t } = useTranslation();
   const [selectedGoal, setSelectedGoal] = useState(null);
-  const goals = ["Muscle Gain", "Weight Loss", "Endurance"];
   const [clicked, setClicked] = useState(false);
 
-  const handleSelectGoal = (goal) => {
-    if (goal === "Muscle Gain") goal = "muscleGain";
-    if (goal === "Weight Loss") goal = "weightLoss";
-    if (goal === "Endurance") goal = "endurance";
-    updateGoal(goal);
-    setClicked(true);
-    if (selectedGoal === goal) {
-      setSelectedGoal(null);
-    } else {
-      setSelectedGoal(goal);
-    }
+  const currentLang = UserProfile?.language || "en";
 
+  const goalKeys = ["muscleGain", "weightLoss", "endurance"];
+
+  const handleSelectGoal = (goalKey) => {
+    updateGoal(goalKey);
+    setClicked(true);
+    setSelectedGoal(goalKey);
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+  };
+
+  const handleToggleLanguage = () => {
+    const newLang = currentLang === "en" ? "ka" : "en";
+    updateLanguage(newLang);
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
   };
 
   return (
     <SafeScreen style={style.Background}>
+      {/* Language Toggle — top right */}
+      <TouchableOpacity
+        onPress={handleToggleLanguage}
+        style={{
+          position: "absolute",
+          top: 16,
+          right: 20,
+          zIndex: 10,
+          flexDirection: "row",
+          alignItems: "center",
+          backgroundColor: "rgba(255,255,255,0.1)",
+          borderRadius: 20,
+          paddingHorizontal: 14,
+          paddingVertical: 6,
+          borderWidth: 1,
+          borderColor: "rgba(255,255,255,0.2)",
+        }}>
+        <Text style={{ ...style.defaultText, fontSize: 13, fontWeight: "600" }}>
+          {currentLang === "en" ? "🇬🇧 EN" : "🇬🇪 ქარ"}
+        </Text>
+      </TouchableOpacity>
+
       <AnimatedItem Screen={"ScreenOne"}>
-        <Text style={{ ...style.TitleText, textAlign: "center" }}>
-          Select Your{"\n"}Workout Goal
+        <Text
+          numberOfLines={3}
+          style={{
+            ...style.TitleText,
+            textAlign: "center",
+            width: "100%",
+            flexShrink: 1,
+          }}>
+          {t("selectGoal")}
         </Text>
         <View
           style={{
@@ -54,28 +76,24 @@ const ScreenOne = () => {
             justifyContent: "space-around",
             gap: 20,
           }}>
-          {goals.map((goal) => {
-            const isSelected =
-              selectedGoal?.toLowerCase().replace(/\s/g, "") ===
-              goal.toLowerCase().replace(/\s/g, "");
-
+          {goalKeys.map((goalKey) => {
+            const isSelected = selectedGoal === goalKey;
             return (
               <ButtonAnimation
-                key={goal}
+                key={goalKey}
                 clicked={isSelected}
                 screen={"ScreenOne"}>
                 <Pressable
-                  onPress={() => handleSelectGoal(goal)}
+                  onPress={() => handleSelectGoal(goalKey)}
                   style={{
                     ...style.workoutGoalButton,
-                    color: `${isSelected ? "white" : "red"}`,
                     backgroundColor: isSelected ? "#47b977" : "transparent",
                     width: "80%",
                     paddingVertical: 24,
                     paddingHorizontal: 30,
                   }}>
                   <Text style={{ ...style.defaultText, fontSize: 20 }}>
-                    {goal}
+                    {t(goalKey)}
                   </Text>
                 </Pressable>
               </ButtonAnimation>
@@ -94,7 +112,7 @@ const ScreenOne = () => {
               shadowOffset: { width: 0, height: 0 },
               backgroundColor: "transparent",
             }}
-            label="Continue"
+            label={t("continue")}
             textColor="white"
             borderColor="#47b977"
             onPress={() => {
@@ -109,5 +127,3 @@ const ScreenOne = () => {
 };
 
 export default ScreenOne;
-
-/// ინსტაგრამის ფოტოს ვიზუალის ჩაინტეგრირება

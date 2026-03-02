@@ -1,20 +1,23 @@
+import Slider from "@react-native-community/slider";
+import * as Haptics from "expo-haptics";
+import { router } from "expo-router";
+import { useTranslation } from "react-i18next";
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import PrimaryCTAButton from "../components/PrimaryCTAButton";
+import SafeScreen from "../components/SafeScreen";
 import styles from "../components/style";
 import { useWorkout } from "../contexts/WorkoutContext";
-import SafeScreen from "../components/SafeScreen";
-import { router } from "expo-router";
-import * as Haptics from "expo-haptics";
-import Slider from "@react-native-community/slider";
-import PrimaryCTAButton from "../components/PrimaryCTAButton";
+
 const PersonalDetailsScreen = () => {
   const { updateHeight, updateWeight, updateAge, UserProfile } = useWorkout();
   const { age, height, weight } = UserProfile;
+  const { t } = useTranslation();
   const allFieldsFilled = age && height && weight;
+
   const metricConfigs = [
     {
       key: "height",
-      label: "Height",
+      label: t("heightOnly"),
       unit: "cm",
       min: 140,
       max: 220,
@@ -23,7 +26,7 @@ const PersonalDetailsScreen = () => {
     },
     {
       key: "weight",
-      label: "Weight",
+      label: t("weightOnly"),
       unit: "kg",
       min: 40,
       max: 150,
@@ -32,8 +35,8 @@ const PersonalDetailsScreen = () => {
     },
     {
       key: "age",
-      label: "Age",
-      unit: "yrs",
+      label: t("ageOnly"),
+      unit: t("yrs"),
       min: 10,
       max: 100,
       value: age,
@@ -52,13 +55,13 @@ const PersonalDetailsScreen = () => {
         paddingTop: 30,
       }}>
       <Text style={{ ...styles.TitleText, marginTop: 0, textAlign: "center" }}>
-        Enter Your Personal Details
+        {t("enterPersonalDetails")}
       </Text>
       {metricConfigs.map((metric) => {
         const sliderValue = metric.value ?? metric.min;
         const valueLabel = metric.value
           ? `${metric.value} ${metric.unit}`
-          : `Slide to set ${metric.label.toLowerCase()}`;
+          : t("slideToSet", { label: metric.label.toLowerCase() });
 
         return (
           <View key={metric.key} style={detailStyles.metricCard}>
@@ -95,7 +98,7 @@ const PersonalDetailsScreen = () => {
       {allFieldsFilled && (
         <PrimaryCTAButton
           style={{ marginTop: 36 }}
-          label="Continue"
+          label={t("continue")}
           onPress={() => {
             router.push("LevelScreen");
             Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);

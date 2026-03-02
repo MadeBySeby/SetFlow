@@ -1,23 +1,32 @@
+import dayjs from "dayjs";
+import * as Haptics from "expo-haptics";
+import { Image } from "expo-image";
+import LottieView from "lottie-react-native";
+import { useEffect, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
+  FlatList,
+  Modal,
   StyleSheet,
   Text,
-  View,
-  FlatList,
-  Pressable,
-  Modal,
   TouchableOpacity,
+  View,
 } from "react-native";
-import React, { useEffect, useState, useContext } from "react";
-import styles from "./style";
-import { Image } from "expo-image";
-import { router } from "expo-router";
-import dayjs from "dayjs";
-import { useWorkout } from "../contexts/WorkoutContext";
 import WorkoutScreen from "../(onboarding)/WorkoutScreen";
-import * as Haptics from "expo-haptics";
-import AnimatedItem from "../animations/AnimatedItem";
-import BackgroundView from "./BackgroundView";
-import LottieView from "lottie-react-native";
+import ExerciseDetail from "../ExerciseDetail";
+import { useWorkout } from "../contexts/WorkoutContext";
+import styles from "./style";
+
+const weekdayMap = {
+  sunday: 0,
+  monday: 1,
+  tuesday: 2,
+  wednesday: 3,
+  thursday: 4,
+  friday: 5,
+  saturday: 6,
+};
+
 const WorkoutPreview = ({ selectedDate, month, day, dayOfTheWeek }) => {
   // const RestingDefaultMascot =
   //   require("../assets/restingDefaultMascot.svg").default;
@@ -25,55 +34,55 @@ const WorkoutPreview = ({ selectedDate, month, day, dayOfTheWeek }) => {
   const [currentExercise, setCurrentExercise] = useState([]);
   const [timerForStart, setTimerForStart] = useState(3);
   const [isWorkoutStarting, setIsWorkoutStarting] = useState(false);
+  const [exerciseDetailModalVisible, setExerciseDetailModalVisible] =
+    useState(false);
+  const [currentExerciseID, setCurrentExerciseID] = useState(null);
   const { plan, UserProfile, hydrated } = useWorkout() || {};
+  const { t } = useTranslation();
+  const language = UserProfile?.language || "en";
   const PlanDuration = UserProfile?.PlanDuration || 0;
 
   console.log("UserProfile in preview", UserProfile?.DailyWorkoutTime);
 
-  const weekdayMap = {
-    sunday: 0,
-    monday: 1,
-    tuesday: 2,
-    wednesday: 3,
-    thursday: 4,
-    friday: 5,
-    saturday: 6,
-  };
-
-  let daysForWorkout = (UserProfile?.DailyWorkoutTime).map(
-    (day) => weekdayMap[day],
-  );
+  const daysForWorkout = useMemo(() => {
+    return (UserProfile?.DailyWorkoutTime || []).map((day) => weekdayMap[day]);
+  }, [UserProfile?.DailyWorkoutTime]);
   console.log("daysForWorkout", plan, UserProfile, hydrated);
 
   useEffect(() => {
     console.log("daysforworkout", daysForWorkout);
     console.log("dayOfTheWeek", dayOfTheWeek, daysForWorkout);
-  }, [month, day]);
+  }, [month, day, dayOfTheWeek, daysForWorkout]);
 
   useEffect(() => {
     if (!plan || plan.length === 0) {
-      setCurrentExercise([{ name: "Rest Day" }]);
+      setCurrentExercise([{ name: t("restDayName") }]);
       return;
     }
 
-    const currentWeekKey = day / 7 > 1 ? "week2" : "week1";
-
+    const weekIndex = Math.floor((day - 1) / 7) % plan.length;
     const dayIndex = daysForWorkout.indexOf(dayOfTheWeek);
 
     if (dayIndex === -1 || dayIndex >= PlanDuration) {
-      setCurrentExercise([{ name: "Rest Day" }]);
+      setCurrentExercise([{ name: t("restDayName") }]);
       console.log("Today is a Rest Day");
       return;
     }
 
-    const currentDayKey = `day${dayIndex + 1}`;
-    const exercisesForDay = plan[currentWeekKey]?.[currentDayKey] || [
-      { name: "Rest Day" },
+    const currentDayKey = dayIndex + 1;
+    const exercisesForDay = plan[weekIndex]?.[currentDayKey] || [
+      { name: t("restDayName") },
     ];
     setCurrentExercise(exercisesForDay);
 
-    console.log("Workout Day:", currentDayKey, exercisesForDay);
-  }, [day, plan]);
+    console.log(
+      "Workout Day:",
+      currentDayKey,
+      "Week Index:",
+      weekIndex,
+      exercisesForDay,
+    );
+  }, [day, plan, dayOfTheWeek, daysForWorkout, PlanDuration, t]);
   console.log("current exercise", currentExercise);
   console.log("exercises in preview", currentExercise.length);
   const renderExercise = ({ item, index }) => {
@@ -83,14 +92,10 @@ const WorkoutPreview = ({ selectedDate, month, day, dayOfTheWeek }) => {
         <TouchableOpacity
           onPress={() => {
             console.log("item pressed", item);
-            router.push({
-              pathname: "/LevelScreen",
-              params: {
-                exerciseId: item?.exerciseId,
-              },
-            });
+            setCurrentExerciseID(item?.exerciseId);
+            setExerciseDetailModalVisible(true);
           }}
-          style={{ flexDirection: "row" }}>
+          style={{ flexDirection: "row", flex: 1 }}>
           <Image
             source={{ uri: item?.gif }}
             style={workoutStyles.exerciseGif}
@@ -98,7 +103,32 @@ const WorkoutPreview = ({ selectedDate, month, day, dayOfTheWeek }) => {
             transition={300}
           />
           <View style={workoutStyles.textContainer}>
-            <Text style={styles.defaultText}>{item?.name}</Text>
+            <Text style={workoutStyles.exerciseName}>
+              {language === "ka" && item?.name_ka ? item.name_ka : item?.name}
+            </Text>
+            <View style={workoutStyles.detailsRow}>
+              {item?.sets && (
+                <View style={workoutStyles.badge}>
+                  <Text style={workoutStyles.badgeText}>
+                    {item.sets} {t("sets")}
+                  </Text>
+                </View>
+              )}
+              {item?.reps && (
+                <View
+                  style={[workoutStyles.badge, { backgroundColor: "#334155" }]}>
+                  <Text style={workoutStyles.badgeText}>
+                    {item.reps} {typeof item.reps === "number" ? t("reps") : ""}
+                  </Text>
+                </View>
+              )}
+              {item?.weight && (
+                <View
+                  style={[workoutStyles.badge, { backgroundColor: "#47b977" }]}>
+                  <Text style={workoutStyles.badgeText}>{item.weight}</Text>
+                </View>
+              )}
+            </View>
           </View>
         </TouchableOpacity>
       </View>
@@ -142,7 +172,7 @@ const WorkoutPreview = ({ selectedDate, month, day, dayOfTheWeek }) => {
       }}>
       <Text
         style={{ ...styles.defaultText, color: "white", fontWeight: "600" }}>
-        Start Workout
+        {t("startWorkout")}
       </Text>
     </TouchableOpacity>
     // </AnimatedItem>
@@ -157,7 +187,7 @@ const WorkoutPreview = ({ selectedDate, month, day, dayOfTheWeek }) => {
           loop
           style={{ width: 300, height: 300, marginTop: -200 }}
         />
-        <Text style={styles.defaultText}>Writing your plan...</Text>
+        <Text style={styles.defaultText}>{t("writingPlan")}</Text>
       </View>
     );
   }
@@ -169,17 +199,29 @@ const WorkoutPreview = ({ selectedDate, month, day, dayOfTheWeek }) => {
         width: "100%",
         // backgroundColor: "#1e293b",
       }}>
-      {currentExercise[0]?.name !== "Rest Day" ? (
+      {currentExercise[0]?.name !== t("restDayName") ? (
         <Text style={{ ...styles.defaultText, marginTop: 10 }}>
-          Today we have {currentExercise.length} exercises
+          {t("todayWorkout", { count: currentExercise.length })}
         </Text>
       ) : null}
 
       {isWorkoutStarting ? (
         <Text style={{ ...styles.defaultText, marginTop: 10 }}>
-          Starting in {timerForStart}
+          {t("startingIn", { seconds: timerForStart })}
         </Text>
       ) : null}
+      <Modal
+        animationType="slide"
+        presentationStyle="fullScreen"
+        visible={exerciseDetailModalVisible}
+        onRequestClose={() => setExerciseDetailModalVisible(false)}>
+        <ExerciseDetail
+          field="WorkoutPreview"
+          id={currentExerciseID}
+          onClose={() => setExerciseDetailModalVisible(false)}
+        />
+      </Modal>
+
       <Modal
         animationType="slide"
         transparent={false}
@@ -197,7 +239,7 @@ const WorkoutPreview = ({ selectedDate, month, day, dayOfTheWeek }) => {
           }}
         />
       </Modal>
-      {currentExercise[0]?.name !== "Rest Day" ? (
+      {currentExercise[0]?.name !== t("restDayName") ? (
         <>
           <FlatList
             data={currentExercise || []}
@@ -232,7 +274,7 @@ const WorkoutPreview = ({ selectedDate, month, day, dayOfTheWeek }) => {
               textAlign: "center",
               paddingHorizontal: 20,
             }}>
-            Today you can chill ...
+            {t("restDay")}
           </Text>
         </>
       )}
@@ -293,17 +335,33 @@ const workoutStyles = StyleSheet.create({
   textContainer: {
     flex: 1,
     justifyContent: "center",
-    paddingLeft: 10,
+    paddingLeft: 12,
   },
   exerciseName: {
     textAlign: "left",
-    fontSize: 18,
-    fontWeight: "700",
+    fontSize: 16,
+    fontWeight: "600",
     color: "#f1f5f9",
-    letterSpacing: 0.5,
-    textShadowColor: "#0ea5e9",
-    textShadowOffset: { width: 0, height: 1 },
-    textShadowRadius: 2,
+    textTransform: "capitalize",
+    marginBottom: 6,
+  },
+  detailsRow: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 8,
+  },
+  badge: {
+    backgroundColor: "#1e293b",
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 6,
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.1)",
+  },
+  badgeText: {
+    color: "white",
+    fontSize: 11,
+    fontWeight: "600",
   },
 });
 

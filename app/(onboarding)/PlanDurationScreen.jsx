@@ -1,25 +1,15 @@
-import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
-import style from "../components/style";
-import React, { use, useState } from "react";
 import { Picker } from "@react-native-picker/picker";
-import { useWorkout } from "../contexts/WorkoutContext";
 import * as Haptics from "expo-haptics";
 import { router } from "expo-router";
-
-import { Calendar } from "react-native-calendars";
-import SafeScreen from "../components/SafeScreen";
+import { useTranslation } from "react-i18next";
+import { Pressable, Text, View } from "react-native";
+import Animated, { ZoomInEasyDown } from "react-native-reanimated";
 import AnimatedItem from "../animations/AnimatedItem";
 import ButtonAnimation from "../animations/ButtonAnimation";
-import * as Animatable from "react-native-animatable";
-import Animated, {
-  FadeIn,
-  FadeInUp,
-  ZoomIn,
-  ZoomInDown,
-  ZoomInEasyDown,
-  ZoomOut,
-} from "react-native-reanimated";
 import PrimaryCTAButton from "../components/PrimaryCTAButton";
+import SafeScreen from "../components/SafeScreen";
+import style from "../components/style";
+import { useWorkout } from "../contexts/WorkoutContext";
 const PlanDurationScreen = () => {
   const {
     UserProfile,
@@ -28,15 +18,17 @@ const PlanDurationScreen = () => {
     updatePlanDuration,
     clearDailyWorkoutTime,
   } = useWorkout();
+  const { t } = useTranslation();
   const { DailyWorkoutTime, PlanDuration } = UserProfile;
+
   const weekdays = [
-    { label: "Monday", value: "monday" },
-    { label: "Tuesday", value: "tuesday" },
-    { label: "Wednesday", value: "wednesday" },
-    { label: "Thursday", value: "thursday" },
-    { label: "Friday", value: "friday" },
-    { label: "Saturday", value: "saturday" },
-    { label: "Sunday", value: "sunday" },
+    { label: t("monday"), value: "monday" },
+    { label: t("tuesday"), value: "tuesday" },
+    { label: t("wednesday"), value: "wednesday" },
+    { label: t("thursday"), value: "thursday" },
+    { label: t("friday"), value: "friday" },
+    { label: t("saturday"), value: "saturday" },
+    { label: t("sunday"), value: "sunday" },
   ];
   const weekdayValues = weekdays.map((day) => day.value);
   const pickerTextColor = style?.defaultText?.color ?? "#ffffff";
@@ -59,7 +51,7 @@ const PlanDurationScreen = () => {
       }}>
       <AnimatedItem Screen={"PlanDurationScreen"}>
         <Text style={{ ...style.TitleText, marginTop: 0, padding: 10 }}>
-          How many days you want to workout per week?
+          {t("selectDays")}
         </Text>
 
         <Picker
@@ -80,21 +72,49 @@ const PlanDurationScreen = () => {
             }
             Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
           }}>
-          <Picker.Item label="Select Days" value="" color={pickerTextColor} />
-          <Picker.Item label="1 Day" value="1" color={pickerTextColor} />
-          <Picker.Item label="2 Days" value="2" color={pickerTextColor} />
-          <Picker.Item label="3 Days" value="3" color={pickerTextColor} />
-          <Picker.Item label="4 Days" value="4" color={pickerTextColor} />
-          <Picker.Item label="5 Days" value="5" color={pickerTextColor} />
-          <Picker.Item label="6 Days" value="6" color={pickerTextColor} />
-          <Picker.Item label="Every Day" value="7" color={pickerTextColor} />
+          <Picker.Item label={t("pickDays")} value="" color={pickerTextColor} />
+          <Picker.Item
+            label={`1 ${t("day")}`}
+            value="1"
+            color={pickerTextColor}
+          />
+          <Picker.Item
+            label={`2 ${t("days")}`}
+            value="2"
+            color={pickerTextColor}
+          />
+          <Picker.Item
+            label={`3 ${t("days")}`}
+            value="3"
+            color={pickerTextColor}
+          />
+          <Picker.Item
+            label={`4 ${t("days")}`}
+            value="4"
+            color={pickerTextColor}
+          />
+          <Picker.Item
+            label={`5 ${t("days")}`}
+            value="5"
+            color={pickerTextColor}
+          />
+          <Picker.Item
+            label={`6 ${t("days")}`}
+            value="6"
+            color={pickerTextColor}
+          />
+          <Picker.Item
+            label={t("everyDay")}
+            value="7"
+            color={pickerTextColor}
+          />
         </Picker>
 
         {PlanDuration && PlanDuration !== "7" && (
           <Animated.Text
             entering={ZoomInEasyDown.duration(200)}
             style={{ ...style.defaultText, marginTop: 50 }}>
-            Select up to {PlanDuration} workout days
+            {t("selectUpTo", { count: PlanDuration })}
           </Animated.Text>
         )}
 
@@ -145,7 +165,7 @@ const PlanDurationScreen = () => {
         {PlanDuration && DailyWorkoutTime?.find((day) => day) && (
           <PrimaryCTAButton
             style={{ alignSelf: "center", marginTop: 50 }}
-            label="Continue"
+            label={t("continue")}
             onPress={handleSubmit}
           />
         )}
