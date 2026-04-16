@@ -12,7 +12,9 @@
       "backgroundColor": "#050A30"
     },
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
+    "resolutions": {
+      "react-native-safe-area-context": "5.6.2"
+    },
     "ios": {
       "splash": {
         "image": "./assets/splashImage2.png",
@@ -87,7 +89,8 @@
             }
           ]
         }
-      ]
+      ],
+      "expo-image"
     ],
     "experiments": {
       "typedRoutes": true
